@@ -1,4 +1,4 @@
 export const toMovieList = () => "";
-export const toPersonList = () => "";
+export const toPeopleList = () => "";
 export const toMovieDetails = () => "";
-export const toPersonDetails = () => "";
+export const toPeopleDetails = () => "";

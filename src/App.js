@@ -1,10 +1,10 @@
-import { HashRouter, Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom'
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
 import Navigation from "./Navigation";
 import MovieList from "./features/movies/MovieList";
 import MovieDetails from "./features/movies/MovieDetails";
-import PersonList from "./features/persons/PersonList";
-import PersonDetails from "./features/persons/PersonDetails";
-import { toMovieList, toMovieDetails, toPersonList, toPersonDetails } from "./routes";
+import PersonList from "./features/people/PeopleList";
+import PersonDetails from "./features/people/PeopleDetails";
+import { toMovieList, toMovieDetails, toPeopleList, toPeopleDetails } from "./routes";
 
 function App() {
   return (
@@ -19,10 +19,10 @@ function App() {
         <Route path={toMovieDetails()}>
           <MovieDetails />
         </Route>
-        <Route path={toPersonList()}>
+        <Route path={toPeopleList()}>
           <PersonList />
         </Route>
-        <Route path={toPersonDetails()}>
+        <Route path={toPeopleDetails()}>
           <PersonDetails />
         </Route>
         <Route path='/'>
