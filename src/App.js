@@ -9,7 +9,6 @@ import { toMovieList, toMovieDetails, toPeopleList, toPeopleDetails } from "./ro
 function App() {
   return (
     <HashRouter>
-
       <Navigation />
 
       <Switch>
@@ -31,7 +30,8 @@ function App() {
       </Switch>
 
     </HashRouter>
+
   );
-}
+};
 
 export default App;
