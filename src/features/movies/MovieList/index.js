@@ -1,7 +1,11 @@
+import Pagination from '../../../common/Pagination/index';
+
 function MovieList() {
-    return (
-        ""
-    )
-};
+	return (
+		<>
+			<Pagination />
+		</>
+	);
+}
 
 export default MovieList;
