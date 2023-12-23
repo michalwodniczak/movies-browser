@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import {
 	incrementPage,
 	decrementPage,
@@ -24,13 +24,23 @@ import {
 const Pagination = () => {
 	const dispatch = useDispatch();
 	const currentPage = useSelector(selectPageState);
-
+	const history = useHistory();
 	const location = useLocation();
-	const query = new URLSearchParams(location.search).get('page');
+	const searchParams = new URLSearchParams(location.search);
+	const query = searchParams.get('page');
 
 	useEffect(() => {
-		dispatch(pageNumberFromURL(query));
+		if (query < 1) {
+			searchParams.set('page', 1);
+		} else {
+			dispatch(pageNumberFromURL(query));
+		}
 	}, [query]);
+
+	useEffect(() => {
+
+		history.push(`${location.pathname}?page=${currentPage}`);
+	}, [currentPage]);
 
 	return (
 		<Wrapper>
