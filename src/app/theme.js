@@ -8,5 +8,12 @@ export const theme = {
         black: "#000000",
         lightBlue: "#D6E4FF",
         blue: "#0044CC",
-    }
+    },
+
+    breakpoints:{
+        smallPhone: 600,
+        mobile: 767,
+        tablet: 992,
+        laptop: 1200,
+    },
 };
