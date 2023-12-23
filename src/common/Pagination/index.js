@@ -1,8 +1,11 @@
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import {
 	incrementPage,
 	decrementPage,
 	goToFirstPage,
+	pageNumberFromURL,
 	selectPageState,
 } from './paginationSlice';
 import {
@@ -22,13 +25,21 @@ const Pagination = () => {
 	const dispatch = useDispatch();
 	const currentPage = useSelector(selectPageState);
 
+	const location = useLocation();
+	const query = new URLSearchParams(location.search).get('page');
+
+	useEffect(() => {
+		dispatch(pageNumberFromURL(query));
+	}, [query]);
+
 	return (
 		<Wrapper>
 			<StyledButton
 				onClick={() => dispatch(goToFirstPage())}
 				disabled={currentPage < 2}
 			>
-				<ChevronLeft /><MobileChevronLeft />
+				<ChevronLeft />
+				<MobileChevronLeft />
 				<ButtonText>First</ButtonText>
 			</StyledButton>
 			<StyledButton
@@ -50,7 +61,8 @@ const Pagination = () => {
 			</StyledButton>
 			<StyledButton disabled={true}>
 				<ButtonText>Last</ButtonText>
-				<Chevron /><MobileChevron />
+				<Chevron />
+				<MobileChevron />
 			</StyledButton>
 		</Wrapper>
 	);
