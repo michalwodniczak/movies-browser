@@ -18,6 +18,7 @@ export const Input = styled.input`
     max-width: 400px;
     border-radius:25px;
     font-size: 16px;
+    color: ${({theme}) => theme.color.darkGray};
     line-height: 150%;
     padding: 10px;
     text-align: center;
