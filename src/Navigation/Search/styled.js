@@ -23,6 +23,10 @@ export const Input = styled.input`
     text-align: center;
     border: none;
 
+    &:focus{
+        outline:none;
+    }
+    
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px){    
         max-width: 766px;
     };
