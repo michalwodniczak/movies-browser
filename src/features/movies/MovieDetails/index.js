@@ -1,4 +1,5 @@
 import { Main } from '../../../common/Main/Main'
+import { Section, SectionTitle } from '../../../common/Section/Section'
 import {
 	Description,
 	Tile,
@@ -68,6 +69,28 @@ function MovieDetails() {
 						</Description>
 					</TileContent>
 				</Tile>
+				<Section>
+					<SectionTitle>Cast</SectionTitle>
+					<ul>
+						<li>person1</li>
+						<li>person2</li>
+						<li>person3</li>
+						<li>person4</li>
+						<li>person5</li>
+						<li>person6</li>
+					</ul>
+				</Section>
+				<Section>
+					<SectionTitle>Crew</SectionTitle>
+					<ul>
+						<li>person1</li>
+						<li>person2</li>
+						<li>person3</li>
+						<li>person4</li>
+						<li>person5</li>
+						<li>person6</li>
+					</ul>
+				</Section>
 			</Main>
 		</>
 	)
