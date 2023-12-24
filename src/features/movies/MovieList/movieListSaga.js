@@ -1,9 +1,10 @@
-import { takeLatest, call, put } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
 import { getPopularMovies } from "./getPopularMovies";
-import { fetchMovieList, setMovieList } from "./movieListSlice";
+import { setMovieList, setLoading } from "./movieListSlice";
 
 function* fetchMovieListHandler() {
     try {
+        yield put(setLoading({ loading: false }));
         const movieList = yield call(getPopularMovies);
         yield put(setMovieList(movieList));
     }
@@ -12,6 +13,6 @@ function* fetchMovieListHandler() {
     }
 };
 
-export function* movieListSaga() {
-    yield takeLatest(fetchMovieList.type, fetchMovieListHandler);
+export function* watchFetchMovieList() {
+    yield call(fetchMovieListHandler);
 };
