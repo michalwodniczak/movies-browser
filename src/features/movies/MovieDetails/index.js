@@ -1,3 +1,17 @@
+import { Main } from '../../../common/Main/Main'
+import {
+	Description,
+	Tile,
+	TileContent,
+	TileData,
+	TileDataContent,
+	TileDataTitle,
+	TileImage,
+	TileSubTitle,
+	TileTag,
+	TileTags,
+	TileTitle,
+} from '../../../common/Tile/Tile'
 import {
 	Header,
 	MainHeader,
@@ -27,6 +41,34 @@ function MovieDetails() {
 					</TitleContainer>
 				</Backdrop>
 			</Header>
+			<Main>
+				<Tile>
+					<TileImage />
+					<TileContent>
+						<TileTitle>Movie short title</TileTitle>
+						<TileSubTitle>YYYY</TileSubTitle>
+						<TileData>
+							<TileDataContent>
+								<TileDataTitle>Production:</TileDataTitle>
+								Country1, Country2...
+							</TileDataContent>
+							<TileDataContent>
+								<TileDataTitle>Release date:</TileDataTitle>
+								DD.MM.YYYY
+							</TileDataContent>
+						</TileData>
+						<TileTags>
+							<TileTag>Genre1</TileTag>
+							<TileTag>Genre2</TileTag>
+							<TileTag>Genre3</TileTag>
+						</TileTags>
+						<p>Rating</p>
+						<Description>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Et blanditiis molestias officia! Tenetur eum debitis, alias architecto officiis eligendi reprehenderit ea suscipit esse accusantium maxime ut dignissimos? Non, qui delectus.
+						</Description>
+					</TileContent>
+				</Tile>
+			</Main>
 		</>
 	)
 }
