@@ -1,27 +1,37 @@
 import { useSelector } from "react-redux";
-import { selectMovieList } from "./movieListSlice";
+import { selectMovieList, selectLoading } from "./movieListSlice";
 
 function MovieList() {
     const popularMovies = useSelector(selectMovieList);
+    const loading = useSelector(selectLoading);
 
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+    if (!popularMovies) {
+        return <p>No data available.</p>;
+    }
     return (
         <>
+            {/* <Navigation /> */}
             <div>
                 <h1>Popular Movies</h1>
                 <ul>
                     {popularMovies.map((movie) => (
                         <li key={movie.id}>
-                            <div
-                                id={movie.id}
-                                poster={movie.poster_path}
-                                title={movie.title}
-                                vote={movie.vote_average}
-                                votes={movie.vote_count}
-                            />
+                            <div>
+                                <img
+                                    src={movie.poster_path}
+                                    alt={movie.title}
+                                />
+                                <p>{movie.title}</p>
+                                <p>{`⭐ ${movie.vote_average}`}</p>
+                                <p>{`${movie.vote_count} votes`}</p>
+                            </div>
                         </li>
                     ))}
                 </ul>
-            </div>
+            </div >
             {/* <Pagination /> */}
         </>
     );
