@@ -1,4 +1,5 @@
 import { Main } from '../../../common/Main/Main'
+import Rating from '../../../common/Rating/Rating'
 import { Section, SectionTitle } from '../../../common/Section/Section'
 import {
 	Description,
@@ -17,10 +18,6 @@ import {
 	Header,
 	MainHeader,
 	Backdrop,
-	RatingContainer,
-	RatingInfo,
-	RatingNumber,
-	StarIcon,
 	TitleContainer,
 	TitlePrimary,
 } from './styled'
@@ -33,12 +30,12 @@ function MovieDetails() {
 				<Backdrop>
 					<TitleContainer>
 						<TitlePrimary>Movie very very long title</TitlePrimary>
-						<RatingContainer>
-							<StarIcon />
-							<RatingNumber>7,8</RatingNumber>
-							<RatingInfo>/ 10</RatingInfo>
-							<RatingInfo>335 votes</RatingInfo>
-						</RatingContainer>
+						<Rating
+							voteCount={'335'}
+							ratingValue={'7,8'}
+							isOnBackdrop={true}
+							isOnMainTile={false}
+						/>
 					</TitleContainer>
 				</Backdrop>
 			</Header>
@@ -63,9 +60,17 @@ function MovieDetails() {
 							<TileTag>Genre2</TileTag>
 							<TileTag>Genre3</TileTag>
 						</TileTags>
-						<p>Rating</p>
+						<Rating
+							voteCount={'335'}
+							ratingValue={'7,8'}
+							isOnBackdrop={false}
+							isOnMainTile={true}
+						/>
 						<Description>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Et blanditiis molestias officia! Tenetur eum debitis, alias architecto officiis eligendi reprehenderit ea suscipit esse accusantium maxime ut dignissimos? Non, qui delectus.
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
+							blanditiis molestias officia! Tenetur eum debitis, alias
+							architecto officiis eligendi reprehenderit ea suscipit esse
+							accusantium maxime ut dignissimos? Non, qui delectus.
 						</Description>
 					</TileContent>
 				</Tile>
