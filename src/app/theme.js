@@ -11,7 +11,7 @@ export const theme = {
     },
 
     breakpoints:{
-        smallPhone: 320,
+        smallPhone: 513,
         mobile: 767,
         tablet: 992,
         laptop: 1200,
