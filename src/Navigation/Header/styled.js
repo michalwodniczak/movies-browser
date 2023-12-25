@@ -13,10 +13,10 @@ export const Logo = styled(LogoWebsite)`
     width: 40px;
     height: 40px;
     position: relative;
-    top:2px;
+    top: 2px;
 
-    @media (max-width: ${({theme}) => theme.breakpoints.mobile}px){
-        width:17px;
+    @media (max-width: ${({theme}) => theme.breakpoints.smallPhone}px){
+        width: 17px;
         height: 17px;
     }
 `;
@@ -29,12 +29,13 @@ export const Title = styled.h1`
     color: ${({ theme }) => theme.color.white};
 
     @media (max-width: ${({theme}) => theme.breakpoints.mobile}px){
-        font-size:22px;
-        letter-spacing: -0.5px;
+        font-size: 22px;
+        
     };
 
     @media (max-width: ${({theme}) => theme.breakpoints.smallPhone}px){
-        font-size:13px;
+        font-size: 13px;
+        letter-spacing: -0.5px;
     };
 `;
 
@@ -45,7 +46,7 @@ export const StyledList = styled.ul`
     color: ${({ theme }) => theme.color.white};
 
     @media (max-width: ${({theme}) => theme.breakpoints.laptop}px){
-        gap:20px;
+        gap: 20px;
     };
 `;
 
@@ -60,6 +61,15 @@ export const StyledNavLink = styled(NavLink)`
     &.active{
         color: ${({ theme }) => theme.color.white};
         border: 1px solid ${({ theme }) => theme.color.white};
-        border-radius:24px;
+        border-radius: 24px;
+    };
+
+    @media (max-width: ${({theme}) => theme.breakpoints.smallPhone}px){
+        font-size:12px;
+        padding: 8px 12px;
+        
+        &.active{
+            border-radius:29px;
+        };
     };
 `;
