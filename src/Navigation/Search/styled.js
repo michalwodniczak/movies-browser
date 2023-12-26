@@ -33,6 +33,7 @@ export const Input = styled.input`
 
     @media (max-width: ${({theme}) => theme.breakpoints.smallPhone}px){
         width: 100%;
+        line-height: 130%;
     };
 `;
 
