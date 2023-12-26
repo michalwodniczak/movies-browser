@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { ReactComponent as searchIcon } from "../../assets/icon-search.svg";
 
 export const Wrapper = styled.label`
-    margin: 0 auto;
     width: 432px;
     background-color: ${({ theme }) => theme.color.white};
     border-radius:33px;
