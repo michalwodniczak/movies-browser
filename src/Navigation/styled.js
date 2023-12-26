@@ -7,11 +7,12 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-    max-width: 1300px;
+    max-width: 1368px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    padding: 10px;
+    justify-content: space-between;
+    padding: 0 16px;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.laptop}px){
         max-width: 1000px;
@@ -21,11 +22,5 @@ export const Container = styled.div`
         flex-wrap: wrap;
         justify-content: center;
     };
-
-    @media (max-width: ${({theme}) => theme.breakpoints.smallPhone}px){
-        max-width: 100%;
-    }
-
-
 `;
 
