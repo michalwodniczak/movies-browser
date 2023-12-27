@@ -15,7 +15,7 @@ const movieSlice = createSlice({
             state.details = movieDetails;
         },
         setMovieCredits: (state, {payload: movieCredits}) => {
-            state.details = movieCredits;
+            state.credits = movieCredits;
         },
     },
 });
