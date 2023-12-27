@@ -1,3 +1,8 @@
+import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setMovieId } from '../movieSlice'
+
 import { Main } from '../../../common/Main/Main'
 import Rating from '../../../common/Rating/Rating'
 import { Section, SectionTitle } from '../../../common/Section/Section'
@@ -23,6 +28,13 @@ import {
 } from './styled'
 
 function MovieDetails() {
+	const { id } = useParams()
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(setMovieId(id))
+	}, [])
+
 	return (
 		<>
 			<MainHeader />
