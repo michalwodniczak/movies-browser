@@ -1,4 +1,4 @@
-import { all, call, put, takeEvery } from 'redux-saga/effects'
+import { all, call, put, takeEvery, delay } from 'redux-saga/effects'
 import { setMovieId, setMovieDetails, setMovieCredits } from './movieSlice'
 import { getMovieDetails, getMovieCredits } from './getMovieDetails'
 
@@ -8,6 +8,7 @@ function* fetchMovieHandler() {
             call(getMovieDetails),
             call(getMovieCredits),
         ]);
+        yield delay(1500);
         yield put(setMovieDetails(details));
         yield put(setMovieCredits(credits));
     } catch (error) {
