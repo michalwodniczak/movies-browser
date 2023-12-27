@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const MainHeader = styled.header`
 	height: 94px;
@@ -14,11 +14,13 @@ export const Backdrop = styled.div`
 	display: flex;
 	margin: auto;
 	max-width: 1368px;
-	height: 769px;
-	background-color: ${({ theme }) => theme.color.lightBlue};
-	box-shadow: inset 0 0 175px 100px ${({ theme }) => theme.color.black};
-    
-    @media (max-width: 1400px) {
+	aspect-ratio: 2.342;
+	background: ${({ $background }) => `url('${$background}')`};
+	background-size: contain;
+  	background-repeat: no-repeat;
+	box-shadow: inset 0 0 100px 150px ${({ theme }) => theme.color.black};
+
+	@media (max-width: 1400px) {
 		padding-left: 16px;
         padding-right: 16px;
 	}
