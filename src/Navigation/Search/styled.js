@@ -4,7 +4,7 @@ import { ReactComponent as searchIcon } from "../../assets/icon-search.svg";
 export const Wrapper = styled.label`
     width: 432px;
     background-color: ${({ theme }) => theme.color.white};
-    border-radius:33px;
+    border-radius: 33px;
     border: 1px solid ${({ theme }) => theme.color.gray};
     padding: 4px;
 
@@ -13,10 +13,10 @@ export const Wrapper = styled.label`
         width: 500px;
     };
 
-    @media (max-width: ${({theme}) => theme.breakpoints.smallPhone}px){
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}px){
         width: 360px;
         display: flex;
-    }
+    };
 `;
 
 export const Input = styled.input`
@@ -25,13 +25,12 @@ export const Input = styled.input`
     line-height: 150%;
     text-align: justify;
     border: none;
-    padding: 0;
 
     &:focus{
         outline: none;
     };
 
-    @media (max-width: ${({theme}) => theme.breakpoints.smallPhone}px){
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}px){
         width: 100%;
         line-height: 130%;
     };

@@ -15,10 +15,10 @@ export const Logo = styled(LogoWebsite)`
     position: relative;
     top: 2px;
 
-    @media (max-width: ${({theme}) => theme.breakpoints.smallPhone}px){
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px){
         width: 17px;
         height: 17px;
-    }
+    };
 `;
 
 export const Title = styled.h1`
@@ -28,13 +28,9 @@ export const Title = styled.h1`
     letter-spacing: -1.5px;
     color: ${({ theme }) => theme.color.white};
 
-    @media (max-width: ${({theme}) => theme.breakpoints.mobile}px){
-        font-size: 22px;
-        
-    };
-
-    @media (max-width: ${({theme}) => theme.breakpoints.smallPhone}px){
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px){
         font-size: 13px;
+        line-height: 130%;
         letter-spacing: -0.5px;
     };
 `;
@@ -45,8 +41,16 @@ export const StyledList = styled.ul`
     gap: 40px;
     color: ${({ theme }) => theme.color.white};
 
-    @media (max-width: ${({theme}) => theme.breakpoints.laptop}px){
+    @media (max-width: ${({ theme }) => theme.breakpoints.laptop}px){
         gap: 20px;
+    };
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px){
+        gap: 12px;
+    };
+
+    @media (max-width: ${({theme}) => theme.breakpoints.smallPhone}px){
+        padding:0;
     };
 `;
 
@@ -56,7 +60,7 @@ export const StyledNavLink = styled(NavLink)`
     text-transform: uppercase;
     text-decoration: none;
     text-align: center;
-    padding: 8px 24px;
+    padding: 13px 24px;
 
     &.active{
         color: ${({ theme }) => theme.color.white};
@@ -64,12 +68,12 @@ export const StyledNavLink = styled(NavLink)`
         border-radius: 24px;
     };
 
-    @media (max-width: ${({theme}) => theme.breakpoints.smallPhone}px){
-        font-size:12px;
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px){
+        font-size: 12px;
         padding: 8px 12px;
         
         &.active{
-            border-radius:29px;
+            border-radius: 29px;
         };
     };
 `;
