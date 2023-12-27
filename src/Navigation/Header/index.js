@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toMovieList, toPeopleList } from "../../routes";
 import { StyledHeader, Logo, Title, StyledList, StyledNavLink } from "./styled";
 export const Header = () => (
