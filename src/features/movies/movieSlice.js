@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const movieSlice = createSlice({
     name: 'movie',
     initialState: {
+        loading: true,
         id: '',
         details: {},
         credits: {},
@@ -13,6 +14,7 @@ const movieSlice = createSlice({
         },
         setMovieDetails: (state, {payload: movieDetails}) => {
             state.details = movieDetails;
+            state.loading = false;
         },
         setMovieCredits: (state, {payload: movieCredits}) => {
             state.credits = movieCredits;
@@ -28,6 +30,6 @@ export const {
 
 const selectMovieState = state => state.movie;
 
-export const selectMovieId = state => selectMovieState(state).id;
+export const selectLoading = state => selectMovieState(state).loading;
 
 export default movieSlice.reducer;

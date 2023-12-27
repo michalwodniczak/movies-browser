@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { setMovieId } from '../movieSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { setMovieId, selectLoading } from '../movieSlice'
 
 import { Main } from '../../../common/Main/Main'
 import Rating from '../../../common/Rating/Rating'
@@ -35,8 +35,12 @@ function MovieDetails() {
 		dispatch(setMovieId(id))
 	}, [])
 
+	const loading = useSelector(selectLoading);
+
 	return (
-		<>
+		loading ?
+		'ładowanie'
+		: <>
 			<MainHeader />
 			<Header>
 				<Backdrop>
