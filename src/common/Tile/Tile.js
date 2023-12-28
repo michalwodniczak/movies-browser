@@ -9,6 +9,25 @@ export const Tile = styled.article`
 	box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
 `
 
+export const SmallTile = styled.article`
+	width: 208px;
+	height: 100%;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	background-color: ${({ theme }) => theme.color.white};
+	box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
+`
+
+export const SmallTileImageContainer = styled.div`
+	width: 177px;
+	height: 264px;
+	border-radius: 5px;
+	background: ${({ theme }) => theme.color.silver};
+	color: ${({ theme }) => theme.color.white};
+`
+
 export const TileImage = styled.img`
 	width: 312px;
 	height: 464px;
@@ -31,11 +50,30 @@ export const TileTitle = styled.h2`
 	line-height: 1.2;
 `
 
+export const SmallTileTitle = styled.h2`
+	margin: 4px 0 0 0;
+	text-align: center;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 1.3;
+	color: ${({ theme }) => theme.color.almostBlack};
+`
+
+
 export const TileSubTitle = styled.h3`
 	margin: 0;
 	font-size: 22px;
 	line-height: 1.2;
 	height: auto;
+`
+
+export const SmallTileSubTitle = styled.h3`
+	margin: 0;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.5;
+	color: ${({ theme }) => theme.color.darkGray};
 `
 
 export const TileData = styled.div`

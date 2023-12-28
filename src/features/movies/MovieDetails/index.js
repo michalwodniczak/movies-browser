@@ -1,13 +1,18 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMovieId, selectLoading, selectMovieDetails } from '../movieSlice';
+import { setMovieId, selectLoading, selectMovieDetails, selectMovieCast, selectMovieCrew } from '../movieSlice';
 
 import { Main } from '../../../common/Main/Main';
+import { SpinnerIcon, Container } from '../../../common/Loading/Loading';
 import Rating from '../../../common/Rating/Rating';
 import { Section, SectionTitle } from '../../../common/Section/Section';
 import {
 	Description,
+	SmallTile,
+	SmallTileImageContainer,
+	SmallTileSubTitle,
+	SmallTileTitle,
 	Tile,
 	TileContent,
 	TileData,
@@ -25,6 +30,7 @@ import {
 	Backdrop,
 	TitleContainer,
 	TitlePrimary,
+	SectionWrapper,
 } from './styled';
 
 function MovieDetails() {
@@ -37,9 +43,14 @@ function MovieDetails() {
 
 	const loading = useSelector(selectLoading);
 	const movieDetails = useSelector(selectMovieDetails);
+	const movieCast = useSelector(selectMovieCast);
+	const movieCrew = useSelector(selectMovieCrew);
 
 	return loading ? (
-		'ładowanie'
+		<>
+			<MainHeader />
+			<Container><SpinnerIcon /></Container>
+		</>
 	) : (
 		<>
 			<MainHeader />
@@ -94,25 +105,31 @@ function MovieDetails() {
 				</Tile>
 				<Section>
 					<SectionTitle>Cast</SectionTitle>
-					<ul>
-						<li>person1</li>
-						<li>person2</li>
-						<li>person3</li>
-						<li>person4</li>
-						<li>person5</li>
-						<li>person6</li>
-					</ul>
+					<SectionWrapper>
+						{movieCast.slice(0, 12).map((actor) => (
+							<li key={actor.id}>
+								<SmallTile>
+									<SmallTileImageContainer />
+									<SmallTileTitle>{actor.name}</SmallTileTitle>
+									<SmallTileSubTitle>{actor.character}</SmallTileSubTitle>
+								</SmallTile>
+							</li>
+						))}
+					</SectionWrapper>
 				</Section>
 				<Section>
 					<SectionTitle>Crew</SectionTitle>
-					<ul>
-						<li>person1</li>
-						<li>person2</li>
-						<li>person3</li>
-						<li>person4</li>
-						<li>person5</li>
-						<li>person6</li>
-					</ul>
+					<SectionWrapper>
+						{movieCrew.slice(0, 6).map((crew) => (
+							<li key={crew.id}>
+								<SmallTile>
+									<SmallTileImageContainer />
+									<SmallTileTitle>{crew.name}</SmallTileTitle>
+									<SmallTileSubTitle>{crew.job}</SmallTileSubTitle>
+								</SmallTile>
+							</li>
+						))}
+					</SectionWrapper>
 				</Section>
 			</Main>
 		</>

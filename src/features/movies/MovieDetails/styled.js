@@ -39,3 +39,13 @@ export const TitlePrimary = styled.h1`
 	line-height: 120%;
 	margin: 0 0 24px 0;
 `
+
+export const SectionWrapper = styled.ul`
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 24px;
+	width: 100%;
+`
