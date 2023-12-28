@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { ReactComponent as NoPersonSVG } from "../../assets/icon-person.svg";
 
 export const Tile = styled.article`
 	display: grid;
@@ -21,11 +22,27 @@ export const SmallTile = styled.article`
 `
 
 export const SmallTileImageContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 177px;
 	height: 264px;
 	border-radius: 5px;
 	background: ${({ theme }) => theme.color.silver};
 	color: ${({ theme }) => theme.color.white};
+`
+
+export const SmallTileImage = styled.img`
+	width: 177px;
+	height: 264px;
+	border-radius: 5px;
+	background: ${({ theme }) => theme.color.silver};
+	color: ${({ theme }) => theme.color.white};
+`
+
+export const NoPersonIcon = styled(NoPersonSVG)`
+	width: 72px;
+	height: 72px;
 `
 
 export const TileImage = styled.img`
@@ -58,7 +75,6 @@ export const SmallTileTitle = styled.h2`
 	line-height: 1.3;
 	color: ${({ theme }) => theme.color.almostBlack};
 `
-
 
 export const TileSubTitle = styled.h3`
 	margin: 0;
