@@ -31,6 +31,7 @@ export const {
 
 const selectMovieState = state => state.movie;
 const selectDetails = state => selectMovieState(state).details;
+const selectCredits = state => selectMovieState(state).credits;
 
 export const selectLoading = state => selectMovieState(state).loading;
 
@@ -57,5 +58,8 @@ export const selectMovieDetails = state => {
         backdropURL: `${backdropURL}${backdropPath}`,
     })
 };
+
+export const selectMovieCast = state => selectCredits(state).cast;
+export const selectMovieCrew = state => selectCredits(state).crew;
 
 export default movieSlice.reducer;
