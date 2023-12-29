@@ -7,15 +7,19 @@ import {
   goToFirstPage,
   pageNumberFromURL,
   selectPageState,
+  selectPeopleList,
 } from '../peopleSlice';
-
+import { posterURL } from '../../../utils/API/APIURLS';
 import { Section, SectionTitle } from "../../../common/Section/Section";
 import { SectionWrapper } from "./styled";
+import { NoPersonIcon, SmallTile, SmallTileImage, SmallTileImageContainer, SmallTileTitle } from '../../../common/Tile/Tile';
 import Pagination from '../../../common/Pagination';
 
 function PeopleList() {
   const dispatch = useDispatch();
   const currentPage = useSelector(selectPageState);
+  const peopleList = useSelector(selectPeopleList);
+
   const history = useHistory();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -34,7 +38,6 @@ function PeopleList() {
     history.push(`${location.pathname}?page=${currentPage}`);
   }, [currentPage]);
 
-
   return (
     <>
       <Section>
@@ -42,16 +45,23 @@ function PeopleList() {
           Popular People
         </SectionTitle>
         <SectionWrapper>
-          <ul>
-            <li>person 1</li>
-            <li>person 2</li>
-            <li>person 3</li>
-            <li>person 4</li>
-            <li>person 5</li>
-            <li>person 6</li>
-            <li>...</li>
-            <li>person 20</li>
-          </ul>
+          {peopleList.map((person) => (
+            <li key={person.id}>
+              <SmallTile>
+                <SmallTileImageContainer>
+                  {person.profile_path
+                  ?
+                  <SmallTileImage
+                  src={`${posterURL}${person.profile_path}`}
+                  />
+                  :
+                  <NoPersonIcon />
+                }
+                </SmallTileImageContainer>
+                <SmallTileTitle>{person.name}</SmallTileTitle>
+              </SmallTile>
+            </li>
+          ))}
         </SectionWrapper>
       </Section>
       <Pagination currentPage={currentPage} goToFirstPage={goToFirstPage} incrementPage={incrementPage} decrementPage={decrementPage}/>
