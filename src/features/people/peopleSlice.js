@@ -34,6 +34,9 @@ export const {
 	setPeopleList,
 } = peopleSlice.actions;
 
-export const selectPageState = (state) => state.people.page;
+const selectPeopleState = (state) => state.people;
+
+export const selectPageState = (state) => selectPeopleState(state).page;
+export const selectPeopleList = (state) => selectPeopleState(state).peopleList.results;
 
 export default peopleSlice.reducer;
