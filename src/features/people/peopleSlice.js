@@ -5,6 +5,7 @@ const peopleSlice = createSlice({
     initialState: {
         loading: true,
         page: 1,
+		peopleList: {},
     },
 	reducers: {
 		incrementPage: (state) => {
@@ -19,6 +20,9 @@ const peopleSlice = createSlice({
 		pageNumberFromURL: (state, { payload: query }) => {
 			state.page = +query;
 		},
+		setPeopleList: (state, {payload: peopleList}) => {
+            state.peopleList = peopleList;
+        },
 	},
 });
 
@@ -27,6 +31,7 @@ export const {
     decrementPage,
     goToFirstPage,
 	pageNumberFromURL,
+	setPeopleList,
 } = peopleSlice.actions;
 
 export const selectPageState = (state) => state.people.page;
