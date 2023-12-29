@@ -1,10 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
-import {
-	incrementPage,
-	decrementPage,
-	goToFirstPage,
-	selectPageState,
-} from './paginationSlice';
+import { useDispatch } from 'react-redux';
+
 import {
 	Wrapper,
 	StyledButton,
@@ -18,9 +13,8 @@ import {
 	BoldText,
 } from './styled';
 
-const Pagination = () => {
+const Pagination = ({ currentPage, goToFirstPage, decrementPage, incrementPage }) => {
 	const dispatch = useDispatch();
-	const currentPage = useSelector(selectPageState);
 
 	return (
 		<Wrapper>
@@ -28,7 +22,8 @@ const Pagination = () => {
 				onClick={() => dispatch(goToFirstPage())}
 				disabled={currentPage < 2}
 			>
-				<ChevronLeft /><MobileChevronLeft />
+				<ChevronLeft />
+				<MobileChevronLeft />
 				<ButtonText>First</ButtonText>
 			</StyledButton>
 			<StyledButton
@@ -50,7 +45,8 @@ const Pagination = () => {
 			</StyledButton>
 			<StyledButton disabled={true}>
 				<ButtonText>Last</ButtonText>
-				<Chevron /><MobileChevron />
+				<Chevron />
+				<MobileChevron />
 			</StyledButton>
 		</Wrapper>
 	);
