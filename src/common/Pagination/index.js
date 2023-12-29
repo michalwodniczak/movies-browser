@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-
 import {
 	Wrapper,
 	StyledButton,
