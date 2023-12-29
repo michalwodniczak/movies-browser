@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectMovieList, selectLoading } from "./movieListSlice";
+import Pagination from '../../../common/Pagination/index';
 
 function MovieList() {
     const popularMovies = useSelector(selectMovieList);

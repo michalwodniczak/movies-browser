@@ -3,7 +3,7 @@
   "name": "Movies Browser",
   "icons": [
     {
-      "src": "logo192.png",
+      "src": "favicon.png",
       "type": "image/png",
       "sizes": "192x192"
     }
