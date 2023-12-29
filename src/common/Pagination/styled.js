@@ -4,9 +4,8 @@ import { ReactComponent as ChevronSVG } from '../../assets/icon-chevron.svg';
 export const Wrapper = styled.div`
 	font-family: 'Poppins';
     font-size: 14px;
-
+	margin-top: 56px;
 	display: flex;
-	margin: auto;
 	justify-content: center;
 	gap: 12px;
 
