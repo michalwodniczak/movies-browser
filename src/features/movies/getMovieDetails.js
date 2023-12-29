@@ -18,6 +18,9 @@ export const getMovieDetails = async (/* id */) => {
 };
 
 export const getMovieCredits = async () => {
+
+    //const movieCreditsURL = `${URL}movie/${id}/credits${AuthorizationAndLanguage}`;
+
     const response = await fetch(movieCreditsSampleURL);
 
     if (!response.ok) {

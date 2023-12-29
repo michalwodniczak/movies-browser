@@ -1,12 +1,13 @@
-import { all, call, put, takeEvery, delay } from 'redux-saga/effects'
-import { setMovieId, setMovieDetails, setMovieCredits } from './movieSlice'
+import { all, call, put, takeEvery, delay, select } from 'redux-saga/effects'
+import { setMovieId, setMovieDetails, setMovieCredits, selectMovieId } from './movieSlice'
 import { getMovieDetails, getMovieCredits } from './getMovieDetails'
 
 function* fetchMovieHandler() {
     try {
+        const movieId = yield select(selectMovieId);
         const [details, credits] = yield all ([
-            call(getMovieDetails),
-            call(getMovieCredits),
+            call(getMovieDetails, movieId),
+            call(getMovieCredits, movieId),
         ]);
         yield delay(1500);
         yield put(setMovieDetails(details));

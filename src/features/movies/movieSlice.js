@@ -34,6 +34,7 @@ const selectDetails = state => selectMovieState(state).details;
 const selectCredits = state => selectMovieState(state).credits;
 
 export const selectLoading = state => selectMovieState(state).loading;
+export const selectMovieId = state => selectMovieState(state).id;
 
 export const selectMovieDetails = state => {
     const title = selectDetails(state).original_title;
