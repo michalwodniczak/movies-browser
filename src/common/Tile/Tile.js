@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { ReactComponent as NoPersonSVG } from "../../assets/icon-person.svg";
-
+import { ReactComponent as NoMovieSVG } from "../../assets/icon-noMovie.svg";
 export const Tile = styled.article`
 	display: grid;
 	grid-template-columns: auto 1fr;
@@ -48,13 +48,27 @@ export const SmallTileImage = styled.img`
 
 	@media (max-width: 767px) {
 		width: 120px;
-
 	}
 `
 
 export const NoPersonIcon = styled(NoPersonSVG)`
 	width: 72px;
 	height: 72px;
+
+	@media (max-width: 767px) {
+		width: 48px;
+		height: 48px;
+	}
+`
+
+export const NoMovieIcon = styled(NoMovieSVG)`
+	width: 72px;
+	height: 72px;
+
+	@media (max-width: 767px) {
+		width: 48px;
+		height: 48px;
+	}
 `
 
 export const TileImage = styled.img`
