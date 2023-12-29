@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { selectMovieList, selectLoading } from "./movieListSlice";
+import { Section, SectionTitle } from "../../../common/Section/Section";
 import Pagination from '../../../common/Pagination/index';
+import { SectionWrapper, Tile } from "./styled";
 
 function MovieList() {
     const popularMovies = useSelector(selectMovieList);
@@ -14,25 +17,28 @@ function MovieList() {
     }
     return (
         <>
-            {/* <Navigation /> */}
-            <div>
-                <h1>Popular Movies</h1>
-                <ul>
-                    {popularMovies.map((movie) => (
+            <Section>
+                <SectionTitle>
+                    Popular Movies
+                </SectionTitle>
+                <SectionWrapper>
+                    {popularMovies.slice(0, 4).map((movie) => (
                         <li key={movie.id}>
-                            <div>
-                                <img
-                                    src={movie.poster_path}
-                                    alt={movie.title}
-                                />
-                                <p>{movie.title}</p>
-                                <p>{`⭐ ${movie.vote_average}`}</p>
-                                <p>{`${movie.vote_count} votes`}</p>
-                            </div>
+                            <Tile >
+                                <Link as={Link} to={`/movies/${movie.id}`}>
+                                    <img
+                                        src={movie.poster_path}
+                                        alt={movie.title}
+                                    />
+                                    <p>{movie.title}</p>
+                                    <p>{`⭐ ${movie.vote_average}`}</p>
+                                    <p>{`${movie.vote_count} votes`}</p>
+                                </Link>
+                            </Tile>
                         </li>
                     ))}
-                </ul>
-            </div >
+                </SectionWrapper>
+            </Section>
             {/* <Pagination /> */}
         </>
     );
