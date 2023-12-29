@@ -28,7 +28,6 @@ import {
 } from '../../../common/Tile/Tile';
 import {
   Header,
-  MainHeader,
   Backdrop,
   TitleContainer,
   TitlePrimary,
@@ -50,12 +49,10 @@ function MovieDetails() {
 
   return loading ? (
     <>
-      <MainHeader />
       <Container><SpinnerIcon /></Container>
     </>
   ) : (
     <>
-      <MainHeader />
       <Header>
         <Backdrop $background={movieDetails.backdropURL}>
           <TitleContainer>
