@@ -19,6 +19,11 @@ export const SmallTile = styled.article`
 	gap: 8px;
 	background-color: ${({ theme }) => theme.color.white};
 	box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
+
+	@media (max-width: 767px) {
+		width: 136px;
+		padding: 8px;
+	}
 `
 
 export const SmallTileImageContainer = styled.div`
@@ -26,18 +31,25 @@ export const SmallTileImageContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	width: 177px;
-	height: 264px;
 	border-radius: 5px;
 	background: ${({ theme }) => theme.color.silver};
 	color: ${({ theme }) => theme.color.white};
+
+	@media (max-width: 767px) {
+		width: 120px;
+	}
 `
 
 export const SmallTileImage = styled.img`
 	width: 177px;
-	height: 264px;
 	border-radius: 5px;
 	background: ${({ theme }) => theme.color.silver};
 	color: ${({ theme }) => theme.color.white};
+
+	@media (max-width: 767px) {
+		width: 120px;
+
+	}
 `
 
 export const NoPersonIcon = styled(NoPersonSVG)`
@@ -74,6 +86,10 @@ export const SmallTileTitle = styled.h2`
 	font-weight: 500;
 	line-height: 1.3;
 	color: ${({ theme }) => theme.color.almostBlack};
+
+	@media (max-width: 767px) {
+		font-size: 14px;
+	}
 `
 
 export const TileSubTitle = styled.h3`

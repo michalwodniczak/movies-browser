@@ -8,4 +8,8 @@ export const SectionWrapper = styled.ul`
 	flex-wrap: wrap;
 	gap: 24px;
 	width: 100%;
+
+	@media (max-width: 767px) {
+		gap: 16px;
+	}
 `
