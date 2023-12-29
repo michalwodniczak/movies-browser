@@ -5,7 +5,10 @@ const peopleSlice = createSlice({
     initialState: {
         loading: true,
         page: 1,
-		peopleList: {},
+		peopleList: {
+			page: 1,
+			results: [{}],
+		},
     },
 	reducers: {
 		incrementPage: (state) => {
