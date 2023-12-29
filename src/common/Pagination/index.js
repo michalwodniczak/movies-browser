@@ -1,8 +1,11 @@
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useLocation, useHistory } from 'react-router-dom';
 import {
 	incrementPage,
 	decrementPage,
 	goToFirstPage,
+	pageNumberFromURL,
 	selectPageState,
 } from './paginationSlice';
 import {
@@ -21,6 +24,23 @@ import {
 const Pagination = () => {
 	const dispatch = useDispatch();
 	const currentPage = useSelector(selectPageState);
+	const history = useHistory();
+	const location = useLocation();
+	const searchParams = new URLSearchParams(location.search);
+	const query = searchParams.get('page');
+
+	useEffect(() => {
+		if (query < 1) {
+			searchParams.set('page', 1);
+		} else {
+			dispatch(pageNumberFromURL(query));
+		}
+	}, [query]);
+
+	useEffect(() => {
+
+		history.push(`${location.pathname}?page=${currentPage}`);
+	}, [currentPage]);
 
 	return (
 		<Wrapper>
@@ -28,7 +48,8 @@ const Pagination = () => {
 				onClick={() => dispatch(goToFirstPage())}
 				disabled={currentPage < 2}
 			>
-				<ChevronLeft /><MobileChevronLeft />
+				<ChevronLeft />
+				<MobileChevronLeft />
 				<ButtonText>First</ButtonText>
 			</StyledButton>
 			<StyledButton
@@ -50,7 +71,8 @@ const Pagination = () => {
 			</StyledButton>
 			<StyledButton disabled={true}>
 				<ButtonText>Last</ButtonText>
-				<Chevron /><MobileChevron />
+				<Chevron />
+				<MobileChevron />
 			</StyledButton>
 		</Wrapper>
 	);

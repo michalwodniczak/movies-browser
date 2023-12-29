@@ -15,13 +15,17 @@ const paginationSlice = createSlice({
         goToFirstPage: (state) => {
             state.page = 1;
         },
+		pageNumberFromURL: (state, { payload: query }) => {
+			state.page = +query;
+		},
 	},
 });
 
 export const {
     incrementPage,
     decrementPage,
-    goToFirstPage
+    goToFirstPage,
+	pageNumberFromURL,
 } = paginationSlice.actions;
 
 export const selectPageState = (state) => state.pagination.page;
