@@ -1,11 +1,5 @@
 import styled from 'styled-components'
 
-export const MainHeader = styled.header`
-	height: 94px;
-	width: 100%;
-	background-color: ${({ theme }) => theme.color.black};
-`
-
 export const Header = styled.div`
 	background-color: ${({ theme }) => theme.color.black};
 `
@@ -24,12 +18,20 @@ export const Backdrop = styled.div`
 		padding-left: 16px;
         padding-right: 16px;
 	}
+
+	@media (max-width: 767px) {
+		box-shadow: none;
+    }
 `
 
 export const TitleContainer = styled.div`
 	z-index: 2;
 	align-self: flex-end;
 	margin-bottom: 54px;
+
+	@media (max-width: 767px) {
+		margin-bottom: 8px;
+    }
 `
 
 export const TitlePrimary = styled.h1`
@@ -38,6 +40,11 @@ export const TitlePrimary = styled.h1`
 	font-weight: 600;
 	line-height: 120%;
 	margin: 0 0 24px 0;
+
+	@media (max-width: 767px) {
+		font-size: 24px;
+		margin: 0 0 4px 0;
+    }
 `
 
 export const SectionWrapper = styled.ul`
@@ -48,4 +55,8 @@ export const SectionWrapper = styled.ul`
 	flex-wrap: wrap;
 	gap: 24px;
 	width: 100%;
+
+	@media (max-width: 767px) {
+		gap: 16px;
+	}
 `

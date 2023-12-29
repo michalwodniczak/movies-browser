@@ -30,6 +30,8 @@ export const RatingContainer = styled.div`
 
     @media (max-width: 767px) {
 		gap: 8px;
+        width: auto;
+	    height: auto;
 
         ${({ $backdrop }) => $backdrop && css`
             gap: 2px;
