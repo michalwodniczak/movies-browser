@@ -61,7 +61,21 @@ export const StyledNavLink = styled(NavLink)`
     text-decoration: none;
     text-align: center;
     padding: 13px 24px;
+    transition: 0.3s;
 
+    &:visited{
+        color: ${({theme}) => theme.breakpoints.white};
+    };
+
+    &:focus{
+        transform: scale(0.5);
+    };
+
+    &:hover{
+        transform: scale(0.5);
+    };
+
+    
     &.active{
         color: ${({ theme }) => theme.color.white};
         border: 1px solid ${({ theme }) => theme.color.white};
