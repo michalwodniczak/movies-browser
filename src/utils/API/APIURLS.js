@@ -1,9 +1,9 @@
 export const URL = "https://api.themoviedb.org/3/";
 export const apiKey = "f9cdeaf9af4ca30fda858745e2b12712";
 
-export const popularMoviesURL = `${URL}movie/popular?api_key=${apiKey}&language=en-US&page=1`;
+export const popularMoviesURL = `${URL}movie/popular?api_key=${apiKey}&language=en-US`;
 
-export const popularPeopleURL = `${URL}person/popular?api_key=${apiKey}&language=en-US&page=1`;
+export const popularPeopleURL = `${URL}person/popular?api_key=${apiKey}&language=en-US`;
 
 export const genresURL = `${URL}genre/movie/list?api_key=${apiKey}&language=en-US`;
 

@@ -1,11 +1,20 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, takeEvery, select } from "redux-saga/effects";
 import { getPopularMovies } from "./getPopularMovies";
-import { setMovieList, setLoading } from "./movieListSlice";
+import {
+    incrementPage,
+    decrementPage,
+    goToFirstPage,
+    pageNumberFromURL,
+    selectPageState,
+    setMovieList,
+    setLoading
+} from "./movieListSlice";
 
 function* fetchMovieListHandler() {
     try {
+        const page = yield select(selectPageState);
         yield put(setLoading({ loading: false }));
-        const movieList = yield call(getPopularMovies);
+        const movieList = yield call(getPopularMovies, page);
         yield put(setMovieList(movieList));
     }
     catch (error) {
@@ -14,5 +23,12 @@ function* fetchMovieListHandler() {
 };
 
 export function* watchFetchMovieList() {
-    yield call(fetchMovieListHandler);
+    yield takeEvery(
+        [
+            incrementPage,
+            decrementPage,
+            goToFirstPage,
+            pageNumberFromURL
+        ],
+        fetchMovieListHandler);
 };
