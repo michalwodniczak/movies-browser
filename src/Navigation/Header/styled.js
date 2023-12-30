@@ -61,11 +61,24 @@ export const StyledNavLink = styled(NavLink)`
     text-decoration: none;
     text-align: center;
     padding: 13px 24px;
+    border-radius:24px;
+    transition: 0.3s;
+
+    &:visited{
+        color: ${({theme}) => theme.color.white};
+    };
+
+    &:focus{
+        color: ${({theme}) => theme.color.blue};
+    };
+
+    &:hover{
+        color: ${({theme}) => theme.color.blue};
+    };
 
     &.active{
-        color: ${({ theme }) => theme.color.white};
+        color: ${({ theme }) => theme.color.white}; 
         border: 1px solid ${({ theme }) => theme.color.white};
-        border-radius: 24px;
     };
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px){
