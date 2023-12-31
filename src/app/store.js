@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import { watchFetchMovieList } from '../features/movies/MovieList/movieListSaga';
+import rootSaga from './rootSaga';
 import movieListReducer from '../features/movies/MovieList/movieListSlice';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -12,6 +12,6 @@ export const store = configureStore({
     middleware: [sagaMiddleware],
 });
 
-sagaMiddleware.run(watchFetchMovieList);
+sagaMiddleware.run(rootSaga);
 
 export default store;
