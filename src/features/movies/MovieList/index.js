@@ -1,18 +1,19 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useHistory, Link } from "react-router-dom";
-import { 
+import {
     incrementPage,
     decrementPage,
     goToFirstPage,
     pageNumberFromURL,
-    selectMovieList, 
+    selectMovieList,
     selectLoading,
-    selectPageState 
+    selectPageState
 } from "./movieListSlice";
 import { Section, SectionTitle } from "../../../common/Section/Section";
 import { SectionWrapper, Tile } from "./styled";
 import Pagination from '../../../common/Pagination/index';
+import { Container, SpinnerIcon } from '../../../common/Loading/Loading';
 
 function MovieList() {
     const dispatch = useDispatch();
@@ -24,22 +25,26 @@ function MovieList() {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const query = searchParams.get('page');
-  
+
     useEffect(() => {
-      if (query < 1) {
-        searchParams.set('page', 1);
-      } else {
-        dispatch(pageNumberFromURL(query));
-      }
+        if (query < 1) {
+            searchParams.set('page', 1);
+        } else {
+            dispatch(pageNumberFromURL(query));
+        }
     }, [query]);
-  
+
     useEffect(() => {
-  
-      history.push(`${location.pathname}?page=${currentPage}`);
+
+        history.push(`${location.pathname}?page=${currentPage}`);
     }, [currentPage]);
 
     if (loading) {
-        return <p>Loading...</p>;
+        return (
+            <Container>
+                <SpinnerIcon />
+            </Container>
+        );
     }
     if (!popularMovies) {
         return <p>No data available.</p>;
@@ -68,7 +73,7 @@ function MovieList() {
                     ))}
                 </SectionWrapper>
             </Section>
-            <Pagination currentPage={currentPage} goToFirstPage={goToFirstPage} incrementPage={incrementPage} decrementPage={decrementPage}/>        </>
+            <Pagination currentPage={currentPage} goToFirstPage={goToFirstPage} incrementPage={incrementPage} decrementPage={decrementPage} />        </>
     );
 };
 
