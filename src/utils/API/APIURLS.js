@@ -2,10 +2,10 @@ export const URL = "https://api.themoviedb.org/3/";
 export const URLImages = "https://image.tmdb.org/t/p/";
 export const apiKey = "f9cdeaf9af4ca30fda858745e2b12712";
 
+export const AuthorizationAndLanguage = `?api_key=${apiKey}&language=en-US`;
+
 export const popularMoviesURL = `${URL}movie/popular?api_key=${apiKey}&language=en-US`;
-
 export const popularPeopleURL = `${URL}person/popular?api_key=${apiKey}&language=en-US`;
-
 export const genresURL = `${URL}genre/movie/list?api_key=${apiKey}&language=en-US`;
 
 export const backdropURL = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/";
@@ -20,3 +20,9 @@ export const posterURL = `${URLImages}w300_and_h450_bestv2`
 
     //początek linku do backdrop image
         //  https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/
+
+    //link do movie po id
+        //  https://api.themoviedb.org/3/movie/466420?api_key=f9cdeaf9af4ca30fda858745e2b12712&language=en-US
+        
+    //link do movie cast and crew po id
+        //  https://api.themoviedb.org/3/movie/466420/credits?api_key=f9cdeaf9af4ca30fda858745e2b12712&language=en-US
