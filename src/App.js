@@ -31,7 +31,6 @@ function App() {
         </Switch>
       </Main>
     </HashRouter>
-
   );
 };
 
