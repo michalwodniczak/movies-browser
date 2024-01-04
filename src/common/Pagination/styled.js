@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import { ReactComponent as ChevronSVG } from '../../assets/icon-chevron.svg';
 
 export const Wrapper = styled.div`
-	font-family: 'Poppins';
-    font-size: 14px;
-	margin-top: 56px;
+    margin-top: 56px;
 	display: flex;
 	justify-content: center;
 	gap: 12px;
+	font-size: 14px;
 
 	@media (max-width: 767px) {
 		gap: 8px;
@@ -27,7 +26,7 @@ export const TextContainer = styled.div`
 `
 
 export const RegularText = styled.span`
-	color: #7e839a;
+	color: ${({ theme }) => theme.color.darkGray};
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 150%;
@@ -40,7 +39,7 @@ export const RegularText = styled.span`
 `
 
 export const BoldText = styled(RegularText)`
-    color: #18181b;
+    color: ${({ theme }) => theme.color.almostBlack};
 	font-weight: 600;
 `
 
@@ -51,8 +50,8 @@ export const StyledButton = styled.button`
 	padding: 8px 16px;
 	border: none;
 	border-radius: 5px;
-	color: #0044cc;
-	background-color: #d6e4ff;
+	color: ${({ theme }) => theme.color.blue};
+	background-color: ${({ theme }) => theme.color.lightBlue};
 
 	@media (max-width: 767px) {
 		padding: 8px 12px;
@@ -60,13 +59,13 @@ export const StyledButton = styled.button`
 	}
 
 	&:disabled {
-		color: #7e839a;
-		background-color: #e4e6f0;
+		color: ${({ theme }) => theme.color.darkGray};
+		background-color: ${({ theme }) => theme.color.gray};
 	}
 `
 
 export const ButtonText = styled.span`
-	color: #18181b;
+	color: ${({ theme }) => theme.color.almostBalck};
 
 	@media (max-width: 767px) {
 		display: none;
