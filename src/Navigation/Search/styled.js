@@ -10,13 +10,14 @@ export const Wrapper = styled.label`
     padding: 7px;
 
     @media (max-width: ${({theme}) => theme.breakpoints.tablet}px){
-        margin: 10px 0;
-        width: 500px;
+        max-width:400px;
+        margin-left:20px;
     };
 
     @media (max-width: ${({theme}) => theme.breakpoints.mobile}px){
         width: 360px;
         display: flex;
+        margin-left:0;
     };
 `;
 
