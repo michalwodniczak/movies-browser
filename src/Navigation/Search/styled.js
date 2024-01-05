@@ -6,7 +6,8 @@ export const Wrapper = styled.label`
     background-color: ${({ theme }) => theme.color.white};
     border-radius: 33px;
     border: 1px solid ${({ theme }) => theme.color.gray};
-    padding: 4px;
+    margin-top:12px;
+    padding: 7px;
 
     @media (max-width: ${({theme}) => theme.breakpoints.tablet}px){
         margin: 10px 0;
