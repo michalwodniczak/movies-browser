@@ -7,7 +7,10 @@ export const popularPeopleURL = `${URL}person/popular?api_key=${apiKey}&language
 
 export const genresURL = `${URL}genre/movie/list?api_key=${apiKey}&language=en-US`;
 
-export const backdropURL = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/";
+export const backdropURL = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/"; 
+
+// export const searchMovieURL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}`;
+
 
 //tymczasowe linki do kopiowania:
     // link to pierwszej strony popularMovies
