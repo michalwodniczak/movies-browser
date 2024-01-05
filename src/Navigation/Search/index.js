@@ -1,40 +1,45 @@
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Wrapper, Input, Icon } from "./styled";
-import { selectPath } from "./searchSlice";
-import { setPath } from "./searchSlice";
-import { useEffect } from "react";
-
+import { fetchData, selectPath,setPath} from "./searchSlice";
 
 export const Search = () => {
     const location = useLocation();
     const dispatch = useDispatch();
-    const page = useSelector(selectPath);
+    const path = useSelector(selectPath);
+    const [query, setQuery] = useState("");
 
-    useEffect(() =>{
+    const onInputChange = ({ target }) => {
+        setQuery(target.value);
+        dispatch(fetchData({ query: target.value }));
+    };
+
+    useEffect(() => {
         const path = location.pathname;
 
-        switch(path){
+        switch (path) {
             case "/":
             case "/movies":
-            dispatch(setPath("movies"));
-            break;
+                dispatch(setPath("movies"));
+                break;
 
             case "/people":
-            dispatch(setPath("people"));
-            break;
+                dispatch(setPath("people"));
+                break;
             default:
         };
-    },[location.pathname,dispatch]);
-    
+    }, [location.pathname, dispatch]);
 
     return (
         <Wrapper>
             <Icon />
-            <Input 
-                placeholder={`Search for ${page}...`}
+            <Input
+                placeholder={`Search for ${path}...`}
+                onChange={onInputChange}
+                value={query}
             />
         </Wrapper>
-    )
-}
+    );
+};
 
