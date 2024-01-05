@@ -12,9 +12,10 @@ import {
 } from "./movieListSlice";
 import { posterURL } from "../../../utils/API/APIURLS"
 import { Section, SectionTitle } from "../../../common/Section/Section";
-import { NoMovieIcon, SectionWrapper, StyledLink, Tile, TileImage, TileImageContainer, TileTags, TileTag, TileTitle, TileSubTitle, Rating, TileContent } from "./styled";
+import { NoMovieIcon, SectionWrapper, StyledLink, Tile, TileImage, TileImageContainer, TileTags, TileTag, TileTitle, TileSubTitle, RatingContainer, TileContent } from "./styled";
 import Pagination from '../../../common/Pagination/index';
 import { Container, SpinnerIcon } from '../../../common/Loading/Loading';
+import Rating from '../../../common/Rating/Rating';
 
 function MovieList() {
 	const dispatch = useDispatch();
@@ -83,8 +84,12 @@ function MovieList() {
 												))
 											}
 										</TileTags>
-										<Rating><span>{`⭐ ${movie.rating}`}</span>
-											<span>{`${movie.votes} votes`}</span></Rating>
+										<RatingContainer>
+											<Rating
+												voteCount={movie.votes}
+												ratingValue={movie.rating}
+											/>
+										</RatingContainer>
 									</TileContent>
 								</Tile>
 							</StyledLink>
@@ -93,7 +98,13 @@ function MovieList() {
 					))}
 				</SectionWrapper>
 			</Section>
-			<Pagination currentPage={currentPage} goToFirstPage={goToFirstPage} incrementPage={incrementPage} decrementPage={decrementPage} />        </>
+			<Pagination
+				currentPage={currentPage}
+				goToFirstPage={goToFirstPage}
+				incrementPage={incrementPage}
+				decrementPage={decrementPage}
+			/>
+		</>
 	);
 };
 

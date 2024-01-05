@@ -142,7 +142,7 @@ export const TileTag = styled.div`
 	}
 `
 
-export const Rating = styled.div`
+export const RatingContainer = styled.div`
 	margin-top: auto;
 
 	@media (max-width: 767px) {
