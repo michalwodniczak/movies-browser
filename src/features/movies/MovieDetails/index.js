@@ -98,9 +98,9 @@ function MovieDetails() {
               })}
               isOnBackdrop={false}
               isOnMainTile={true}
-            />
-            <Description>{movieDetails.description}</Description>
+            />            
           </TileContent>
+          <Description>{movieDetails.description}</Description>
         </Tile>
         <Section>
           <SectionTitle>Cast</SectionTitle>
