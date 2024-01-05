@@ -59,13 +59,13 @@ function MovieList() {
 				<SectionWrapper>
 					{popularMovies.slice(0, 4).map((movie) => (
 						<li key={movie.id}>
-								<StyledLink as={Link} to={`/movies/${movie.id}`}>
-									<Tile >
+							<StyledLink as={Link} to={`/movies/${movie.id}`}>
+								<Tile >
 									<TileImageContainer>
-										{movie.poster_path
+										{movie.posterPath
 											?
 											<TileImage
-												src={`${posterURL}${movie.poster_path}`}
+												src={`${posterURL}${movie.posterPath}`}
 												alt=""
 											/>
 											:
@@ -73,20 +73,22 @@ function MovieList() {
 										}
 									</TileImageContainer>
 									<TileContent>
-									<TileTitle>{movie.title}</TileTitle>
-									<TileSubTitle>{movie.release_date}</TileSubTitle>
-									<TileTags>
-										{
-											movie.genre_ids &&
-											<TileTag>{movie.genre_ids}</TileTag>
-										}
-									</TileTags>
-									<Rating><span>{`⭐ ${movie.vote_average}`}</span>
-									<span>{`${movie.vote_count} votes`}</span></Rating>
+										<TileTitle>{movie.title}</TileTitle>
+										<TileSubTitle>{movie.year}</TileSubTitle>
+										<TileTags>
+											{
+												movie.namedGenres &&
+												movie.namedGenres.map(name => (
+													<TileTag>{name}</TileTag>
+												))
+											}
+										</TileTags>
+										<Rating><span>{`⭐ ${movie.rating}`}</span>
+											<span>{`${movie.votes} votes`}</span></Rating>
 									</TileContent>
 								</Tile>
-								</StyledLink>
-							
+							</StyledLink>
+
 						</li>
 					))}
 				</SectionWrapper>
