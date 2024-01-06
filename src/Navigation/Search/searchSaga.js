@@ -9,7 +9,6 @@ function* fetchDataHandler(action) {
         yield put(fetchDataSucces({ data: result }));
     } catch (error) {
         yield put(fetchDataFailure({ error }));
-        console.log(error);
     };
 };
 
