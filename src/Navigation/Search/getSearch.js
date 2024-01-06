@@ -7,7 +7,6 @@ export const getSearch = async (query) => {
     
     try {
         const response = await axios.get(URL);
-        console.log(response.data.results);
         return response.data.results
     } catch {
         throw new Error("Failed to search");
