@@ -13,7 +13,6 @@ function* fetchDataHandler(action) {
     };
 };
 
-export function* watchFetchData() {
-    console.log("saga jest odpalona");
-    yield debounce(1000, fetchData.type, fetchDataHandler);
+export function* searchSaga() {
+    yield debounce(3000, fetchData.type, fetchDataHandler);
 };

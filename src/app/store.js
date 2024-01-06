@@ -1,17 +1,23 @@
 import { configureStore } from '@reduxjs/toolkit';
-import createSagaMiddleware from "redux-saga";
-import paginationReducer from "../common/Pagination/paginationSlice";
-import searchReducer from "../Navigation//Search/searchSlice";
-import { watchFetchData } from '../Navigation/Search/searchSaga';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './rootSaga';
+import movieListReducer from '../features/movies/MovieList/movieListSlice';
+import movieReducer from '../features/movies/movieSlice';
+import peopleReducer from '../features/people/peopleSlice';
+import searchReducer from "../Navigation/Search/searchSlice";
 
-const sagaMiddelaware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
-export const store = configureStore({
+const store = configureStore({
     reducer: {
-        pagination: paginationReducer,
+        movieList: movieListReducer,
+        movie: movieReducer,
+        people: peopleReducer,
         search: searchReducer,
     },
-    middleware: [sagaMiddelaware],
+    middleware: [sagaMiddleware],
 });
 
-sagaMiddelaware.run(watchFetchData);
+sagaMiddleware.run(rootSaga);
+
+export default store;
