@@ -11,6 +11,7 @@ import {
   selectPeopleList,
 } from '../peopleSlice';
 import { posterURL } from '../../../utils/API/APIURLS';
+import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
 import { SectionWrapper } from "./styled";
 import { NoPersonIcon, SmallTile, SmallTileImage, SmallTileImageContainer, SmallTileTitle } from '../../../common/Tile/Tile';
@@ -40,7 +41,7 @@ function PeopleList() {
   }, [currentPage]);
 
   return (
-    <>
+    <Main>
       <Section>
         <SectionTitle>
           Popular People
@@ -72,7 +73,7 @@ function PeopleList() {
         decrementPage={decrementPage}
         goToLastPage={goToLastPage}
       />
-    </>
+    </Main>
   )
 };
 
