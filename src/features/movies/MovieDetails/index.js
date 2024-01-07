@@ -1,7 +1,13 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMovieId, selectLoading, selectMovieDetails, selectMovieCast, selectMovieCrew } from '../movieSlice';
+import { 
+  setMovieId, 
+  selectLoading, 
+  selectMovieDetails, 
+  selectMovieCast, 
+  selectMovieCrew 
+} from '../movieSlice';
 import { posterURL } from '../../../utils/API/APIURLS';
 import { Main } from '../../../common/Main/Main';
 import { SpinnerIcon, Container } from '../../../common/Loading/Loading';
@@ -75,17 +81,15 @@ function MovieDetails() {
           <TileImage src={movieDetails.posterURL} />
           <TileContent>
             <TileTitle>{movieDetails.title}</TileTitle>
-            <TileSubTitle>YYYY</TileSubTitle>
+            <TileSubTitle>{movieDetails.releaseYear}</TileSubTitle>
             <TileData>
               <TileDataContent>
                 <TileDataTitle>Production:</TileDataTitle>
-                {movieDetails.production
-                  .map((country) => country.name)
-                  .toString()}
+                {movieDetails.production}
               </TileDataContent>
               <TileDataContent>
                 <TileDataTitle>Release date:</TileDataTitle>
-                {movieDetails.date}
+                {movieDetails.releaseDate}
               </TileDataContent>
             </TileData>
             <TileTags>
@@ -95,20 +99,18 @@ function MovieDetails() {
             </TileTags>
             <Rating
               voteCount={movieDetails.votes}
-              ratingValue={movieDetails.rating.toLocaleString('pl-PL', {
-                maximumFractionDigits: 1,
-              })}
+              ratingValue={movieDetails.rating}
               isOnBackdrop={false}
               isOnMainTile={true}
-            />
-            <Description>{movieDetails.description}</Description>
+            />            
           </TileContent>
+          <Description>{movieDetails.description}</Description>
         </Tile>
         <Section>
           <SectionTitle>Cast</SectionTitle>
           <SectionWrapper>
             {movieCast.slice(4, 16).map((actor) => (
-              <li key={actor.id}>
+              <li key={actor.credit_id}>
                 <SmallTile>
                   <SmallTileImageContainer>
                     {actor.profile_path
@@ -131,7 +133,7 @@ function MovieDetails() {
           <SectionTitle>Crew</SectionTitle>
           <SectionWrapper>
             {movieCrew.slice(0, 6).map((crew) => (
-              <li key={crew.id}>
+              <li key={crew.credit_id}>
                 <SmallTile>
                   <SmallTileImageContainer>
                     {crew.profile_path

@@ -21,6 +21,7 @@ export const Container = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px){
         flex-wrap: wrap;
         justify-content: center;
+        padding:10px;
     };
 `;
 
