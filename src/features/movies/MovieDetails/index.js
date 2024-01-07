@@ -35,6 +35,7 @@ import {
 import {
   Header,
   Backdrop,
+  Vignette,
   TitleContainer,
   TitlePrimary,
   SectionWrapper,
@@ -60,17 +61,20 @@ function MovieDetails() {
   ) : (
     <>
       <Header>
-        <Backdrop $background={movieDetails.backdropURL}>
-          <TitleContainer>
-            <TitlePrimary>{movieDetails.title}</TitlePrimary>
-            <Rating
-              voteCount={movieDetails.votes}
-              ratingValue={movieDetails.rating}
-              isOnBackdrop={true}
-              isOnMainTile={false}
-            />
-          </TitleContainer>
-        </Backdrop>
+        {movieDetails.backdropPath &&
+          <Backdrop $background={movieDetails.backdropURL}>
+            <Vignette />
+            <TitleContainer>
+              <TitlePrimary>{movieDetails.title}</TitlePrimary>
+              <Rating
+                voteCount={movieDetails.votes}
+                ratingValue={movieDetails.rating}
+                isOnBackdrop={true}
+                isOnMainTile={false}
+              />
+            </TitleContainer>
+          </Backdrop>
+        }
       </Header>
       <Main>
         <Tile>
