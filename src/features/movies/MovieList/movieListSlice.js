@@ -19,6 +19,9 @@ const movieListSlice = createSlice({
         goToFirstPage: (state) => {
             state.page = 1;
         },
+        goToLastPage: (state, {payload: lastPage}) => {
+            state.page = +lastPage;
+        },
 		pageNumberFromURL: (state, { payload: query }) => {
 			state.page = +query;
 		},
@@ -40,6 +43,7 @@ export const {
     incrementPage,
     decrementPage,
     goToFirstPage,
+    goToLastPage,
 	pageNumberFromURL,
     setMovieList,
     setGenres, 

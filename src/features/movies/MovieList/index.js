@@ -5,6 +5,7 @@ import {
 	incrementPage,
 	decrementPage,
 	goToFirstPage,
+	goToLastPage,
 	pageNumberFromURL,
 	selectMovieList,
 	selectLoading,
@@ -119,6 +120,7 @@ function MovieList() {
 				goToFirstPage={goToFirstPage}
 				incrementPage={incrementPage}
 				decrementPage={decrementPage}
+				goToLastPage={goToLastPage}
 			/>
 		</Main>
 	);
