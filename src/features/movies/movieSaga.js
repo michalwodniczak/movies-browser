@@ -1,6 +1,7 @@
-import { all, call, put, takeEvery, delay, select } from 'redux-saga/effects'
+import { all, call, put, takeEvery, select } from 'redux-saga/effects'
 import { setMovieId, setMovieDetails, setMovieCredits, selectMovieId } from './movieSlice'
 import { getMovieDetails, getMovieCredits } from './getMovieDetails'
+import { customiseMovieDetails } from './customiseMovieDetails';
 
 function* fetchMovieHandler() {
     try {
@@ -9,9 +10,10 @@ function* fetchMovieHandler() {
             call(getMovieDetails, movieId),
             call(getMovieCredits, movieId),
         ]);
-        yield delay(1500);
-        yield put(setMovieDetails(details));
+        const customDetails = yield call(customiseMovieDetails, details);
+        yield put(setMovieDetails(customDetails));
         yield put(setMovieCredits(credits));
+
     } catch (error) {
         console.error(error);
         yield call(alert, "Error fetching movie data!");

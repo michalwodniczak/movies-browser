@@ -43,13 +43,16 @@ const Pagination = ({
 				<RegularText>Page</RegularText>
 				<BoldText>{currentPage}</BoldText>
 				<RegularText>of</RegularText>
-				<BoldText>500</BoldText>
+				<BoldText>{pageLimit}</BoldText>
 			</TextContainer>
-			<StyledButton onClick={() => dispatch(incrementPage())}>
+			<StyledButton 
+				onClick={() => dispatch(incrementPage())}
+				disabled={currentPage > (pageLimit - 1)}
+			>
 				<ButtonText>Next</ButtonText>
 				<Chevron />
 			</StyledButton>
-			<StyledButton
+			<StyledButton 
 				onClick={() => dispatch(goToLastPage(pageLimit))}
 				disabled={currentPage > (pageLimit - 1)}
 			>

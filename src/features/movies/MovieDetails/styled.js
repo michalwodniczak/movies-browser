@@ -1,18 +1,19 @@
 import styled from 'styled-components'
+import { ReactComponent as VignetteSVG } from '../../../assets/backdrop-vignette.svg'
 
 export const Header = styled.div`
 	background-color: ${({ theme }) => theme.color.black};
 `
 
 export const Backdrop = styled.div`
-	display: flex;
+	position: relative;
 	margin: auto;
 	max-width: 1368px;
-	aspect-ratio: 2.342;
+	aspect-ratio: 2.1622;
 	background: ${({ $background }) => `url('${$background}')`};
-	background-size: contain;
+	background-size: cover;
   	background-repeat: no-repeat;
-	box-shadow: inset 0 0 100px 150px ${({ theme }) => theme.color.black};
+	background-position: center;
 
 	@media (max-width: 1400px) {
 		padding-left: 16px;
@@ -24,9 +25,16 @@ export const Backdrop = styled.div`
     }
 `
 
+export const Vignette = styled(VignetteSVG)`
+	position: absolute;
+	width: 100%;
+	height: 100%;
+`
+
 export const TitleContainer = styled.div`
+	position: absolute;
+	bottom: 0%;
 	z-index: 2;
-	align-self: flex-end;
 	margin-bottom: 54px;
 
 	@media (max-width: 767px) {

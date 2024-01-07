@@ -6,7 +6,7 @@ export const StyledHeader = styled.header`
     display: flex;
     align-items: center;
     gap: 12px;
-    padding-top: 5px;
+    padding-top: 10px;
 `;
 
 export const Logo = styled(LogoWebsite)`
