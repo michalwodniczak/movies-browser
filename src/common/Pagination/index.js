@@ -13,7 +13,7 @@ import {
 } from './styled';
 import pageLimit from "../../utils/pageLimit";
 
-const Pagination = ({ currentPage, goToFirstPage, decrementPage, incrementPage }) => {
+const Pagination = ({ currentPage, goToFirstPage, goToLastPage, decrementPage, incrementPage }) => {
 	const dispatch = useDispatch();
 
 	return (
@@ -47,6 +47,7 @@ const Pagination = ({ currentPage, goToFirstPage, decrementPage, incrementPage }
 				<Chevron />
 			</StyledButton>
 			<StyledButton 
+				onClick={() => dispatch(goToLastPage(pageLimit))}
 				disabled={currentPage > (pageLimit - 1)}
 			>
 				<ButtonText>Last</ButtonText>

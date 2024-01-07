@@ -5,6 +5,7 @@ import {
   incrementPage,
   decrementPage,
   goToFirstPage,
+  goToLastPage,
   pageNumberFromURL,
   selectPageState,
   selectPeopleList,
@@ -29,7 +30,7 @@ function PeopleList() {
     if (query < 1) {
       searchParams.set('page', 1);
     } else {
-      dispatch(pageNumberFromURL(query));
+      dispatch(pageNumberFromURL(Math.floor(query)));
     }
   }, [query]);
 
@@ -50,13 +51,13 @@ function PeopleList() {
               <SmallTile>
                 <SmallTileImageContainer>
                   {person.profile_path
-                  ?
-                  <SmallTileImage
-                  src={`${posterURL}${person.profile_path}`}
-                  />
-                  :
-                  <NoPersonIcon />
-                }
+                    ?
+                    <SmallTileImage
+                      src={`${posterURL}${person.profile_path}`}
+                    />
+                    :
+                    <NoPersonIcon />
+                  }
                 </SmallTileImageContainer>
                 <SmallTileTitle>{person.name}</SmallTileTitle>
               </SmallTile>
@@ -64,7 +65,13 @@ function PeopleList() {
           ))}
         </SectionWrapper>
       </Section>
-      <Pagination currentPage={currentPage} goToFirstPage={goToFirstPage} incrementPage={incrementPage} decrementPage={decrementPage}/>
+      <Pagination
+        currentPage={currentPage}
+        goToFirstPage={goToFirstPage}
+        incrementPage={incrementPage}
+        decrementPage={decrementPage}
+        goToLastPage={goToLastPage}
+      />
     </>
   )
 };
