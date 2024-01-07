@@ -13,7 +13,13 @@ import {
 } from './styled';
 import pageLimit from "../../utils/pageLimit";
 
-const Pagination = ({ currentPage, goToFirstPage, goToLastPage, decrementPage, incrementPage }) => {
+const Pagination = ({
+	currentPage,
+	goToFirstPage,
+	goToLastPage,
+	decrementPage,
+	incrementPage
+}) => {
 	const dispatch = useDispatch();
 
 	return (

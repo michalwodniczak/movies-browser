@@ -5,16 +5,33 @@ import {
 	incrementPage,
 	decrementPage,
 	goToFirstPage,
+	goToLastPage,
 	pageNumberFromURL,
 	selectMovieList,
 	selectLoading,
 	selectPageState
 } from "./movieListSlice";
-import { posterURL } from "../../../utils/API/APIURLS"
+import { posterURL } from "../../../utils/API/APIURLS";
+import pageLimit from "../../../utils/pageLimit";
+import { Main } from "../../../common/Main/Main";
 import { Section, SectionTitle } from "../../../common/Section/Section";
-import { NoMovieIcon, SectionWrapper, StyledLink, Tile, TileImage, TileImageContainer, TileTags, TileTag, TileTitle, TileSubTitle, Rating, TileContent } from "./styled";
+import { 
+	NoMovieIcon, 
+	SectionWrapper, 
+	StyledLink, 
+	Tile, 
+	TileImage, 
+	TileImageContainer, 
+	TileTags, 
+	TileTag, 
+	TileTitle, 
+	TileSubTitle, 
+	RatingContainer, 
+	TileContent 
+} from "./styled";
 import Pagination from '../../../common/Pagination/index';
 import { Container, SpinnerIcon } from '../../../common/Loading/Loading';
+import Rating from '../../../common/Rating/Rating';
 
 function MovieList() {
 	const dispatch = useDispatch();
@@ -27,16 +44,17 @@ function MovieList() {
 	const searchParams = new URLSearchParams(location.search);
 	const query = searchParams.get('page');
 
-	useEffect(() => {
-		if (query < 1) {
-			searchParams.set('page', 1);
-		} else {
-			dispatch(pageNumberFromURL(query));
-		}
-	}, [query]);
+  useEffect(() => {
+    if (query < 1) {
+      searchParams.set('page', 1);
+    } if (query > pageLimit) {
+      searchParams.set('page', pageLimit);
+    } else {
+      dispatch(pageNumberFromURL(Math.floor(query)));
+    }
+  }, [query]);
 
 	useEffect(() => {
-
 		history.push(`${location.pathname}?page=${currentPage}`);
 	}, [currentPage]);
 
@@ -51,21 +69,21 @@ function MovieList() {
 		return <p>No data available.</p>;
 	}
 	return (
-		<>
+		<Main>
 			<Section>
 				<SectionTitle>
 					Popular Movies
 				</SectionTitle>
 				<SectionWrapper>
-					{popularMovies.slice(0, 4).map((movie) => (
+					{popularMovies.map((movie) => (
 						<li key={movie.id}>
-								<StyledLink as={Link} to={`/movies/${movie.id}`}>
-									<Tile >
+							<StyledLink as={Link} to={`/movies/${movie.id}`}>
+								<Tile >
 									<TileImageContainer>
-										{movie.poster_path
+										{movie.posterPath
 											?
 											<TileImage
-												src={`${posterURL}${movie.poster_path}`}
+												src={`${posterURL}${movie.posterPath}`}
 												alt=""
 											/>
 											:
@@ -73,25 +91,38 @@ function MovieList() {
 										}
 									</TileImageContainer>
 									<TileContent>
-									<TileTitle>{movie.title}</TileTitle>
-									<TileSubTitle>{movie.release_date}</TileSubTitle>
-									<TileTags>
-										{
-											movie.genre_ids &&
-											<TileTag>{movie.genre_ids}</TileTag>
-										}
-									</TileTags>
-									<Rating><span>{`⭐ ${movie.vote_average}`}</span>
-									<span>{`${movie.vote_count} votes`}</span></Rating>
+										<TileTitle>{movie.title}</TileTitle>
+										<TileSubTitle>{movie.year}</TileSubTitle>
+										<TileTags>
+											{
+												movie.namedGenres &&
+												movie.namedGenres.map(name => (
+													<TileTag>{name}</TileTag>
+												))
+											}
+										</TileTags>
+										<RatingContainer>
+											<Rating
+												voteCount={movie.votes}
+												ratingValue={movie.rating}
+											/>
+										</RatingContainer>
 									</TileContent>
 								</Tile>
-								</StyledLink>
-							
+							</StyledLink>
+
 						</li>
 					))}
 				</SectionWrapper>
 			</Section>
-			<Pagination currentPage={currentPage} goToFirstPage={goToFirstPage} incrementPage={incrementPage} decrementPage={decrementPage} />        </>
+			<Pagination
+				currentPage={currentPage}
+				goToFirstPage={goToFirstPage}
+				incrementPage={incrementPage}
+				decrementPage={decrementPage}
+				goToLastPage={goToLastPage}
+			/>
+		</Main>
 	);
 };
 
