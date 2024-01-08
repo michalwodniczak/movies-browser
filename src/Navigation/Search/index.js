@@ -2,16 +2,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Wrapper, Input, Icon } from "./styled";
-import { fetchData, selectPath,setPath} from "./searchSlice";
+import { fetchData, selectInputValue, selectPath,setInputValue,setPath} from "./searchSlice";
 
 export const Search = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     const path = useSelector(selectPath);
-    const [query, setQuery] = useState("");
-
+    const inputValue = useSelector(selectInputValue);
+    
     const onInputChange = ({ target }) => {
-        setQuery(target.value);
+        dispatch(setInputValue(target.value));
         dispatch(fetchData({ query: target.value }));
     };
 
@@ -37,7 +37,7 @@ export const Search = () => {
             <Input
                 placeholder={`Search for ${path}...`}
                 onChange={onInputChange}
-                value={query}
+                value={inputValue}
             />
         </Wrapper>
     );
