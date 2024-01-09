@@ -15,11 +15,15 @@ Explore our current progress on the live demo: https://bedicooper.github.io/movi
 Movies Browser is a web application developed in collaboration with the YouCode online school. Our teamwork is organized using Scrum, and we manage tasks through Trello. For design, we utilize Figma, and data for the app is sourced from The Movie Database API.
 
 ### Features
-- Homepage: Displays a list of movies with the ability to click and view detailed information.
-- Actor Page: Explore details about different actors, accessible by clicking on their profiles.
-- Loading and Error States: Our app gracefully handles loading and error states for a smoother user experience.
-- Search Functionality: Utilize the input for searching movies based on query parameters.
-- Responsiveness: Ensuring a seamless experience on various devices, from mobile phones to tablets.
+- **Popular Movie Lists:** Explore a curated selection of popular movies on our main homepage.
+- **Movie Details:** Click on a movie from the popular lists to view detailed.
+- **List of Actors:** Discover a list of actors and click on each one to explore more details.
+
+### What We Are Working On
+- **Actor Page:** Explore details about different actors.
+- **Loading and Error States:** Our app gracefully handles loading and error states for a smoother user experience.
+- **Search Functionality:** Utilize the input for searching movies based on query parameters.
+- **Responsiveness:** Ensuring a seamless experience on various devices, from mobile phones to tablets.
 
 ### Development Workflow
 #### Project Bootstrapping
