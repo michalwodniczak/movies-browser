@@ -6,9 +6,9 @@ Welcome to our Movies Browser project! We're excited to have you here at the ear
 Explore our current progress on the live demo: https://bedicooper.github.io/movies-browser/
 
 ## Authors
-- [Patrycja Gomza] (https://github.com/patrycja-gomza)
-- [Michał Wodniczak] (https://github.com/widmo200)
-- [Mateusz Bednarz] (https://github.com/bedicooper)
+- [Patrycja Gomza](https://github.com/patrycja-gomza)
+- [Michał Wodniczak](https://github.com/widmo200)
+- [Mateusz Bednarz](https://github.com/bedicooper)
 
 ## General Info
 ### Overview
