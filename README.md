@@ -5,6 +5,8 @@ Welcome to our Movies Browser project! We're excited to have you here at the ear
 ## Demo
 Explore our current progress on the live demo: https://bedicooper.github.io/movies-browser/
 
+<img src="./readme_imgPopularMovies.png" alt="Demo" width="500">
+
 ## Authors
 - [Patrycja Gomza](https://github.com/patrycja-gomza)
 - [Michał Wodniczak](https://github.com/widmo200)
