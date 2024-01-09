@@ -10,7 +10,7 @@ export const StarIcon = styled(StarSVG)`
 	    height: 40px;
 	`}
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
         width: 16px;
 	    height: 16px;
 	}
@@ -23,12 +23,12 @@ export const RatingContainer = styled.div`
 
     ${({ $backdrop }) => $backdrop && css`
         flex-wrap: wrap;
-        width: 126px;
+        width: 150px;
 	    height: 75px;
         gap: 8px;
 	`}
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		gap: 8px;
         width: auto;
 	    height: auto;
@@ -59,7 +59,7 @@ export const RatingNumber = styled.span`
         color: ${({theme}) => theme.color.black};
 	`}
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
         font-size: 13px;
         line-height: 1.3;
 
@@ -96,7 +96,7 @@ export const RatingMax = styled.span`
         color: ${({theme}) => theme.color.black};
     `}
 	
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
         ${({ $backdrop }) => $backdrop && css`
             display: block;
             margin-top: 4px;
@@ -130,7 +130,7 @@ export const RatingVotes = styled.span`
         color: ${({theme}) => theme.color.black};
     `}
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
         font-size: 13px;
         line-height: 1.3;
 

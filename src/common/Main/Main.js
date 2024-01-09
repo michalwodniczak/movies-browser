@@ -6,7 +6,6 @@ export const Main = styled.main`
   padding-bottom: 103px;
 
   @media (max-width: 1400px) {
-		padding-left: 16px;
-    padding-right: 16px;
+    margin: 0 16px;
 	}
 `

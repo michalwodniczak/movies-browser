@@ -3,6 +3,12 @@ import { ReactComponent as VignetteSVG } from '../../../assets/backdrop-vignette
 
 export const Header = styled.div`
 	background-color: ${({ theme }) => theme.color.black};
+
+	@media (max-width: 1400px) {
+		padding-left: 16px;
+        padding-right: 16px;
+	}
+
 `
 
 export const Backdrop = styled.div`
@@ -16,13 +22,8 @@ export const Backdrop = styled.div`
 	background-position: center;
 
 	@media (max-width: 1400px) {
-		padding-left: 16px;
-        padding-right: 16px;
+		margin: 0;
 	}
-
-	@media (max-width: 767px) {
-		box-shadow: none;
-    }
 `
 
 export const Vignette = styled(VignetteSVG)`
@@ -37,7 +38,7 @@ export const TitleContainer = styled.div`
 	z-index: 2;
 	margin-bottom: 54px;
 
-	@media (max-width: 767px) {
+	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		margin-bottom: 8px;
     }
 `
@@ -49,7 +50,7 @@ export const TitlePrimary = styled.h1`
 	line-height: 120%;
 	margin: 0 0 24px 0;
 
-	@media (max-width: 767px) {
+	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		font-size: 24px;
 		margin: 0 0 4px 0;
     }
@@ -64,7 +65,7 @@ export const SectionWrapper = styled.ul`
 	gap: 24px;
 	width: 100%;
 
-	@media (max-width: 767px) {
+	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		gap: 16px;
 	}
 `
