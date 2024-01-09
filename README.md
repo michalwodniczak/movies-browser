@@ -28,19 +28,19 @@ Movies Browser is a web application developed in collaboration with the YouCode 
 - **Responsiveness:** Ensuring a seamless experience on various devices, from mobile phones to tablets.
 
 ### Development Workflow
-#### Project Bootstrapping
+#### Project Bootstrapping 🚧
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-#### State Management
+#### State Management 🔄
 Leveraging Redux for state management, including middleware for asynchronous operations.
 
-#### Styling
+#### Styling 💅
 Utilizing JSX, Flexbox, CSS Grid, and Styled Components for an appealing and responsive design.
 
-#### Asynchronous Operations
+#### Asynchronous Operations ⏳
 Implementing asynchronous functionality using Axios, Async/Await, and Redux-Saga.
 
-#### Inspiration 
+#### Inspiration 💡
 This project draws inspiration from the "Frontend Developer from the Basics" course at the online programming school YouCode.
 
 ## Technologies
