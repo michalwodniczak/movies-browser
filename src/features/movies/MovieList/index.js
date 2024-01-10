@@ -44,18 +44,25 @@ function MovieList() {
 		history.push(`${location.pathname}?page=${currentPage}`);
 	}, [currentPage]);
 
-	if (loading || loadingSearch) {
+	if (loading) {
 		return (
-			<>
-				<Section>
-					{loadingSearch ? <SectionTitle>Search result for {searchQuery}</SectionTitle> : ""}
-				</Section>
+			<Container>
+				<SpinnerIcon />
+			</Container>
+		);
+	}
+
+	if (loadingSearch) {
+		return (
+			<Section>
+				<SectionTitle>Search result for "{searchQuery}"</SectionTitle>
 				<Container>
 					<SpinnerIcon />
 				</Container>
-			</>
+			</Section>
 		);
-	}
+	};
+
 	if (!popularMovies) {
 		return <p>No data available.</p>;
 	}
