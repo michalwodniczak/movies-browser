@@ -24,7 +24,7 @@ export const SearchPage = () => {
 
     return (
         <Section>
-            <SectionTitle>Search result for {searchQuery} ({searchResults.data.length})</SectionTitle>
+            <SectionTitle>Search result for "{searchQuery}" ({searchResults.data.length})</SectionTitle>
             <SectionWrapper>
                 {searchResults.data.map((movie) => (
                     <li key={movie.id}>
