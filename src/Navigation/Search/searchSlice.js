@@ -7,7 +7,6 @@ const searchSlice = createSlice({
         data: null,
         error: null,
         loading: false,
-        inputValue: ""
     },
     reducers: {
         setPath: (state, { payload: path }) => {
