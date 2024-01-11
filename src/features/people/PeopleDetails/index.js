@@ -14,7 +14,6 @@ const PersonDetails = () => {
 
     useEffect(() => {
         dispatch(getDetailsForPerson({ personId: id }));
-        console.log("Dispatching getDetailsForPerson action");
     }, [id, dispatch]);
 
     const details = useSelector(selectDetails);

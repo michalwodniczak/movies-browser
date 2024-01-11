@@ -9,7 +9,6 @@ import { getPeopleDetails } from "./getPeopleDetails";
 
 function* fetchPersonDetailsHandler() {
     try {
-        console.log("Saga: Handling getDetailsForPerson action");
         const id = yield select(selectPersonId);
         const details = yield call(getPeopleDetails, { personId: id });
         yield put(fetchDataSuccess({ details }));
