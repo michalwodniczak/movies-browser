@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { ReactComponent as NoPersonSVG } from "../../assets/icon-person.svg";
 import { ReactComponent as NoMovieSVG } from "../../assets/icon-noMovie.svg";
 
-//---List Wrappers-------------------------------------------------------------
+//---List Wrappers and Link----------------------------------------------------
 
 export const SmallListWrapper = styled.ul`
     width: 100%;
@@ -46,6 +47,11 @@ export const LargeListWrapper = styled.ul`
         gap: 12px;
         grid-template-columns: 1fr;
     }
+`
+
+export const StyledLink = styled(Link)`
+	text-decoration: none;
+	color: inherit;
 `
 
 //---Tiles---------------------------------------------------------------------
