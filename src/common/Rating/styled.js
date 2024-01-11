@@ -10,7 +10,7 @@ export const StarIcon = styled(StarSVG)`
 	    height: 40px;
 	`}
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
         width: 16px;
 	    height: 16px;
 	}
@@ -28,7 +28,7 @@ export const RatingContainer = styled.div`
         gap: 8px;
 	`}
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		gap: 8px;
         width: auto;
 	    height: auto;
@@ -43,23 +43,23 @@ export const RatingNumber = styled.span`
     font-size: 16px;
     line-height: 1.5;
     font-weight: 600;
-    color: ${({theme}) => theme.color.almostBlack};
+    color: ${({ theme }) => theme.color.almostBlack};
 
     ${({ $backdrop }) => $backdrop && css`
         font-size: 30px;
         line-height: 1.3;
         font-weight: 500;
-        color: ${({theme}) => theme.color.white};
+        color: ${({ theme }) => theme.color.white};
 	`}
 
     ${({ $mainTile }) => $mainTile && css`
         font-size: 22px;
         line-height: 1.3;
         font-weight: 500;
-        color: ${({theme}) => theme.color.black};
+        color: ${({ theme }) => theme.color.black};
 	`}
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
         font-size: 13px;
         line-height: 1.3;
 
@@ -68,11 +68,11 @@ export const RatingNumber = styled.span`
             font-size: 14px;
             line-height: 1.3;
             font-weight: 600;
-            color: ${({theme}) => theme.color.white};         
+            color: ${({ theme }) => theme.color.white};         
 	    `}
 
         ${({ $mainTile }) => $mainTile && css`
-            color: ${({theme}) => theme.color.black};
+            color: ${({ theme }) => theme.color.black};
 	    `}
 	}
 `
@@ -81,7 +81,7 @@ export const RatingMax = styled.span`
     display: none;
     font-weight: 400;
 	line-height: 1.2;
-    color: ${({theme}) => theme.color.white};
+    color: ${({ theme }) => theme.color.white};
 
     ${({ $backdrop }) => $backdrop && css`
         display: block;
@@ -93,10 +93,10 @@ export const RatingMax = styled.span`
         display: block;
         margin-top: 9px;
         font-size: 14px;
-        color: ${({theme}) => theme.color.black};
+        color: ${({ theme }) => theme.color.black};
     `}
 	
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
         ${({ $backdrop }) => $backdrop && css`
             display: block;
             margin-top: 4px;
@@ -119,18 +119,18 @@ export const RatingVotes = styled.span`
         font-size: 16px;
         line-height: 1.2;
         margin-top: 8px;
-        color: ${({theme}) => theme.color.white};
+        color: ${({ theme }) => theme.color.white};
 	`}
 
-    ${({$mainTile}) => $mainTile && css`
+    ${({ $mainTile }) => $mainTile && css`
         margin-top: 9px;
         margin-left: 4px;
         font-size: 14px;
         line-height: 1.2;
-        color: ${({theme}) => theme.color.black};
+        color: ${({ theme }) => theme.color.black};
     `}
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
         font-size: 13px;
         line-height: 1.3;
 
@@ -139,10 +139,10 @@ export const RatingVotes = styled.span`
             line-height: 1.2;
             margin-top: 4px;
             margin-left: 6px;
-            color: ${({theme}) => theme.color.white};
+            color: ${({ theme }) => theme.color.white};
 	    `}
 
-        ${({$mainTile}) => $mainTile && css`
+        ${({ $mainTile }) => $mainTile && css`
         margin: 0px;
         color: ${({ theme }) => theme.color.darkGray};
         `}

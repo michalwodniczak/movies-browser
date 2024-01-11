@@ -2,10 +2,56 @@ import styled from "styled-components";
 import { ReactComponent as NoPersonSVG } from "../../assets/icon-person.svg";
 import { ReactComponent as NoMovieSVG } from "../../assets/icon-noMovie.svg";
 
+//---List Wrappers-------------------------------------------------------------
+
+export const SmallListWrapper = styled.ul`
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat( auto-fit, minmax(208px, 1fr) );
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
+        gap: 16px;
+        grid-template-columns: repeat( auto-fit, minmax(136px, 1fr) );
+    }
+`
+
+export const LargeListWrapper = styled.ul`
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat( auto-fit, minmax(256px, 1fr) );
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
+        gap: 24px;
+        grid-template-columns: repeat( auto-fit, minmax(230px, 1fr) );
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+        gap: 16px;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+        grid-template-columns: repeat( auto-fit, minmax(288px, 1fr) );
+    } 
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMin}px) {
+        gap: 12px;
+        grid-template-columns: 1fr;
+    }
+`
+
 //---Tiles---------------------------------------------------------------------
 
 export const Tile = styled.article`
-    width: 324px;
+    max-width: 324px;
     min-height: 650px;
     padding: 16px;
 	display: grid;
@@ -18,17 +64,25 @@ export const Tile = styled.article`
     box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
     border-radius: 5px;
 
-	@media (max-width: 767px) {
-        width: 288px;
-        height: auto;
-        min-height: 201px;
+    @media (max-width: ${({ theme }) => theme.breakpoints.desktop}px){
+        min-height: 100%;
+    }
+
+	@media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+        max-width: 100%;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: none;	
 	}
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMin}px) {
+        padding: 8px;
+        gap: 8px;
+    }
 `
 
 export const DetailTile = styled(Tile)`
     width: 100%;
+    max-width: 100%;
     min-height: auto;
 	margin-top: 64px;
     padding: 40px;
@@ -40,21 +94,34 @@ export const DetailTile = styled(Tile)`
 		margin-top: 16px;
         padding: 16px;
 		column-gap: 16px;
-		grid-row-gap: 0;
         grid-template-columns: auto 1fr;
 	    grid-template-rows: auto 1fr;
 	}
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMin}px) {
+        padding: 8px;
+        column-gap: 8px;
+    }
 `
 
 export const SmallTile = styled(Tile)`
-    max-width: 208px;
     min-height: 339px;
     gap: 8px;
     border-radius: 0px;
 
-	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-		max-width: 136px;
-        min-width: 135px;
+	@media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
+        max-width: 287px;
+        min-height: 245px;
+        gap: 8px;
+        border-radius: 0px;
+        grid-template-columns: none;
+		grid-template-rows: auto 1fr;
+        padding: 8px;
+	}
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+		max-width: 287px;
+        min-width: 136px;
         min-height: 245px;
 		padding: 8px;
         grid-template-columns: none;
@@ -65,8 +132,8 @@ export const SmallTile = styled(Tile)`
 //---Image Containter & Image--------------------------------------------------
 
 export const TileImageContainer = styled.div`
-    width: 292px;
-	height: 434px;
+    width: 100%;
+    aspect-ratio: calc(292 / 434);
     overflow: hidden;
 	display: flex;
 	justify-content: center;
@@ -75,9 +142,15 @@ export const TileImageContainer = styled.div`
 	background: ${({ theme }) => theme.color.silver};
 	color: ${({ theme }) => theme.color.white};
 
-	@media (max-width: 767px) {
-		width: 114px;
-		height: 169px;
+	@media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
+        width: 100%;
+        aspect-ratio: calc(292 / 434);
+	}
+
+
+	@media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+        width: 114px;
+        aspect-ratio: calc(114 / 169);
 	}
 `
 
@@ -86,20 +159,24 @@ export const DetailTileImageContainer = styled(TileImageContainer)`
 	height: 464px;
     grid-row: 1 / 3;
 
+    @media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
+        grid-row: 1 / 2;
+	}
+
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		width: 114px;
 		height: 169px;
-        grid-row: 1 / 2;
 	}
 `
 
 export const SmallTileImageContainer = styled(TileImageContainer)`
-	width: 177px;
-	height: 231px;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: calc(177 / 231);
 
-	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-		width: 120px;
-		height: 178px;
+	@media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
+		width: 100%;
+        aspect-ratio: calc(120 / 178);
 	}
 `
 
@@ -136,7 +213,7 @@ export const TileTitle = styled.h2`
 	line-height: 1.3;
 	color: ${({ theme }) => theme.color.almostBlack};
 
-	@media (max-width: 767px) {
+	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		font-size: 16px;
 	}
 `
@@ -148,6 +225,7 @@ export const DetailTileTitle = styled(TileTitle)`
     color: ${({ theme }) => theme.color.black};
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+        font-size: 16px;
 		color: ${({ theme }) => theme.color.almostBlack};
 	}
 `
@@ -156,7 +234,7 @@ export const SmallTileTitle = styled(TileTitle)`
 	margin: 4px 0 0 0;
 	text-align: center;
 
-	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+	@media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
 		font-size: 14px;
 	}
 `
@@ -169,7 +247,7 @@ export const TileSubTitle = styled.h3`
 	height: auto;
 	color: ${({ theme }) => theme.color.darkGray};
 
-	@media (max-width: 767px) {
+	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		font-size: 13px;
 		line-height: 1.3;
 	}
@@ -181,6 +259,8 @@ export const DetailTileSubTitle = styled(TileSubTitle)`
     color: ${({ theme }) => theme.color.black};
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+        font-size: 13px;
+		line-height: 1.3;
 		color: ${({ theme }) => theme.color.darkGray};
 	}
 `
@@ -189,7 +269,7 @@ export const SmallTileSubTitle = styled(TileSubTitle)`
     font-size: 18px;
 	text-align: center;
 
-	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+	@media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
 		font-size: 13px;
 		line-height: 1.3;
 	}
@@ -263,7 +343,7 @@ export const TileTag = styled.div`
 export const RatingContainer = styled.div`
 	margin-top: auto;
 
-	@media (max-width: 767px) {
+	@media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
 		margin: 0;
 	}
 `
@@ -274,10 +354,13 @@ export const Description = styled.p`
 	font-size: 20px;
 	line-height: 1.6;
 
-	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+	@media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
 		margin: 16px 0 0 0;
 		grid-column: 1 / 3;
 		grid-row: 2 / 3;
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		font-size: 14px;
 	}
 `
