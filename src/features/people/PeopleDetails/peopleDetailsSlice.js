@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const peopleDetailsSlice = createSlice({
-    name: "personDetails",
+    name: "peopleDetails",
     initialState: {
         personId: 0,
         details: {},
@@ -27,7 +27,7 @@ export const {
     fetchDataError,
 } = peopleDetailsSlice.actions;
 
-export const selectPersonState = (state) => state.personDetails;
+export const selectPersonState = (state) => state.peopleDetails;
 export const selectPersonId = (state) => selectPersonState(state).personId;
 export const selectDetails = (state) => selectPersonState(state).details;
 export const selectStatus = (state) => selectPersonState(state).status;
