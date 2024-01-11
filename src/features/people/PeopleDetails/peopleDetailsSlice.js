@@ -27,7 +27,7 @@ export const {
     fetchDataError,
 } = peopleDetailsSlice.actions;
 
-export const selectPersonState = (state) => state.peopleDetails;
+const selectPersonState = (state) => state.peopleDetails;
 export const selectPersonId = (state) => selectPersonState(state).personId;
 export const selectDetails = (state) => selectPersonState(state).details;
 export const selectStatus = (state) => selectPersonState(state).status;
