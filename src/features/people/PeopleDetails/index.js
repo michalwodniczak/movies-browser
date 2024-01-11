@@ -24,18 +24,15 @@ const PersonDetails = () => {
         status === "loading" ? <div>Loading...</div>
             : status === "error" ? <div>Error!</div>
                 : details ? (
-                    <section content={
-                        <>
-                            <PersonDetailsTile
-                                poster={details.profile_path}
-                                title={details.name}
-                                overview={details.biography}
-                                dateOfBirth={details.birthday}
-                                placeOfBirth={details.place_of_birth}
-                            />
-                        </>
-                    }
-                    />
+                    <>
+                        <PersonDetailsTile
+                            poster={details.profile_path}
+                            title={details.name}
+                            overview={details.biography}
+                            dateOfBirth={details.birthday}
+                            placeOfBirth={details.place_of_birth}
+                        />
+                    </>
                 ) : (
                     <div>No details available</div>
                 )
