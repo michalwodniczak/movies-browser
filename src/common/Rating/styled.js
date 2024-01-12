@@ -23,7 +23,7 @@ export const RatingContainer = styled.div`
 
     ${({ $backdrop }) => $backdrop && css`
         flex-wrap: wrap;
-        width: 126px;
+        width: 150px;
 	    height: 75px;
         gap: 8px;
 	`}

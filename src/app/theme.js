@@ -14,10 +14,8 @@ export const theme = {
 
     breakpoints:{
         mobileMin: 319,
-        smallPhone: 320,
         mobile: 767,
         mobileMax: 932,
-        tablet: 992,
         laptop: 1279,
         desktop: 1400,
     },
