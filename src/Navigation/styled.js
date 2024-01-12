@@ -1,9 +1,7 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
-    background-color: ${({ theme }) => theme.color.almostBlack};
-    min-height: 93px;
-    margin: 0 auto;
+    background-color: ${({ theme }) => theme.color.black};
 `;
 
 export const Container = styled.div`
@@ -13,15 +11,16 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
+    column-gap: 12px;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.laptop}px){
-        max-width: 1000px;
-    };
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px){
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){
         flex-wrap: wrap;
         justify-content: center;
-        padding:10px;
+        padding-bottom: 16px;
+    };
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMin}px){
+        padding-top: 16px;
     };
 `;
 
