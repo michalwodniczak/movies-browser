@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 import {
   incrementPage,
   decrementPage,
@@ -49,7 +49,7 @@ function PeopleList() {
         <SectionWrapper>
           {peopleList.map((person) => (
             <li key={person.id}>
-              <SmallTile>
+              <SmallTile as={Link} to={`/people/${person.id}`}>
                 <SmallTileImageContainer>
                   {person.profile_path
                     ?

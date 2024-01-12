@@ -27,3 +27,6 @@ export const posterURL = `${URLImages}w300_and_h450_bestv2`
         
     //link do movie cast and crew po id
         //  https://api.themoviedb.org/3/movie/466420/credits?api_key=f9cdeaf9af4ca30fda858745e2b12712&language=en-US
+
+    // link do person po id
+        // https://api.themoviedb.org/3/person/106731?api_key=f9cdeaf9af4ca30fda858745e2b12712&language=en-US
