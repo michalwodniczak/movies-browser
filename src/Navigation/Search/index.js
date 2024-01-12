@@ -14,10 +14,7 @@ export const Search = () => {
     const query = searchParams.get("search");
 
     useEffect(() => {
-        if (query) {
-            searchParams.set("search", inputValue);
-        }else{
-            dispatch(fetchData());
+        if (!query) {
             history.push(`${location.pathname}`);
         }
     }, [query]);
@@ -27,8 +24,13 @@ export const Search = () => {
     }, [inputValue]);
 
     const onInputChange = ({ target }) => {
-        dispatch(setInputValue(target.value));
-        dispatch(fetchData({ query: target.value }));
+        const inputValue = target.value
+        dispatch(setInputValue(inputValue));
+        dispatch(fetchData({ query: inputValue }));
+
+        if (inputValue === "") {
+            dispatch(fetchData());
+        }
     };
 
     useEffect(() => {
