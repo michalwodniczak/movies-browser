@@ -44,22 +44,16 @@ function MovieList() {
 		history.push(`${location.pathname}?page=${currentPage}`);
 	}, [currentPage]);
 
-	if (loading) {
+	if (loading || loadingSearch) {
 		return (
-			<Container>
-				<SpinnerIcon />
-			</Container>
-		);
-	}
-
-	if (loadingSearch) {
-		return (
-			<Section>
-				<SectionTitle>Search result for "{searchQuery}"</SectionTitle>
+			< Section >
+				{loadingSearch ? (
+					<SectionTitle>{`Search result for ${searchQuery ? `"${searchQuery}"` : ""}`}</SectionTitle>
+				) : ""}
 				<Container>
 					<SpinnerIcon />
 				</Container>
-			</Section>
+			</Section >
 		);
 	};
 
