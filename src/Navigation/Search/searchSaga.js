@@ -13,5 +13,5 @@ function* fetchDataHandler(action) {
 };
 
 export function* searchSaga() {
-    yield debounce(3000, fetchData.type, fetchDataHandler);
+    yield debounce(1500, fetchData.type, fetchDataHandler);
 };
