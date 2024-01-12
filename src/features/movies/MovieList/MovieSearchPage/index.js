@@ -5,7 +5,7 @@ import { Section, SectionTitle } from "../../../../common/Section/Section";
 import { posterURL } from "../../../../utils/API/APIURLS";
 import { Wrapper } from "./styled";
 import { NoMovieIcon, SectionWrapper, StyledLink, Tile, TileContent, TileTitle, TileSubTitle, TileTags, TileTag, TileImageContainer, TileImage, Rating, } from "../../MovieList/styled";
-import errorImage from "./noResult.png";
+import { ReactComponent as IconEmpty } from "../../../../assets/icon-empty.svg";
 
 export const SearchPage = () => {
     const searchQuery = useSelector(selectInputValue);
@@ -16,7 +16,7 @@ export const SearchPage = () => {
             <Section>
                 <SectionTitle>Sorry, there are no results for "{searchQuery}"</SectionTitle>
                 <Wrapper>
-                    <img src={errorImage} alt="" />
+                    <IconEmpty />
                 </Wrapper>
             </Section>
         );
