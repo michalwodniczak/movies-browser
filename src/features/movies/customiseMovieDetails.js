@@ -29,7 +29,7 @@ export const customiseMovieDetails = (movieDetails) => {
             backdropURL: `${backdropURL}${movieDetails.backdrop_path}`,
             posterPath: movieDetails.poster_path,
             posterURL: `${posterURL}${movieDetails.poster_path}`,
-            title: movieDetails.original_title,
+            title: movieDetails.title,
             releaseYear: justYear,
             releaseDate: formattedDate,
             production: productionCountries,
