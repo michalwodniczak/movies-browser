@@ -12,12 +12,21 @@ export const customiseMovieList = (movieList, genreList) => {
                 (genre) => genre.id == id).name
         )
     );
-    const formatVote = (vote) => vote.toLocaleString(
-        'pl-PL',
-        {
-            maximumFractionDigits: 1,
-        }
-    );
+    const formatVote = (vote) => {
+        const roundedNumber = vote.toFixed(1);
+        const localeString = (number) => number.toLocaleString(
+            'pl-PL',
+            {
+                maximumFractionDigits: 1,
+            }
+        );
+
+        if (Number.isInteger(vote) || Number.isInteger(+roundedNumber)) {
+            return `${localeString(vote)},0`
+        } else {
+            return localeString(vote)
+        };
+    };
 
     return movies.map((movie) => (
         {
