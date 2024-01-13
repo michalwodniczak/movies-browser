@@ -1,45 +1,26 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { 
-  setMovieId, 
-  selectLoading, 
-  selectMovieDetails, 
-  selectMovieCast, 
-  selectMovieCrew 
+import {
+  setMovieId,
+  selectLoading,
+  selectMovieDetails,
+  selectMovieCast,
+  selectMovieCrew
 } from '../movieSlice';
-import { posterURL } from '../../../utils/API/APIURLS';
 import { Main } from '../../../common/Main/Main';
 import { SpinnerIcon, Container } from '../../../common/Loading/Loading';
 import Rating from '../../../common/Rating/Rating';
 import { Section, SectionTitle } from '../../../common/Section/Section';
-import {
-  Description,
-  NoPersonIcon,
-  SmallTile,
-  SmallTileImage,
-  SmallTileImageContainer,
-  SmallTileSubTitle,
-  SmallTileTitle,
-  Tile,
-  TileContent,
-  TileData,
-  TileDataContent,
-  TileDataTitle,
-  TileImage,
-  TileSubTitle,
-  TileTag,
-  TileTags,
-  TileTitle,
-} from '../../../common/Tile/Tile';
 import {
   Header,
   Backdrop,
   Vignette,
   TitleContainer,
   TitlePrimary,
-  SectionWrapper,
 } from './styled';
+import { DetailsTile, ListTileSmall } from '../../../common/Tile';
+import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -77,80 +58,51 @@ function MovieDetails() {
         }
       </Header>
       <Main>
-        <Tile>
-          <TileImage src={movieDetails.posterURL} />
-          <TileContent>
-            <TileTitle>{movieDetails.title}</TileTitle>
-            <TileSubTitle>{movieDetails.releaseYear}</TileSubTitle>
-            <TileData>
-              <TileDataContent>
-                <TileDataTitle>Production:</TileDataTitle>
-                {movieDetails.production}
-              </TileDataContent>
-              <TileDataContent>
-                <TileDataTitle>Release date:</TileDataTitle>
-                {movieDetails.releaseDate}
-              </TileDataContent>
-            </TileData>
-            <TileTags>
-              {movieDetails.genres.map(({ name }) => (
-                <TileTag>{name}</TileTag>
-              ))}
-            </TileTags>
-            <Rating
-              voteCount={movieDetails.votes}
-              ratingValue={movieDetails.rating}
-              isOnBackdrop={false}
-              isOnMainTile={true}
-            />            
-          </TileContent>
-          <Description>{movieDetails.description}</Description>
-        </Tile>
+        <DetailsTile
+          movieTile={true}
+          posterPath={movieDetails.posterPath}
+          title={movieDetails.title}
+          subtitle={movieDetails.releaseYear}
+          firstData={movieDetails.production}
+          secondData={movieDetails.releaseDate}
+          tags={movieDetails.genres}
+          voteCount={movieDetails.votes}
+          ratingValue={movieDetails.rating}
+          isOnBackdrop={false}
+          isOnMainTile={true}
+          description={movieDetails.description}
+        />
         <Section>
           <SectionTitle>Cast</SectionTitle>
-          <SectionWrapper>
-            {movieCast.slice(4, 16).map((actor) => (
+          <SmallListWrapper>
+            {movieCast.slice(0, 12).map((actor) => (
               <li key={actor.credit_id}>
-                <SmallTile>
-                  <SmallTileImageContainer>
-                    {actor.profile_path
-                      ?
-                      <SmallTileImage
-                        src={`${posterURL}${actor.profile_path}`}
-                      />
-                      :
-                      <NoPersonIcon />
-                    }
-                  </SmallTileImageContainer>
-                  <SmallTileTitle>{actor.name}</SmallTileTitle>
-                  <SmallTileSubTitle>{actor.character}</SmallTileSubTitle>
-                </SmallTile>
+                <StyledLink to={`/people/${actor.id}`}>
+                  <ListTileSmall
+                    posterPath={actor.profile_path}
+                    title={actor.name}
+                    subtitle={actor.character}
+                  />
+                </StyledLink>
               </li>
             ))}
-          </SectionWrapper>
+          </SmallListWrapper>
         </Section>
         <Section>
           <SectionTitle>Crew</SectionTitle>
-          <SectionWrapper>
+          <SmallListWrapper>
             {movieCrew.slice(0, 6).map((crew) => (
               <li key={crew.credit_id}>
-                <SmallTile>
-                  <SmallTileImageContainer>
-                    {crew.profile_path
-                      ?
-                      <SmallTileImage
-                        src={`${posterURL}${crew.profile_path}`}
-                      />
-                      :
-                      <NoPersonIcon />
-                    }
-                  </SmallTileImageContainer>
-                  <SmallTileTitle>{crew.name}</SmallTileTitle>
-                  <SmallTileSubTitle>{crew.job}</SmallTileSubTitle>
-                </SmallTile>
+                <StyledLink to={`/people/${crew.id}`}>
+                  <ListTileSmall
+                    posterPath={crew.profile_path}
+                    title={crew.name}
+                    subtitle={crew.job}
+                  />
+                </StyledLink>
               </li>
             ))}
-          </SectionWrapper>
+          </SmallListWrapper>
         </Section>
       </Main>
     </>
