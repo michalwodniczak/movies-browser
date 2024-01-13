@@ -12,6 +12,6 @@ function* fetchDataHandler(action) {
     };
 };
 
-export function* searchMovieSaga() {
+export function* searchSaga() {
     yield debounce(1500, fetchData.type, fetchDataHandler);
 };
