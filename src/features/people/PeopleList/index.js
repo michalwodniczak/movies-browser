@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useHistory, Link } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import {
   incrementPage,
   decrementPage,
@@ -10,11 +10,10 @@ import {
   selectPageState,
   selectPeopleList,
 } from '../peopleSlice';
-import { posterURL } from '../../../utils/API/APIURLS';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
-import { SectionWrapper } from "./styled";
-import { NoPersonIcon, SmallTile, SmallTileImage, SmallTileImageContainer, SmallTileTitle } from '../../../common/Tile/Tile';
+import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
+import { ListTileSmall } from '../../../common/Tile';
 import Pagination from '../../../common/Pagination';
 
 function PeopleList() {
@@ -46,25 +45,18 @@ function PeopleList() {
         <SectionTitle>
           Popular People
         </SectionTitle>
-        <SectionWrapper>
+        <SmallListWrapper>
           {peopleList.map((person) => (
             <li key={person.id}>
-              <SmallTile as={Link} to={`/people/${person.id}`}>
-                <SmallTileImageContainer>
-                  {person.profile_path
-                    ?
-                    <SmallTileImage
-                      src={`${posterURL}${person.profile_path}`}
-                    />
-                    :
-                    <NoPersonIcon />
-                  }
-                </SmallTileImageContainer>
-                <SmallTileTitle>{person.name}</SmallTileTitle>
-              </SmallTile>
+              <StyledLink to={`/people/${person.id}`}>
+                <ListTileSmall
+                  posterPath={person.profile_path}
+                  title={person.name}
+                />
+              </StyledLink>
             </li>
           ))}
-        </SectionWrapper>
+        </SmallListWrapper>
       </Section>
       <Pagination
         currentPage={currentPage}
