@@ -6,11 +6,22 @@ export const customiseMovieDetails = (movieDetails) => {
     const formattedDate = date.toLocaleDateString('pl-PL');;
     const productionCountries = movieDetails.production_countries.map(
         country => country.name).join(", ");
-    const formatedVote = movieDetails.vote_average.toLocaleString(
-        'pl-PL',
-        {
-            maximumFractionDigits: 1,
-        });
+
+    const formatVote = (vote) => {
+        const roundedNumber = vote.toFixed(1);
+        const localeString = (number) => number.toLocaleString(
+            'pl-PL',
+            {
+                maximumFractionDigits: 1,
+            }
+        );
+
+        if (Number.isInteger(vote) || Number.isInteger(+roundedNumber)) {
+            return `${localeString(vote)},0`
+        } else {
+            return localeString(vote)
+        };
+    };
 
     return (
         {
@@ -23,7 +34,7 @@ export const customiseMovieDetails = (movieDetails) => {
             releaseDate: formattedDate,
             production: productionCountries,
             genres: movieDetails.genres,
-            rating: formatedVote,
+            rating: formatVote(movieDetails.vote_average),
             votes: movieDetails.vote_count,
             description: movieDetails.overview,
         }
