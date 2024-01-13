@@ -4,14 +4,17 @@ import {
     selectPersonId,
     fetchDataError,
     getDetailsForPerson,
+    setPeopleCredits,
 } from "./peopleDetailsSlice";
-import { getPeopleDetails } from "./getPeopleDetails";
+import { getPeopleDetails, getPeopleCredits } from "./getPeopleDetails";
 
 function* fetchPersonDetailsHandler() {
     try {
         const id = yield select(selectPersonId);
         const details = yield call(getPeopleDetails, { personId: id });
+        const credits = yield call(getPeopleCredits, { personId: id });
         yield put(fetchDataSuccess({ details }));
+        yield put(setPeopleCredits(credits));
     } catch (error) {
         console.error("Saga: Error in fetchPersonDetailsHandler", error);
         yield put(fetchDataError());
