@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useHistory, Link } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import {
 	incrementPage,
 	decrementPage,
@@ -11,27 +11,12 @@ import {
 	selectLoading,
 	selectPageState
 } from "./movieListSlice";
-import { posterURL } from "../../../utils/API/APIURLS";
-import pageLimit from "../../../utils/pageLimit";
 import { Main } from "../../../common/Main/Main";
 import { Section, SectionTitle } from "../../../common/Section/Section";
-import { 
-	NoMovieIcon, 
-	SectionWrapper, 
-	StyledLink, 
-	Tile, 
-	TileImage, 
-	TileImageContainer, 
-	TileTags, 
-	TileTag, 
-	TileTitle, 
-	TileSubTitle, 
-	RatingContainer, 
-	TileContent 
-} from "./styled";
+import { ListTileLarge } from '../../../common/Tile';
+import { StyledLink, LargeListWrapper } from '../../../common/Tile/styled';
 import Pagination from '../../../common/Pagination/index';
 import { Container, SpinnerIcon } from '../../../common/Loading/Loading';
-import Rating from '../../../common/Rating/Rating';
 
 function MovieList() {
 	const dispatch = useDispatch();
@@ -44,15 +29,13 @@ function MovieList() {
 	const searchParams = new URLSearchParams(location.search);
 	const query = searchParams.get('page');
 
-  useEffect(() => {
-    if (query < 1) {
-      searchParams.set('page', 1);
-    } if (query > pageLimit) {
-      searchParams.set('page', pageLimit);
-    } else {
-      dispatch(pageNumberFromURL(Math.floor(query)));
-    }
-  }, [query]);
+	useEffect(() => {
+		if (query < 1) {
+			searchParams.set('page', 1);
+		} else {
+			dispatch(pageNumberFromURL(Math.floor(query)));
+		}
+	}, [query]);
 
 	useEffect(() => {
 		history.push(`${location.pathname}?page=${currentPage}`);
@@ -74,46 +57,22 @@ function MovieList() {
 				<SectionTitle>
 					Popular Movies
 				</SectionTitle>
-				<SectionWrapper>
+				<LargeListWrapper>
 					{popularMovies.map((movie) => (
 						<li key={movie.id}>
-							<StyledLink as={Link} to={`/movies/${movie.id}`}>
-								<Tile >
-									<TileImageContainer>
-										{movie.posterPath
-											?
-											<TileImage
-												src={`${posterURL}${movie.posterPath}`}
-												alt=""
-											/>
-											:
-											<NoMovieIcon />
-										}
-									</TileImageContainer>
-									<TileContent>
-										<TileTitle>{movie.title}</TileTitle>
-										<TileSubTitle>{movie.year}</TileSubTitle>
-										<TileTags>
-											{
-												movie.namedGenres &&
-												movie.namedGenres.map(name => (
-													<TileTag>{name}</TileTag>
-												))
-											}
-										</TileTags>
-										<RatingContainer>
-											<Rating
-												voteCount={movie.votes}
-												ratingValue={movie.rating}
-											/>
-										</RatingContainer>
-									</TileContent>
-								</Tile>
+							<StyledLink to={`/movies/${movie.id}`}>
+								<ListTileLarge
+									posterPath={movie.posterPath}
+									title={movie.title}
+									subtitle={movie.year}
+									tags={movie.namedGenres}
+									voteCount={movie.votes}
+									ratingValue={movie.rating}
+								/>
 							</StyledLink>
-
 						</li>
 					))}
-				</SectionWrapper>
+				</LargeListWrapper>
 			</Section>
 			<Pagination
 				currentPage={currentPage}
