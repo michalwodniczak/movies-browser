@@ -157,7 +157,7 @@ export const DetailsTile = (
 						<TileDataContent>
 							<TileDataTitle>
 								{
-									movieTile ? `Production: ` : `Place of birth: `
+									movieTile ? `Release date: ` : `Place of birth: `
 								}
 							</TileDataTitle>
 							{secondData}
