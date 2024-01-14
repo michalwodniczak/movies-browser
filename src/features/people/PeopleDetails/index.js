@@ -6,7 +6,7 @@ import {
     selectDetails,
     getDetailsForPerson,
 } from "./peopleDetailsSlice";
-import { PersonDetailsTile } from "./PersonDetailsTile";
+import { DetailsTile } from "../../../common/Tile/index";
 
 const PersonDetails = () => {
     const dispatch = useDispatch();
@@ -24,12 +24,12 @@ const PersonDetails = () => {
             : status === "error" ? <div>Error!</div>
                 : details ? (
                     <>
-                        <PersonDetailsTile
-                            poster={details.profile_path}
+                        <DetailsTile
+                            posterPath={details.profile_path}
                             title={details.name}
-                            overview={details.biography}
-                            dateOfBirth={details.birthday}
-                            placeOfBirth={details.place_of_birth}
+                            description={details.biography}
+                            firstData={details.birthday}
+                            secondData={details.place_of_birth}
                         />
                     </>
                 ) : (
