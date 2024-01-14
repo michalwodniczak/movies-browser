@@ -9,17 +9,20 @@ import {
   pageNumberFromURL,
   selectPageState,
   selectPeopleList,
+  selectLoading,
 } from '../peopleSlice';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import { ListTileSmall } from '../../../common/Tile';
 import Pagination from '../../../common/Pagination';
+import { Container, SpinnerIcon } from '../../../common/Loading/Loading';
 
 function PeopleList() {
   const dispatch = useDispatch();
   const currentPage = useSelector(selectPageState);
   const peopleList = useSelector(selectPeopleList);
+  const loading = useSelector(selectLoading);
 
   const history = useHistory();
   const location = useLocation();
@@ -38,6 +41,14 @@ function PeopleList() {
 
     history.push(`${location.pathname}?page=${currentPage}`);
   }, [currentPage]);
+
+  if (loading) {
+    return (
+      <Container>
+        <SpinnerIcon />
+      </Container>
+    )
+  };
 
   return (
     <Main>
