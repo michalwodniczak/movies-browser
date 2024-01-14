@@ -52,7 +52,7 @@ export const ListTileLarge = (
 				}
 			</TileImageContainer>
 			<TileContent>
-				<TileTitle>{title}</TileTitle>
+				<TileTitle>{title ? title : "No title available"}</TileTitle>
 				<TileSubTitle>
 					{
 						character
@@ -60,15 +60,18 @@ export const ListTileLarge = (
 							: `${subtitle}`
 					}
 				</TileSubTitle>
-				{tags &&
-					<TileTags>
-						{
-							tags.map(name => (
-								<TileTag>{name}</TileTag>
-							))
-						}
-					</TileTags>
-				}
+				{tags && tags.filter(
+					name => name &&
+						name.trim() !== ''
+				).length > 0 && (
+						<TileTags>
+							{tags.map(name => (
+								name &&
+								name.trim() !== '' &&
+								<TileTag key={name}>{name}</TileTag>
+							))}
+						</TileTags>
+					)}
 				<RatingContainer>
 					<Rating
 						voteCount={voteCount}
