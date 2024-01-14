@@ -77,9 +77,9 @@ const PersonDetails = () => {
                         <DetailsTile
                             posterPath={details.profile_path}
                             title={details.name}
-                            description={details.biography}
-                            firstData={details.birthday}
-                            secondData={details.place_of_birth}
+                            description={details.biography || "No biography available"}
+                            firstData={details.birthday || "No date of birth available"}
+                            secondData={details.place_of_birth || "No place of birth available"}
                         />
 
                         <Section>
@@ -91,7 +91,7 @@ const PersonDetails = () => {
                                             <ListTileLarge
                                                 posterPath={cast.backdrop_path}
                                                 title={cast.title}
-                                                subtitle={getReleaseYear(cast.release_date)}
+                                                subtitle={getReleaseYear(cast.release_date) || "No release year available"}
                                                 tags={nameGenres(cast.genre_ids)}
                                                 voteCount={cast.vote_count}
                                                 ratingValue={formatVote(cast.vote_average)}
@@ -111,7 +111,7 @@ const PersonDetails = () => {
                                             <ListTileLarge
                                                 posterPath={crew.backdrop_path}
                                                 title={crew.title}
-                                                subtitle={getReleaseYear(crew.release_date)}
+                                                subtitle={getReleaseYear(crew.release_date) || "No release year available"}
                                                 tags={nameGenres(crew.genre_ids)}
                                                 voteCount={crew.vote_count}
                                                 ratingValue={formatVote(crew.vote_average)}
