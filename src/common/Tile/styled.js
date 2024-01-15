@@ -12,11 +12,11 @@ export const SmallListWrapper = styled.ul`
     list-style-type: none;
     display: grid;
     gap: 24px;
-    grid-template-columns: repeat( auto-fit, minmax(208px, 1fr) );
+    grid-template-columns: repeat( auto-fill, minmax(208px, 1fr) );
 
     @media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
         gap: 16px;
-        grid-template-columns: repeat( auto-fit, minmax(136px, 1fr) );
+        grid-template-columns: repeat( auto-fill, minmax(136px, 1fr) );
     }
 `
 
@@ -27,11 +27,11 @@ export const LargeListWrapper = styled.ul`
     list-style-type: none;
     display: grid;
     gap: 24px;
-    grid-template-columns: repeat( auto-fit, minmax(256px, 1fr) );
+    grid-template-columns: repeat( auto-fill, minmax(256px, 1fr) );
 
     @media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
         gap: 24px;
-        grid-template-columns: repeat( auto-fit, minmax(230px, 1fr) );
+        grid-template-columns: repeat( auto-fill, minmax(232px, 1fr) );
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
@@ -40,7 +40,7 @@ export const LargeListWrapper = styled.ul`
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-        grid-template-columns: repeat( auto-fit, minmax(288px, 1fr) );
+        grid-template-columns: repeat( auto-fill, minmax(288px, 1fr) );
     } 
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobileMin}px) {
@@ -59,6 +59,7 @@ export const StyledLink = styled(Link)`
 export const Tile = styled.article`
     max-width: 324px;
     min-height: 650px;
+	height: 100%;
     padding: 16px;
 	display: grid;
 	grid-template-rows: auto 1fr;
@@ -70,9 +71,9 @@ export const Tile = styled.article`
     box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
     border-radius: 5px;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.desktop}px){
+	@media (max-width: ${({ theme }) => theme.breakpoints.desktop}px) {
         min-height: 100%;
-    }
+	}
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
         max-width: 100%;
@@ -232,6 +233,8 @@ export const DetailTileTitle = styled(TileTitle)`
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
         font-size: 16px;
+		font-weight: 500;
+		line-height: 1.3;
 		color: ${({ theme }) => theme.color.almostBlack};
 	}
 `

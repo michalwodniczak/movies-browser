@@ -5,7 +5,8 @@ import {
     goToFirstPage,
     pageNumberFromURL,
     setPeopleList,
-    selectPageState
+    selectPageState,
+    setError,
 } from './peopleSlice'
 import { getPeopleData } from './getPeopleData';
 
@@ -15,8 +16,7 @@ function* fetchPeopleListHandler() {
         const peopleList = yield call(getPeopleData, page);
         yield put(setPeopleList(peopleList));
     } catch (error) {
-        console.error(error);
-        yield call(alert, "Error fetching popular people data!")
+        yield put(setError(error.message));
     }
 }
 

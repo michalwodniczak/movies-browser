@@ -44,6 +44,7 @@ export const BoldText = styled(RegularText)`
 `
 
 export const StyledButton = styled.button`
+	cursor: pointer;
 	display: flex;
 	align-items: center;
 	gap: 8px;
@@ -59,6 +60,7 @@ export const StyledButton = styled.button`
 	}
 
 	&:disabled {
+		cursor: auto;
 		color: ${({ theme }) => theme.color.darkGray};
 		background-color: ${({ theme }) => theme.color.gray};
 	}

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useHistory, Link } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import {
   incrementPage,
   decrementPage,
@@ -9,18 +9,23 @@ import {
   pageNumberFromURL,
   selectPageState,
   selectPeopleList,
+  selectLoading,
+  selectError,
 } from '../peopleSlice';
-import { posterURL } from '../../../utils/API/APIURLS';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
-import { SectionWrapper } from "./styled";
-import { NoPersonIcon, SmallTile, SmallTileImage, SmallTileImageContainer, SmallTileTitle } from '../../../common/Tile/Tile';
+import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
+import { ListTileSmall } from '../../../common/Tile';
 import Pagination from '../../../common/Pagination';
+import Error from '../../../common/Error';
+import { Loading } from '../../../common/Loading';
 
 function PeopleList() {
   const dispatch = useDispatch();
   const currentPage = useSelector(selectPageState);
   const peopleList = useSelector(selectPeopleList);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
   const history = useHistory();
   const location = useLocation();
@@ -40,31 +45,36 @@ function PeopleList() {
     history.push(`${location.pathname}?page=${currentPage}`);
   }, [currentPage]);
 
+  if (loading) {
+    return (
+      <Loading />
+    )
+  };
+
+  if (error) {
+    return (
+      <Error />
+    )
+  };
+
   return (
     <Main>
       <Section>
         <SectionTitle>
           Popular People
         </SectionTitle>
-        <SectionWrapper>
+        <SmallListWrapper>
           {peopleList.map((person) => (
             <li key={person.id}>
-              <SmallTile as={Link} to={`/people/${person.id}`}>
-                <SmallTileImageContainer>
-                  {person.profile_path
-                    ?
-                    <SmallTileImage
-                      src={`${posterURL}${person.profile_path}`}
-                    />
-                    :
-                    <NoPersonIcon />
-                  }
-                </SmallTileImageContainer>
-                <SmallTileTitle>{person.name}</SmallTileTitle>
-              </SmallTile>
+              <StyledLink to={`/people/${person.id}`}>
+                <ListTileSmall
+                  posterPath={person.profile_path}
+                  title={person.name}
+                />
+              </StyledLink>
             </li>
           ))}
-        </SectionWrapper>
+        </SmallListWrapper>
       </Section>
       <Pagination
         currentPage={currentPage}

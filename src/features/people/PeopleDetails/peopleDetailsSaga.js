@@ -1,17 +1,22 @@
-import { call, put, takeLatest, select } from "redux-saga/effects";
+import { call, put, takeLatest, select, all } from "redux-saga/effects";
 import {
     fetchDataSuccess,
     selectPersonId,
     fetchDataError,
     getDetailsForPerson,
+    setPeopleCredits,
 } from "./peopleDetailsSlice";
-import { getPeopleDetails } from "./getPeopleDetails";
+import { getPeopleDetails, getPeopleCredits } from "./getPeopleDetails";
 
 function* fetchPersonDetailsHandler() {
     try {
         const id = yield select(selectPersonId);
-        const details = yield call(getPeopleDetails, { personId: id });
+        const [details, credits] = yield all([
+            call(getPeopleDetails, { personId: id }),
+            call(getPeopleCredits, { personId: id }),
+        ]);
         yield put(fetchDataSuccess({ details }));
+        yield put(setPeopleCredits(credits));
     } catch (error) {
         console.error("Saga: Error in fetchPersonDetailsHandler", error);
         yield put(fetchDataError());

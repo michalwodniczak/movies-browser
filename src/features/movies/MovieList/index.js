@@ -13,12 +13,12 @@ import {
 } from "./movieListSlice";
 import { Main } from "../../../common/Main/Main";
 import { Section, SectionTitle } from "../../../common/Section/Section";
-import { ListTileLarge } from '../../../common/Tile'
+import { ListTileLarge } from '../../../common/Tile';
 import { StyledLink, LargeListWrapper } from '../../../common/Tile/styled';
 import Pagination from '../../../common/Pagination/index';
-import { Container, SpinnerIcon } from '../../../common/Loading/Loading';
+import { Loading } from '../../../common/Loading';
 import { selectData, selectSearchLoading, selectInputValue } from '../../../Navigation/Search/searchSlice';
-import { SearchPage } from "../MovieList/MovieSearchPage/index";
+import { SearchPage } from "../MovieList/MovieSearchPage"
 
 function MovieList() {
 	const dispatch = useDispatch();
@@ -46,20 +46,9 @@ function MovieList() {
 		history.push(`${location.pathname}?page=${currentPage}`);
 	}, [currentPage]);
 
-	useEffect(() => {
-		history.push(`${location.pathname}?page=${currentPage}`);
-	}, [currentPage]);
-
 	if (loading || loadingSearch) {
 		return (
-			< Section >
-				{loadingSearch ? (
-					<SectionTitle>{`Search result for ${searchQuery ? `"${searchQuery}"` : ""}`}</SectionTitle>
-				) : ""}
-				<Container>
-					<SpinnerIcon />
-				</Container>
-			</Section >
+			<Loading />
 		);
 	};
 
