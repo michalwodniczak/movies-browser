@@ -27,7 +27,7 @@ export const StyledErrorIcon = styled(ErrorSVG)`
 `;
 
 export const Header = styled(SectionTitle)`
-    margin: 0;
+    text-align: center;
 `;
 
 export const Instruction = styled.h2`
