@@ -14,6 +14,7 @@ import { getGenreList } from "../../movies/MovieList/getGenreList";
 import { LargeListWrapper, StyledLink } from "../../../common/Tile/styled";
 import { Main } from "../../../common/Main/Main";
 import Error from "../../../common/Error";
+import { Loading } from "../../../common/Loading";
 
 const PersonDetails = () => {
     const dispatch = useDispatch();
@@ -70,7 +71,7 @@ const PersonDetails = () => {
     };
 
     return (
-        status === "loading" ? <div>Loading...</div>
+        status === "loading" ? <Loading />
             : status === "error" ? <Error />
                 : details && (
                     <Main>

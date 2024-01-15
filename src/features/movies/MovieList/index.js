@@ -16,7 +16,7 @@ import { Section, SectionTitle } from "../../../common/Section/Section";
 import { ListTileLarge } from '../../../common/Tile';
 import { StyledLink, LargeListWrapper } from '../../../common/Tile/styled';
 import Pagination from '../../../common/Pagination/index';
-import { Container, SpinnerIcon } from '../../../common/Loading/Loading';
+import { Loading } from '../../../common/Loading';
 
 function MovieList() {
 	const dispatch = useDispatch();
@@ -43,9 +43,7 @@ function MovieList() {
 
 	if (loading) {
 		return (
-			<Container>
-				<SpinnerIcon />
-			</Container>
+			<Loading />
 		);
 	}
 	if (!popularMovies) {
