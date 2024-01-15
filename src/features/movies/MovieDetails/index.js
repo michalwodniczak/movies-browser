@@ -6,7 +6,8 @@ import {
   selectLoading,
   selectMovieDetails,
   selectMovieCast,
-  selectMovieCrew
+  selectMovieCrew,
+  selectError,
 } from '../movieSlice';
 import { Main } from '../../../common/Main/Main';
 import { SpinnerIcon, Container } from '../../../common/Loading/Loading';
@@ -21,6 +22,7 @@ import {
 } from './styled';
 import { DetailsTile, ListTileSmall } from '../../../common/Tile';
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
+import Error from '../../../common/Error';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -31,6 +33,7 @@ function MovieDetails() {
   }, []);
 
   const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
   const movieDetails = useSelector(selectMovieDetails);
   const movieCast = useSelector(selectMovieCast);
   const movieCrew = useSelector(selectMovieCrew);
@@ -39,6 +42,8 @@ function MovieDetails() {
     <>
       <Container><SpinnerIcon /></Container>
     </>
+  ) : error ? (
+    <Error />
   ) : (
     <>
       <Header>

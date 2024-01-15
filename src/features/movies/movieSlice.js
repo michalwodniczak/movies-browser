@@ -7,18 +7,22 @@ const movieSlice = createSlice({
         id: '',
         details: {},
         credits: {},
+        error: null,
     },
     reducers: {
-        setMovieId: (state, {payload: id}) => {
+        setMovieId: (state, { payload: id }) => {
             state.id = id;
             state.loading = true;
         },
-        setMovieDetails: (state, {payload: movieDetails}) => {
+        setMovieDetails: (state, { payload: movieDetails }) => {
             state.details = movieDetails;
             state.loading = false;
         },
-        setMovieCredits: (state, {payload: movieCredits}) => {
+        setMovieCredits: (state, { payload: movieCredits }) => {
             state.credits = movieCredits;
+        },
+        setError: (state, action) => {
+            state.error = action.payload;
         },
     },
 });
@@ -28,6 +32,7 @@ export const {
     setMovieDetails,
     setMovieCredits,
     setPreparedDetails,
+    setError,
 } = movieSlice.actions;
 
 const selectMovieState = state => state.movie;
@@ -35,6 +40,7 @@ const selectCredits = state => selectMovieState(state).credits;
 
 export const selectLoading = state => selectMovieState(state).loading;
 export const selectMovieId = state => selectMovieState(state).id;
+export const selectError = state => selectMovieState(state).error;
 
 export const selectMovieDetails = state => selectMovieState(state).details;
 export const selectMovieCast = state => selectCredits(state).cast;

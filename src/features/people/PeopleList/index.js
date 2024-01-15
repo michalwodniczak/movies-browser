@@ -10,6 +10,7 @@ import {
   selectPageState,
   selectPeopleList,
   selectLoading,
+  selectError,
 } from '../peopleSlice';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
@@ -17,12 +18,14 @@ import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import { ListTileSmall } from '../../../common/Tile';
 import Pagination from '../../../common/Pagination';
 import { Container, SpinnerIcon } from '../../../common/Loading/Loading';
+import Error from '../../../common/Error';
 
 function PeopleList() {
   const dispatch = useDispatch();
   const currentPage = useSelector(selectPageState);
   const peopleList = useSelector(selectPeopleList);
   const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
   const history = useHistory();
   const location = useLocation();
@@ -47,6 +50,12 @@ function PeopleList() {
       <Container>
         <SpinnerIcon />
       </Container>
+    )
+  };
+
+  if (error) {
+    return (
+      <Error />
     )
   };
 
