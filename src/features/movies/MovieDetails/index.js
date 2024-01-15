@@ -10,7 +10,6 @@ import {
   selectError,
 } from '../movieSlice';
 import { Main } from '../../../common/Main/Main';
-import { SpinnerIcon, Container } from '../../../common/Loading/Loading';
 import Rating from '../../../common/Rating/Rating';
 import { Section, SectionTitle } from '../../../common/Section/Section';
 import {
@@ -23,6 +22,7 @@ import {
 import { DetailsTile, ListTileSmall } from '../../../common/Tile';
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import Error from '../../../common/Error';
+import { Loading } from '../../../common/Loading';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -39,9 +39,7 @@ function MovieDetails() {
   const movieCrew = useSelector(selectMovieCrew);
 
   return loading ? (
-    <>
-      <Container><SpinnerIcon /></Container>
-    </>
+    <Loading />
   ) : error ? (
     <Error />
   ) : (

@@ -17,8 +17,8 @@ import { Section, SectionTitle } from "../../../common/Section/Section";
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import { ListTileSmall } from '../../../common/Tile';
 import Pagination from '../../../common/Pagination';
-import { Container, SpinnerIcon } from '../../../common/Loading/Loading';
 import Error from '../../../common/Error';
+import { Loading } from '../../../common/Loading';
 
 function PeopleList() {
   const dispatch = useDispatch();
@@ -47,9 +47,7 @@ function PeopleList() {
 
   if (loading) {
     return (
-      <Container>
-        <SpinnerIcon />
-      </Container>
+      <Loading />
     )
   };
 
