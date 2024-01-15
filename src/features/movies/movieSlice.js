@@ -11,6 +11,7 @@ const movieSlice = createSlice({
     reducers: {
         setMovieId: (state, {payload: id}) => {
             state.id = id;
+            state.loading = true;
         },
         setMovieDetails: (state, {payload: movieDetails}) => {
             state.details = movieDetails;
