@@ -14,6 +14,7 @@ import { SectionWrapper } from "../../movies/MovieDetails/styled";
 import { getGenreList } from "../../movies/MovieList/getGenreList";
 import { LargeListWrapper } from "../../../common/Tile/styled";
 import { Main } from "../../../common/Main/Main";
+import Error from "../../../common/Error";
 
 const PersonDetails = () => {
     const dispatch = useDispatch();
@@ -62,8 +63,8 @@ const PersonDetails = () => {
 
     return (
         status === "loading" ? <div>Loading...</div>
-            : status === "error" ? <div>Error!</div>
-                : details ? (
+            : status === "error" ? <Error />
+                : details && (
                     <Main>
                         <DetailsTile
                             posterPath={details.profile_path}
@@ -113,10 +114,8 @@ const PersonDetails = () => {
                             </SectionWrapper>
                         </Section>
                     </Main>
-                ) : (
-                    <div>No details available</div>
                 )
-    );
+    )
 };
 
 export default PersonDetails;

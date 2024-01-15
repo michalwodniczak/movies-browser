@@ -7,6 +7,7 @@ const peopleDetailsSlice = createSlice({
         details: {},
         credits: {},
         status: "loading",
+        status: "error",
     },
     reducers: {
         fetchDataSuccess: (state, { payload }) => {
