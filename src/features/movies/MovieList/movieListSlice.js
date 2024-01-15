@@ -5,6 +5,7 @@ const movieListSlice = createSlice({
     initialState: {
         page: 1,
         movies: [{}],
+        genres: [{}],
         loading: true,
         success: false,
     },
@@ -18,13 +19,19 @@ const movieListSlice = createSlice({
         goToFirstPage: (state) => {
             state.page = 1;
         },
+        goToLastPage: (state, {payload: lastPage}) => {
+            state.page = +lastPage;
+        },
 		pageNumberFromURL: (state, { payload: query }) => {
 			state.page = +query;
 		},
         setMovieList: (state, { payload: movies }) => {
-            state.movies = movies.results;
+            state.movies = movies;
             state.loading = false;
             state.success = true;
+        },
+        setGenres: (state, {payload: genreList}) => {
+            state.genres = genreList.genres;
         },
         setLoading: (state, { payload: loading }) => {
             state.loading = loading;
@@ -36,9 +43,11 @@ export const {
     incrementPage,
     decrementPage,
     goToFirstPage,
+    goToLastPage,
 	pageNumberFromURL,
-    setMovieList, 
-    setLoading 
+    setMovieList,
+    setGenres, 
+    setLoading,
 } = movieListSlice.actions;
 
 export const selectMovieListState = state => state.movieList;

@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 import {
   incrementPage,
   decrementPage,
   goToFirstPage,
+  goToLastPage,
   pageNumberFromURL,
   selectPageState,
   selectPeopleList,
 } from '../peopleSlice';
 import { posterURL } from '../../../utils/API/APIURLS';
+import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
 import { SectionWrapper } from "./styled";
 import { NoPersonIcon, SmallTile, SmallTileImage, SmallTileImageContainer, SmallTileTitle } from '../../../common/Tile/Tile';
@@ -29,7 +31,7 @@ function PeopleList() {
     if (query < 1) {
       searchParams.set('page', 1);
     } else {
-      dispatch(pageNumberFromURL(query));
+      dispatch(pageNumberFromURL(Math.floor(query)));
     }
   }, [query]);
 
@@ -39,7 +41,7 @@ function PeopleList() {
   }, [currentPage]);
 
   return (
-    <>
+    <Main>
       <Section>
         <SectionTitle>
           Popular People
@@ -47,16 +49,16 @@ function PeopleList() {
         <SectionWrapper>
           {peopleList.map((person) => (
             <li key={person.id}>
-              <SmallTile>
+              <SmallTile as={Link} to={`/people/${person.id}`}>
                 <SmallTileImageContainer>
                   {person.profile_path
-                  ?
-                  <SmallTileImage
-                  src={`${posterURL}${person.profile_path}`}
-                  />
-                  :
-                  <NoPersonIcon />
-                }
+                    ?
+                    <SmallTileImage
+                      src={`${posterURL}${person.profile_path}`}
+                    />
+                    :
+                    <NoPersonIcon />
+                  }
                 </SmallTileImageContainer>
                 <SmallTileTitle>{person.name}</SmallTileTitle>
               </SmallTile>
@@ -64,8 +66,14 @@ function PeopleList() {
           ))}
         </SectionWrapper>
       </Section>
-      <Pagination currentPage={currentPage} goToFirstPage={goToFirstPage} incrementPage={incrementPage} decrementPage={decrementPage}/>
-    </>
+      <Pagination
+        currentPage={currentPage}
+        goToFirstPage={goToFirstPage}
+        incrementPage={incrementPage}
+        decrementPage={decrementPage}
+        goToLastPage={goToLastPage}
+      />
+    </Main>
   )
 };
 

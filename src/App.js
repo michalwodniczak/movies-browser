@@ -1,6 +1,5 @@
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
 import Navigation from "./Navigation";
-import { Main } from './common/Main/Main';
 import MovieList from "./features/movies/MovieList";
 import MovieDetails from "./features/movies/MovieDetails";
 import PeopleList from "./features/people/PeopleList";
@@ -11,7 +10,6 @@ function App() {
   return (
     <HashRouter>
       <Navigation />
-      <Main>
         <Switch>
           <Route path={toMovieDetails()}>
             <MovieDetails />
@@ -29,7 +27,6 @@ function App() {
             <Redirect to={toMovieList()} />
           </Route>
         </Switch>
-      </Main>
     </HashRouter>
   );
 };

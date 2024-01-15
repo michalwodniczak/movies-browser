@@ -11,8 +11,15 @@ import {
 	RegularText,
 	BoldText,
 } from './styled';
+import pageLimit from "../../utils/pageLimit";
 
-const Pagination = ({ currentPage, goToFirstPage, decrementPage, incrementPage }) => {
+const Pagination = ({
+	currentPage,
+	goToFirstPage,
+	goToLastPage,
+	decrementPage,
+	incrementPage
+}) => {
 	const dispatch = useDispatch();
 
 	return (
@@ -36,13 +43,19 @@ const Pagination = ({ currentPage, goToFirstPage, decrementPage, incrementPage }
 				<RegularText>Page</RegularText>
 				<BoldText>{currentPage}</BoldText>
 				<RegularText>of</RegularText>
-				<BoldText>500</BoldText>
+				<BoldText>{pageLimit}</BoldText>
 			</TextContainer>
-			<StyledButton onClick={() => dispatch(incrementPage())}>
+			<StyledButton 
+				onClick={() => dispatch(incrementPage())}
+				disabled={currentPage > (pageLimit - 1)}
+			>
 				<ButtonText>Next</ButtonText>
 				<Chevron />
 			</StyledButton>
-			<StyledButton disabled={true}>
+			<StyledButton 
+				onClick={() => dispatch(goToLastPage(pageLimit))}
+				disabled={currentPage > (pageLimit - 1)}
+			>
 				<ButtonText>Last</ButtonText>
 				<Chevron />
 				<MobileChevron />

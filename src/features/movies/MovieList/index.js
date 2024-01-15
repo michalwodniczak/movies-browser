@@ -1,22 +1,24 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useHistory, Link } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import {
 	incrementPage,
 	decrementPage,
 	goToFirstPage,
+	goToLastPage,
 	pageNumberFromURL,
 	selectMovieList,
 	selectLoading,
 	selectPageState
 } from "./movieListSlice";
-import { posterURL } from "../../../utils/API/APIURLS"
+import { Main } from "../../../common/Main/Main";
 import { Section, SectionTitle } from "../../../common/Section/Section";
-import { NoMovieIcon, SectionWrapper, StyledLink, Tile, TileImage, TileImageContainer, TileTags, TileTag, TileTitle, TileSubTitle, Rating, TileContent } from "./styled";
+import { ListTileLarge } from '../../../common/Tile'
+import { StyledLink, LargeListWrapper } from '../../../common/Tile/styled';
 import Pagination from '../../../common/Pagination/index';
 import { Container, SpinnerIcon } from '../../../common/Loading/Loading';
-import { selectData, selectInputValue, selectSearchLoading } from '../../../Navigation/Search/searchSlice';
-import { SearchPage } from './MovieSearchPage';
+import { selectData, selectSearchLoading, selectInputValue } from '../../../Navigation/Search/searchSlice';
+import { SearchPage } from "../MovieList/MovieSearchPage/index";
 
 function MovieList() {
 	const dispatch = useDispatch();
@@ -36,9 +38,13 @@ function MovieList() {
 		if (query < 1) {
 			searchParams.set('page', 1);
 		} else {
-			dispatch(pageNumberFromURL(query));
+			dispatch(pageNumberFromURL(Math.floor(query)));
 		}
 	}, [query]);
+
+	useEffect(() => {
+		history.push(`${location.pathname}?page=${currentPage}`);
+	}, [currentPage]);
 
 	useEffect(() => {
 		history.push(`${location.pathname}?page=${currentPage}`);
@@ -66,47 +72,36 @@ function MovieList() {
 	}
 
 	return (
-		<>
+		<Main>
 			<Section>
 				<SectionTitle>
 					Popular Movies
 				</SectionTitle>
-				<SectionWrapper>
-					{popularMovies.slice(0, 4).map((movie) => (
+				<LargeListWrapper>
+					{popularMovies.map((movie) => (
 						<li key={movie.id}>
-							<StyledLink as={Link} to={`/movies/${movie.id}`}>
-								<Tile >
-									<TileImageContainer>
-										{movie.poster_path
-											?
-											<TileImage
-												src={`${posterURL}${movie.poster_path}`}
-												alt=""
-											/>
-											:
-											<NoMovieIcon />
-										}
-									</TileImageContainer>
-									<TileContent>
-										<TileTitle>{movie.title}</TileTitle>
-										<TileSubTitle>{movie.release_date}</TileSubTitle>
-										<TileTags>
-											{
-												movie.genre_ids &&
-												<TileTag>{movie.genre_ids}</TileTag>
-											}
-										</TileTags>
-										<Rating><span>{`⭐ ${movie.vote_average}`}</span>
-											<span>{`${movie.vote_count} votes`}</span></Rating>
-									</TileContent>
-								</Tile>
+							<StyledLink to={`/movies/${movie.id}`}>
+								<ListTileLarge
+									posterPath={movie.posterPath}
+									title={movie.title}
+									subtitle={movie.year}
+									tags={movie.namedGenres}
+									voteCount={movie.votes}
+									ratingValue={movie.rating}
+								/>
 							</StyledLink>
-
 						</li>
 					))}
-				</SectionWrapper>
+				</LargeListWrapper>
 			</Section>
-			<Pagination currentPage={currentPage} goToFirstPage={goToFirstPage} incrementPage={incrementPage} decrementPage={decrementPage} />        </>
+			<Pagination
+				currentPage={currentPage}
+				goToFirstPage={goToFirstPage}
+				incrementPage={incrementPage}
+				decrementPage={decrementPage}
+				goToLastPage={goToLastPage}
+			/>
+		</Main>
 	);
 };
 

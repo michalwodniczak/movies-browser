@@ -1,14 +1,11 @@
-// to fetch data from API use those imports with passed { id }
-// import { URL, AuthorizationAndLanguage } from "../../utils/API/APIURLS";
+import { URL, AuthorizationAndLanguage } from "../../utils/API/APIURLS";
 
-const movieDetailSampleURL = "https://raw.githubusercontent.com/bedicooper/movies-browser/main/public/movie-466420.json";
-const movieCreditsSampleURL = "https://raw.githubusercontent.com/bedicooper/movies-browser/main/public/credits-466420.json";
+// const movieDetailSampleURL = "https://raw.githubusercontent.com/bedicooper/movies-browser/main/public/movie-466420.json";
+// const movieCreditsSampleURL = "https://raw.githubusercontent.com/bedicooper/movies-browser/main/public/credits-466420.json";
 
-export const getMovieDetails = async (/* id */) => {
+export const getMovieDetails = async ( id ) => {
 
-    //const movieDetailURL = `${URL}movie/${id}${AuthorizationAndLanguage}`;
-
-    const response = await fetch(movieDetailSampleURL);
+    const response = await fetch(`${URL}movie/${id}${AuthorizationAndLanguage}`);
 
     if (!response.ok) {
         new Error(response.statusText);
@@ -17,11 +14,9 @@ export const getMovieDetails = async (/* id */) => {
     return await response.json();
 };
 
-export const getMovieCredits = async () => {
+export const getMovieCredits = async ( id ) => {
 
-    //const movieCreditsURL = `${URL}movie/${id}/credits${AuthorizationAndLanguage}`;
-
-    const response = await fetch(movieCreditsSampleURL);
+    const response = await fetch(`${URL}movie/${id}/credits${AuthorizationAndLanguage}`);
 
     if (!response.ok) {
         new Error(response.statusText);
