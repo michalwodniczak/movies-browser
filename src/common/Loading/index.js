@@ -1,6 +1,6 @@
 import { Container, SpinnerIcon } from "./styled"
 
-export default Loading() = (
+export const Loading = () => (
     < Container >
         <SpinnerIcon />
     </Container >
