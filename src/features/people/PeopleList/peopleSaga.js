@@ -8,7 +8,7 @@ import {
     selectPageState,
     setError,
 } from './peopleSlice'
-import { getPopularPeople } from '../../utils/API/getPopularPeople';
+import { getPopularPeople } from '../../../utils/API/getPopularPeople';
 
 function* fetchPeopleListHandler() {
     try {
