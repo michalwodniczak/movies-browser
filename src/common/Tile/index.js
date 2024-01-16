@@ -33,7 +33,7 @@ export const ListTileLarge = (
 		posterPath,
 		title,
 		subtitle,
-		character,
+		role,
 		tags,
 		voteCount,
 		ratingValue
@@ -56,8 +56,8 @@ export const ListTileLarge = (
 				<TileTitle>{title ? title : "No title available"}</TileTitle>
 				<TileSubTitle>
 					{
-						character
-							? `${character} (${subtitle})`
+						role
+							? `${role} (${subtitle})`
 							: `${subtitle}`
 					}
 				</TileSubTitle>
