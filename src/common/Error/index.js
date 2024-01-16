@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container, StyledErrorIcon, Header, Instruction, StyledButton } from './styled';
-import { setError } from '../../features/movies/movieSlice';
+import { setError } from '../../features/movies/MovieDetails/movieSlice';
 
 const Error = () => {
     const history = useHistory();
