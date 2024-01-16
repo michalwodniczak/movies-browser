@@ -1,5 +1,4 @@
 import { all, call, put, takeEvery, select } from "redux-saga/effects";
-import { getPopularMovies } from "./getPopularMovies";
 import {
     incrementPage,
     decrementPage,
@@ -9,7 +8,8 @@ import {
     setMovieList,
     setGenres,
 } from "./movieListSlice";
-import { getGenreList } from "./getGenreList";
+import { getPopularMovies } from "../../../utils/API/getPopularMovies";
+import { getGenreList } from "../../../utils/API/getGenreList";
 import { customiseMovieList } from "./customiseMovieList";
 
 function* fetchMovieListHandler() {
