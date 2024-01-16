@@ -24,6 +24,7 @@ import {
 	NoPersonIcon,
 	RatingContainer,
 	Description,
+	TileDataTitleException,
 } from "./styled";
 import Rating from "../Rating/Rating";
 
@@ -155,6 +156,9 @@ export const DetailsTile = (
 									movieTile ? `Production: ` : `Date of birth: `
 								}
 							</TileDataTitle>
+							<TileDataTitleException $personTile={!movieTile}>
+								{`Birth: `}
+							</TileDataTitleException>
 							{firstData}
 						</TileDataContent>
 						<TileDataContent>
@@ -163,6 +167,9 @@ export const DetailsTile = (
 									movieTile ? `Release date: ` : `Place of birth: `
 								}
 							</TileDataTitle>
+							<TileDataTitleException $personTile={!movieTile}>
+								{`Place of birth: `}
+							</TileDataTitleException>
 							{secondData}
 						</TileDataContent>
 					</TileData>
