@@ -31,21 +31,21 @@ export const SearchPage = () => {
             <Section>
                 <SectionTitle>Search result for "{searchQuery}" ({searchResults.data.length})</SectionTitle>
                 <LargeListWrapper>
-					{searchResults.data.map((movie) => (
-						<li key={movie.id}>
-							<StyledLink to={`/movies/${movie.id}`}>
-								<ListTileLarge
-									posterPath={movie.posterPath}
-									title={movie.title}
-									subtitle={movie.year}
-									tags={movie.namedGenres}
-									voteCount={movie.votes}
-									ratingValue={movie.rating}
-								/>
-							</StyledLink>
-						</li>
-					))}
-				</LargeListWrapper>
+                    {searchResults.data.map((movie) => (
+                        <li key={movie.id}>
+                            <StyledLink to={`/movies/${movie.id}`}>
+                                <ListTileLarge
+                                    posterPath={movie.poster_path}
+                                    title={movie.title}
+                                    subtitle={movie.release_date}
+                                    tags={movie.namedGenres}
+                                    voteCount={movie.vote_count}
+                                    ratingValue={movie.vote_average}
+                                />
+                            </StyledLink>
+                        </li>
+                    ))}
+                </LargeListWrapper>
             </Section>
         </Main>
     );
