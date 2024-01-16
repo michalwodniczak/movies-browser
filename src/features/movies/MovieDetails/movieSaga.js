@@ -6,19 +6,19 @@ import {
     selectMovieId,
     setError,
 } from './movieSlice'
-import { getMovieDetails, getMovieCredits } from './getMovieDetails'
-import { customiseMovieDetails } from './customiseMovieDetails';
+import { getMovieDetails, getMovieCredits } from '../../../utils/API/getMovieDetails'
+import { processMovieData } from '../../../utils/API/processMovieData';
 
 function* fetchMovieHandler() {
     try {
         const movieId = yield select(selectMovieId);
-        const [details, credits] = yield all([
+        const [rawDetails, rawCredits] = yield all([
             call(getMovieDetails, movieId),
             call(getMovieCredits, movieId),
         ]);
-        const customDetails = yield call(customiseMovieDetails, details);
-        yield put(setMovieDetails(customDetails));
-        yield put(setMovieCredits(credits));
+        const processedDetails = yield call(processMovieData, rawDetails);
+        yield put(setMovieDetails(processedDetails));
+        yield put(setMovieCredits(rawCredits));
 
     } catch (error) {
         yield put(setError(error.message));
