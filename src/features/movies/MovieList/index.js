@@ -56,7 +56,7 @@ function MovieList() {
 		return <p>No data available.</p>;
 	}
 
-	if (searchResults) {
+	if (searchResults && searchResults.length > 0 && searchQuery) {
 		return <SearchPage />
 	}
 
