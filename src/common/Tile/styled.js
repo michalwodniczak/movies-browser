@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { ReactComponent as NoPersonSVG } from "../../assets/icon-person.svg";
 import { ReactComponent as NoMovieSVG } from "../../assets/icon-noMovie.svg";
@@ -290,7 +290,6 @@ export const TileData = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
-	max-height: 52px;
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		margin-top: 4px;
@@ -315,6 +314,17 @@ export const TileDataTitle = styled.span`
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		display: none;
+	}
+`
+
+export const TileDataTitleException = styled(TileDataTitle)`
+	display: none;
+
+	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+
+		${({ $personTile }) => $personTile && css`
+			display: block;
+		`}
 	}
 `
 
