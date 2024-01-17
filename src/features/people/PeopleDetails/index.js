@@ -78,7 +78,7 @@ const PersonDetails = () => {
                         <DetailsTile
                             posterPath={details.profile_path}
                             title={details.name}
-                            description={details.biography || "No biography available"}
+                            description={details.biography}
                             firstData={details.birthday || "No date of birth available"}
                             secondData={details.place_of_birth || "No place of birth available"}
                         />
