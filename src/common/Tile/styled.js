@@ -70,6 +70,14 @@ export const Tile = styled.article`
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
     border-radius: 5px;
+	transition: transform 0.3s ease;
+
+	&:hover {
+        transform: translateY(-2mm);
+    }
+	&:hover  > div:first-child {
+    	opacity: 0.7;
+  	}
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.desktop}px) {
         min-height: 100%;
