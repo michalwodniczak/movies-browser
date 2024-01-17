@@ -90,7 +90,7 @@ const PersonDetails = () => {
                                     <li key={cast.credit_id}>
                                         <StyledLink to={`/movies/${cast.id}`}>
                                             <ListTileLarge
-                                                posterPath={cast.backdrop_path}
+                                                posterPath={cast.poster_path}
                                                 title={cast.title}
                                                 subtitle={getReleaseYear(cast.release_date) || "No release year available"}
                                                 tags={nameGenres(cast.genre_ids)}
@@ -110,7 +110,7 @@ const PersonDetails = () => {
                                     <li key={crew.credit_id}>
                                         <StyledLink to={`/movies/${crew.id}`}>
                                             <ListTileLarge
-                                                posterPath={crew.backdrop_path}
+                                                posterPath={crew.poster_path}
                                                 title={crew.title}
                                                 subtitle={getReleaseYear(crew.release_date) || "No release year available"}
                                                 tags={nameGenres(crew.genre_ids)}
