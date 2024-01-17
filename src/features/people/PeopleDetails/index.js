@@ -86,7 +86,7 @@ const PersonDetails = () => {
                         <Section>
                             <SectionTitle>Movies - cast ({actorCast.length})</SectionTitle>
                             <LargeListWrapper>
-                                {actorCast.map((cast) => (
+                                {actorCast.slice(0, 12).map((cast) => (
                                     <li key={cast.credit_id}>
                                         <StyledLink to={`/movies/${cast.id}`}>
                                             <ListTileLarge
@@ -106,7 +106,7 @@ const PersonDetails = () => {
                         <Section>
                             <SectionTitle>Movies - crew ({actorCrew.length})</SectionTitle>
                             <LargeListWrapper>
-                                {actorCrew.map((crew) => (
+                                {actorCrew.slice(0, 12).map((crew) => (
                                     <li key={crew.credit_id}>
                                         <StyledLink to={`/movies/${crew.id}`}>
                                             <ListTileLarge
