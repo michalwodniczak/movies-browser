@@ -9,11 +9,12 @@ import { ListTileLarge } from "../../../../common/Tile";
 import { LargeListWrapper } from "../../../../common/Tile/styled";
 
 
+
 export const SearchPage = () => {
     const searchQuery = useSelector(selectInputValue);
     const searchResults = useSelector(selectData);
 
-    if (!searchResults.data.length) {
+    if (!searchResults.length) {
         return (
             <Main>
                 <Section>
@@ -29,9 +30,9 @@ export const SearchPage = () => {
     return (
         <Main>
             <Section>
-                <SectionTitle>Search result for "{searchQuery}" ({searchResults.data.length})</SectionTitle>
+                <SectionTitle>Search result for "{searchQuery}" ({searchResults.length})</SectionTitle>
                 <LargeListWrapper>
-                    {searchResults.data.map((movie) => (
+                    {searchResults.map((movie) => (
                         <li key={movie.id}>
                             <StyledLink to={`/movies/${movie.id}`}>
                                 <ListTileLarge
