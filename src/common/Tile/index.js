@@ -174,6 +174,18 @@ export const DetailsTile = (
 						</TileDataContent>
 					</TileData>
 				}
+				{
+					!description &&
+					<TileData>
+					<TileDataContent>
+						{
+							movieTile
+								? `No description available.`
+								: `No biography available.`
+						}
+					</TileDataContent>
+					</TileData>
+				}
 				{movieTile &&
 					<>
 						<TileTags>
@@ -190,7 +202,11 @@ export const DetailsTile = (
 					</>
 				}
 			</DetailTileContent>
-			<Description>{description}</Description>
+			{description &&
+				<Description>
+					{description}
+				</Description>
+			}
 		</DetailTile>
 	)
 };
