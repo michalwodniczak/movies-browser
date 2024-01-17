@@ -290,7 +290,6 @@ export const TileData = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
-	max-height: 52px;
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		margin-top: 4px;
