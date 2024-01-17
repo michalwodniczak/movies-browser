@@ -73,7 +73,7 @@ export const Tile = styled.article`
 	transition: transform 0.3s ease;
 
 	&:hover {
-        transform: translateY(-2mm);
+        transform: translateY(-0.5em);
     }
 	&:hover  > div:first-child {
     	opacity: 0.7;
