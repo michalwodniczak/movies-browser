@@ -4,9 +4,11 @@ const searchSlice = createSlice({
     name: "search",
     initialState: {
         path: "/",
-        data: null,
+        // data: null,
         error: null,
         loading: false,
+        genres: [{}],
+        movies: [{}]
     },
     reducers: {
         setPath: (state, { payload: path }) => {
@@ -15,6 +17,15 @@ const searchSlice = createSlice({
         setInputValue: (state, { payload: value }) => {
             state.inputValue = value;
         },
+        setGenres: (state, { payload: genresList }) => {
+            state.genres = genresList.genres;
+        },
+
+        setMoviesList: (state, { payload: movies }) => {
+            state.loading = false;
+            state.movies = movies;
+        },
+
         fetchData: (state) => {
             state.loading = true;
             state.error = null;
@@ -33,10 +44,10 @@ const searchSlice = createSlice({
 
 export const selectPath = (state) => state.search.path;
 export const selectSearchLoading = (state) => state.search.loading;
-export const selectData = (state) => state.search.data;
+export const selectData = (state) => state.search.movies;
 export const selectSearchError = (state) => state.search.error;
 export const selectInputValue = (state) => state.search.inputValue;
 
-export const { setPath, fetchData, fetchDataFailure, fetchDataSucces, setInputValue } = searchSlice.actions;
+export const { setPath, setGenres, setMoviesList, fetchData, fetchDataFailure, fetchDataSucces, setInputValue } = searchSlice.actions;
 
 export default searchSlice.reducer
