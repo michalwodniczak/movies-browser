@@ -7,7 +7,7 @@ export const getSearchMovie = async (query) => {
     
     try {
         const response = await axios.get(URL);
-        return response.data.results
+        return response.data;
     } catch {
         throw new Error("Failed to search");
     };
