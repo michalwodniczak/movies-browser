@@ -92,7 +92,7 @@ const PersonDetails = () => {
                                             <ListTileLarge
                                                 posterPath={cast.poster_path}
                                                 title={cast.title}
-                                                character={cast.character}
+                                                role={cast.character}
                                                 subtitle={getReleaseYear(cast.release_date) || "No release year available"}
                                                 tags={nameGenres(cast.genre_ids)}
                                                 voteCount={cast.vote_count}
@@ -113,7 +113,7 @@ const PersonDetails = () => {
                                             <ListTileLarge
                                                 posterPath={crew.poster_path}
                                                 title={crew.title}
-                                                character={crew.job}
+                                                role={crew.job}
                                                 subtitle={getReleaseYear(crew.release_date) || "No release year available"}
                                                 tags={nameGenres(crew.genre_ids)}
                                                 voteCount={crew.vote_count}
