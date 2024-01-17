@@ -1,12 +1,21 @@
-import { put, call, debounce } from "redux-saga/effects";
-import { fetchDataSucces, fetchDataFailure, fetchData } from "./searchSlice";
+import { all, put, call, debounce } from "redux-saga/effects";
+import { fetchDataSucces, fetchDataFailure, fetchData, setGenres, setMoviesList } from "./searchSlice";
 import { getSearchMovie } from "./getSearch";
+import { getGenreList } from "../../features/movies/MovieList/getGenreList";
+import { customiseMovieList } from "../../features/movies/MovieList/customiseMovieList";
 
 function* fetchDataHandler(action) {
     try {
         yield call(fetchData);
-        const result = yield call(getSearchMovie, action.payload.query);
-        yield put(fetchDataSucces({ data: result }));
+        const [movieList, genreList] = yield all([
+            call(getSearchMovie, action.payload.query),
+            call(getGenreList),
+        ]);
+        const movies = yield call(customiseMovieList, movieList, genreList);
+        // yield put(fetchDataSucces({ data: result }));
+    
+        yield put(setMoviesList(movies));
+        yield put(setGenres(genreList));
     } catch (error) {
         yield put(fetchDataFailure({ error }));
     };
