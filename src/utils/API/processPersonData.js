@@ -23,9 +23,6 @@ export const processPersonCreditsData = (rawCredits, rawGenreList) => {
         return date.getFullYear();
     };
 
-    console.log(rawGenreList.genres.map((genre) => genre.name));
-    console.log(castCredits.slice(0, 12).map((movie) => movie.genre_ids));
-
     const nameGenres = (genreIds) => (
         genreIds.map(
             (id) => genres.find(

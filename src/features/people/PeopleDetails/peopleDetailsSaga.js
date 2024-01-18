@@ -21,13 +21,11 @@ function* fetchPersonDetailsHandler() {
             call(getPeopleDetails, id),
             call(getPeopleCredits, id),
             call(getGenreList),
-        ]);
-        
+        ]);  
         const [details, credits] = yield all([
             call(processPersonData, rawDetails),
             call(processPersonCreditsData, rawCredits, rawGenreList),
         ]);
-        yield console.log(details);
         yield all([
             put(fetchDataSuccess(details)),
             put(setPeopleCredits(credits)),
