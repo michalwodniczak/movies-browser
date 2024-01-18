@@ -8,17 +8,10 @@ import {
   selectMovieCast,
   selectMovieCrew,
   selectError,
-} from './movieSlice';
+} from '../movieSlice';
+import { BackdropHeader } from './Backdrop';
 import { Main } from '../../../common/Main/Main';
-import Rating from '../../../common/Rating/Rating';
 import { Section, SectionTitle } from '../../../common/Section/Section';
-import {
-  Header,
-  Backdrop,
-  Vignette,
-  TitleContainer,
-  TitlePrimary,
-} from './styled';
 import { DetailsTile, ListTileSmall } from '../../../common/Tile';
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import Error from '../../../common/Error';
@@ -44,22 +37,14 @@ function MovieDetails() {
     <Error />
   ) : (
     <>
-      <Header>
-        {movieDetails.backdropPath &&
-          <Backdrop $background={movieDetails.backdropURL}>
-            <Vignette />
-            <TitleContainer>
-              <TitlePrimary>{movieDetails.title}</TitlePrimary>
-              <Rating
-                voteCount={movieDetails.votes}
-                ratingValue={movieDetails.rating}
-                isOnBackdrop={true}
-                isOnMainTile={false}
-              />
-            </TitleContainer>
-          </Backdrop>
-        }
-      </Header>
+      {movieDetails.backdropPath &&
+        <BackdropHeader
+          backgroundURL={movieDetails.backdropURL}
+          title={movieDetails.title}
+          voteCount={movieDetails.votes}
+          ratingValue={movieDetails.rating}
+        />
+      }
       <Main>
         <DetailsTile
           movieTile={true}
