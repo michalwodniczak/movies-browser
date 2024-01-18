@@ -1,5 +1,8 @@
-import { URL, apiKey } from "../../../utils/API/APIURLS";
-import { AuthorizationAndLanguage } from "../../../utils/API/APIURLS";
+import { 
+    URL, 
+    apiKey,
+    AuthorizationAndLanguage 
+} from "./APIURLS";
 
 export const getPeopleDetails = async ({ personId }) => {
     try {
