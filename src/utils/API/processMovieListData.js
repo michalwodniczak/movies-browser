@@ -1,6 +1,6 @@
-export const customiseMovieList = (movieList, genreList) => {
-    const movies = movieList.results;
-    const genres = genreList.genres;
+export const processMovieListData = (rawMovieList, rawGenreList) => {
+    const movies = rawMovieList.results;
+    const genres = rawGenreList.genres;
 
     const getReleaseYear = (releaseDate) => {
         const date = new Date(releaseDate);

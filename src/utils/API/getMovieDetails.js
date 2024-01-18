@@ -1,4 +1,4 @@
-import { URL, AuthorizationAndLanguage } from "../../utils/API/APIURLS";
+import { URL, AuthorizationAndLanguage } from "./APIURLS";
 
 // const movieDetailSampleURL = "https://raw.githubusercontent.com/bedicooper/movies-browser/main/public/movie-466420.json";
 // const movieCreditsSampleURL = "https://raw.githubusercontent.com/bedicooper/movies-browser/main/public/credits-466420.json";

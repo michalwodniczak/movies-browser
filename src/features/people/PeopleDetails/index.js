@@ -78,7 +78,7 @@ const PersonDetails = () => {
                         <DetailsTile
                             posterPath={details.profile_path}
                             title={details.name}
-                            description={details.biography || "No biography available"}
+                            description={details.biography}
                             firstData={details.birthday || "No date of birth available"}
                             secondData={details.place_of_birth || "No place of birth available"}
                         />
@@ -86,12 +86,13 @@ const PersonDetails = () => {
                         <Section>
                             <SectionTitle>Movies - cast ({actorCast.length})</SectionTitle>
                             <LargeListWrapper>
-                                {actorCast.map((cast) => (
+                                {actorCast.slice(0, 12).map((cast) => (
                                     <li key={cast.credit_id}>
                                         <StyledLink to={`/movies/${cast.id}`}>
                                             <ListTileLarge
-                                                posterPath={cast.backdrop_path}
+                                                posterPath={cast.poster_path}
                                                 title={cast.title}
+                                                role={cast.character}
                                                 subtitle={getReleaseYear(cast.release_date) || "No release year available"}
                                                 tags={nameGenres(cast.genre_ids)}
                                                 voteCount={cast.vote_count}
@@ -106,12 +107,13 @@ const PersonDetails = () => {
                         <Section>
                             <SectionTitle>Movies - crew ({actorCrew.length})</SectionTitle>
                             <LargeListWrapper>
-                                {actorCrew.map((crew) => (
+                                {actorCrew.slice(0, 12).map((crew) => (
                                     <li key={crew.credit_id}>
                                         <StyledLink to={`/movies/${crew.id}`}>
                                             <ListTileLarge
-                                                posterPath={crew.backdrop_path}
+                                                posterPath={crew.poster_path}
                                                 title={crew.title}
+                                                role={crew.job}
                                                 subtitle={getReleaseYear(crew.release_date) || "No release year available"}
                                                 tags={nameGenres(crew.genre_ids)}
                                                 voteCount={crew.vote_count}

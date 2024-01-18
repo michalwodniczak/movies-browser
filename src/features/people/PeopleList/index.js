@@ -11,7 +11,7 @@ import {
   selectPeopleList,
   selectLoading,
   selectError,
-} from '../peopleSlice';
+} from './peopleSlice';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';

@@ -1,6 +1,6 @@
-import { popularPeopleURL } from "../../utils/API/APIURLS";
+import { popularPeopleURL } from "./APIURLS";
 
-export const getPeopleData = async ( page ) => {
+export const getPopularPeople = async ( page ) => {
 
   const response = await fetch(`${popularPeopleURL}&page=${page}`);
 
