@@ -70,13 +70,16 @@ export const Tile = styled.article`
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
     border-radius: 5px;
-	transition: transform 0.3s ease;
+	transition: transform 0.3s ease-in-out;
 
 	&:hover {
-        transform: translateY(-0.5em);
+        transition: 0.3s ease-in-out;
+		transform: translateY(-0.5em);
     }
 	&:hover  > div:first-child {
-    	opacity: 0.7;
+    	filter: brightness(93%);
+		transition: 0.3s ease-in-out;
+		box-shadow: 0px 4px 12px 0px ${({ theme }) => theme.color.darkGray};
   	}
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.desktop}px) {
@@ -104,6 +107,14 @@ export const DetailTile = styled(Tile)`
 	grid-template-columns: auto 1fr;
 	column-gap: 40px;
 	grid-row-gap: 0;
+
+	&:hover {
+		transform: none;
+    }
+	&:hover  > div:first-child {
+    	filter: none;
+		box-shadow: none;
+  	}
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		margin-top: 16px;
