@@ -19,6 +19,7 @@ import { ListTileSmall } from '../../../common/Tile';
 import Pagination from '../../../common/Pagination';
 import Error from '../../../common/Error';
 import { Loading } from '../../../common/Loading';
+import AnimatedPage from '../../../common/AnimatedPage';
 
 function PeopleList() {
   const dispatch = useDispatch();
@@ -58,32 +59,34 @@ function PeopleList() {
   };
 
   return (
-    <Main>
-      <Section>
-        <SectionTitle>
-          Popular People
-        </SectionTitle>
-        <SmallListWrapper>
-          {peopleList.map((person) => (
-            <li key={person.id}>
-              <StyledLink to={`/people/${person.id}`}>
-                <ListTileSmall
-                  posterPath={person.profile_path}
-                  title={person.name}
-                />
-              </StyledLink>
-            </li>
-          ))}
-        </SmallListWrapper>
-      </Section>
-      <Pagination
-        currentPage={currentPage}
-        goToFirstPage={goToFirstPage}
-        incrementPage={incrementPage}
-        decrementPage={decrementPage}
-        goToLastPage={goToLastPage}
-      />
-    </Main>
+    <AnimatedPage>
+      <Main>
+        <Section>
+          <SectionTitle>
+            Popular People
+          </SectionTitle>
+          <SmallListWrapper>
+            {peopleList.map((person) => (
+              <li key={person.id}>
+                <StyledLink to={`/people/${person.id}`}>
+                  <ListTileSmall
+                    posterPath={person.profile_path}
+                    title={person.name}
+                  />
+                </StyledLink>
+              </li>
+            ))}
+          </SmallListWrapper>
+        </Section>
+        <Pagination
+          currentPage={currentPage}
+          goToFirstPage={goToFirstPage}
+          incrementPage={incrementPage}
+          decrementPage={decrementPage}
+          goToLastPage={goToLastPage}
+        />
+      </Main>
+    </AnimatedPage>
   )
 };
 

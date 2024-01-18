@@ -17,6 +17,7 @@ import { ListTileLarge } from '../../../common/Tile';
 import { StyledLink, LargeListWrapper } from '../../../common/Tile/styled';
 import Pagination from '../../../common/Pagination/index';
 import { Loading } from '../../../common/Loading';
+import AnimatedPage from '../../../common/AnimatedPage';
 
 function MovieList() {
 	const dispatch = useDispatch();
@@ -50,36 +51,38 @@ function MovieList() {
 		return <p>No data available.</p>;
 	}
 	return (
-		<Main>
-			<Section>
-				<SectionTitle>
-					Popular Movies
-				</SectionTitle>
-				<LargeListWrapper>
-					{popularMovies.map((movie) => (
-						<li key={movie.id}>
-							<StyledLink to={`/movies/${movie.id}`}>
-								<ListTileLarge
-									posterPath={movie.posterPath}
-									title={movie.title}
-									subtitle={movie.year}
-									tags={movie.namedGenres}
-									voteCount={movie.votes}
-									ratingValue={movie.rating}
-								/>
-							</StyledLink>
-						</li>
-					))}
-				</LargeListWrapper>
-			</Section>
-			<Pagination
-				currentPage={currentPage}
-				goToFirstPage={goToFirstPage}
-				incrementPage={incrementPage}
-				decrementPage={decrementPage}
-				goToLastPage={goToLastPage}
-			/>
-		</Main>
+		<AnimatedPage>
+			<Main>
+				<Section>
+					<SectionTitle>
+						Popular Movies
+					</SectionTitle>
+					<LargeListWrapper>
+						{popularMovies.map((movie) => (
+							<li key={movie.id}>
+								<StyledLink to={`/movies/${movie.id}`}>
+									<ListTileLarge
+										posterPath={movie.posterPath}
+										title={movie.title}
+										subtitle={movie.year}
+										tags={movie.namedGenres}
+										voteCount={movie.votes}
+										ratingValue={movie.rating}
+									/>
+								</StyledLink>
+							</li>
+						))}
+					</LargeListWrapper>
+				</Section>
+				<Pagination
+					currentPage={currentPage}
+					goToFirstPage={goToFirstPage}
+					incrementPage={incrementPage}
+					decrementPage={decrementPage}
+					goToLastPage={goToLastPage}
+				/>
+			</Main>
+		</AnimatedPage>
 	);
 };
 

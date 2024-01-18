@@ -23,6 +23,7 @@ import { DetailsTile, ListTileSmall } from '../../../common/Tile';
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import Error from '../../../common/Error';
 import { Loading } from '../../../common/Loading';
+import AnimatedPage from '../../../common/AnimatedPage';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -43,7 +44,7 @@ function MovieDetails() {
   ) : error ? (
     <Error />
   ) : (
-    <>
+    <AnimatedPage>
       <Header>
         {movieDetails.backdropPath &&
           <Backdrop $background={movieDetails.backdropURL}>
@@ -108,7 +109,7 @@ function MovieDetails() {
           </SmallListWrapper>
         </Section>
       </Main>
-    </>
+    </AnimatedPage>
   )
 };
 
