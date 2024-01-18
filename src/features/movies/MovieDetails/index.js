@@ -8,7 +8,7 @@ import {
   selectMovieCast,
   selectMovieCrew,
   selectError,
-} from '../movieSlice';
+} from './movieSlice';
 import { Main } from '../../../common/Main/Main';
 import Rating from '../../../common/Rating/Rating';
 import { Section, SectionTitle } from '../../../common/Section/Section';

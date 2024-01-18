@@ -7,7 +7,7 @@ export const AuthorizationAndLanguage = `?api_key=${apiKey}&language=en-US`;
 export const popularMoviesURL = `${URL}movie/popular?api_key=${apiKey}&language=en-US`;
 export const popularPeopleURL = `${URL}person/popular?api_key=${apiKey}&language=en-US`;
 export const genresURL = `${URL}genre/movie/list?api_key=${apiKey}&language=en-US`;
-export const backdropURL = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/";
+export const backdropURL = `${URLImages}w1920_and_h800_multi_faces`;
 export const posterURL = `${URLImages}w300_and_h450_bestv2`
 
 // export const searchMovieURL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}`;
