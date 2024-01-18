@@ -41,9 +41,11 @@ const PersonDetails = () => {
 							secondData={details.birthplace || "No place of birth available"}
 						/>
 						<Section>
-							<SectionTitle>Movies - cast ({actorCast.length})</SectionTitle>
+							<SectionTitle>
+								{`Movies - cast (${actorCast.length})`}
+							</SectionTitle>
 							<LargeListWrapper>
-								{actorCast.slice(0, 12).map((cast) => (
+								{actorCast.map((cast) => (
 									<li key={cast.creditID}>
 										<StyledLink to={`/movies/${cast.id}`}>
 											<ListTileLarge
@@ -61,9 +63,11 @@ const PersonDetails = () => {
 							</LargeListWrapper>
 						</Section>
 						<Section>
-							<SectionTitle>Movies - crew ({actorCrew.length})</SectionTitle>
+							<SectionTitle>
+								{`Movies - crew (${actorCrew.length})`}
+							</SectionTitle>
 							<LargeListWrapper>
-								{actorCrew.slice(0, 12).map((crew) => (
+								{actorCrew.map((crew) => (
 									<li key={crew.creditID}>
 										<StyledLink to={`/movies/${crew.id}`}>
 											<ListTileLarge
