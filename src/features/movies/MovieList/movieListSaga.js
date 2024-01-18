@@ -1,4 +1,4 @@
-import { all, call, put, takeEvery, select } from "redux-saga/effects";
+import { all, call, put, takeEvery, select, delay } from "redux-saga/effects";
 import {
     incrementPage,
     decrementPage,
@@ -7,6 +7,7 @@ import {
     selectPageState,
     setMovieList,
     setGenres,
+    setLoading,
 } from "./movieListSlice";
 import { getPopularMovies } from "../../../utils/API/getPopularMovies";
 import { getGenreList } from "../../../utils/API/getGenreList";
@@ -14,6 +15,8 @@ import { processMovieListData } from "../../../utils/API/processMovieListData";
 
 function* fetchMovieListHandler() {
     try {
+        yield put(setLoading(true));
+        yield delay(1000);
         const page = yield select(selectPageState);
         const [rawMovieList, rawGenreList] = yield all([
             call(getPopularMovies, page),
@@ -25,6 +28,9 @@ function* fetchMovieListHandler() {
     }
     catch (error) {
         yield call(alert, "Error fetching popular movies!");
+    }
+    finally {
+        yield put(setLoading(false));
     }
 };
 
