@@ -1,14 +1,21 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Container, StyledErrorIcon, Header, Instruction, StyledButton } from './styled';
 import { setError } from '../../features/movies/MovieDetails/movieSlice';
 
 const Error = () => {
     const history = useHistory();
+    const location = useLocation();
 
     const handleBackToHomepage = () => {
         setError(null); // Reset the error state before redirecting
-        history.push('/movies');
+
+        // Check if the current location is MovieList, then use "reload" on the button
+        if (location.pathname === '/movies') {
+            window.location.reload();
+        } else {
+            history.push('/movies');
+        }
     };
 
     return (
@@ -20,7 +27,7 @@ const Error = () => {
                 and try again
             </Instruction>
             <StyledButton onClick={handleBackToHomepage}>
-                Back to homepage
+                {location.pathname === '/movies' ? 'Reload page' : 'Back to home page'}
             </StyledButton>
         </Container>
     );
