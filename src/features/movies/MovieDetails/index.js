@@ -8,7 +8,7 @@ import {
   selectMovieCast,
   selectMovieCrew,
   selectError,
-} from '../movieSlice';
+} from './movieSlice';
 import { BackdropHeader } from './Backdrop';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from '../../../common/Section/Section';
