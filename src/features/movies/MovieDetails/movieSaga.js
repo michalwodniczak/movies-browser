@@ -17,10 +17,13 @@ function* fetchMovieHandler() {
             call(getMovieCredits, movieId),
         ]);
         const processedDetails = yield call(processMovieData, rawDetails);
-        yield put(setMovieDetails(processedDetails));
-        yield put(setMovieCredits(rawCredits));
+        yield all([
+            put(setMovieDetails(processedDetails)),
+            put(setMovieCredits(rawCredits)),
+        ]);
 
     } catch (error) {
+        console.error(error);
         yield put(setError(error.message));
     }
 }
