@@ -9,8 +9,7 @@ import {
   pageNumberFromURL,
   selectPageState,
   selectPeopleList,
-  selectLoading,
-  selectError,
+  selectStatus,
 } from './peopleSlice';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
@@ -24,8 +23,7 @@ function PeopleList() {
   const dispatch = useDispatch();
   const currentPage = useSelector(selectPageState);
   const peopleList = useSelector(selectPeopleList);
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
+  const status = useSelector(selectStatus)
 
   const history = useHistory();
   const location = useLocation();
@@ -45,46 +43,41 @@ function PeopleList() {
     history.push(`${location.pathname}?page=${currentPage}`);
   }, [currentPage]);
 
-  if (loading) {
-    return (
-      <Loading />
-    )
-  };
-
-  if (error) {
-    return (
-      <Error />
-    )
-  };
-
-  return (
-    <Main>
-      <Section>
-        <SectionTitle>
-          Popular People
-        </SectionTitle>
-        <SmallListWrapper>
-          {peopleList.map((person) => (
-            <li key={person.id}>
-              <StyledLink to={`/people/${person.id}`}>
-                <ListTileSmall
-                  posterPath={person.profile_path}
-                  title={person.name}
-                />
-              </StyledLink>
-            </li>
-          ))}
-        </SmallListWrapper>
-      </Section>
-      <Pagination
-        currentPage={currentPage}
-        goToFirstPage={goToFirstPage}
-        incrementPage={incrementPage}
-        decrementPage={decrementPage}
-        goToLastPage={goToLastPage}
-      />
-    </Main>
-  )
+  switch (status) {
+    case "loading":
+      return <Loading />;
+    case "error":
+      return <Error />;
+    default:
+      return (
+        <Main>
+          <Section>
+            <SectionTitle>
+              Popular People
+            </SectionTitle>
+            <SmallListWrapper>
+              {peopleList.map((person) => (
+                <li key={person.id}>
+                  <StyledLink to={`/people/${person.id}`}>
+                    <ListTileSmall
+                      posterPath={person.profile_path}
+                      title={person.name}
+                    />
+                  </StyledLink>
+                </li>
+              ))}
+            </SmallListWrapper>
+          </Section>
+          <Pagination
+            currentPage={currentPage}
+            goToFirstPage={goToFirstPage}
+            incrementPage={incrementPage}
+            decrementPage={decrementPage}
+            goToLastPage={goToLastPage}
+          />
+        </Main>
+      )
+  }
 };
 
 export default PeopleList;
