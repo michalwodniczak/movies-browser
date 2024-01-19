@@ -9,7 +9,8 @@ import {
 	pageNumberFromURL,
 	selectMovieList,
 	selectLoading,
-	selectPageState
+	selectPageState,
+	selectError,
 } from "./movieListSlice";
 import { Main } from "../../../common/Main/Main";
 import { Section, SectionTitle } from "../../../common/Section/Section";
@@ -17,12 +18,14 @@ import { ListTileLarge } from '../../../common/Tile';
 import { StyledLink, LargeListWrapper } from '../../../common/Tile/styled';
 import Pagination from '../../../common/Pagination/index';
 import { Loading } from '../../../common/Loading';
+import Error from '../../../common/Error';
 
 function MovieList() {
 	const dispatch = useDispatch();
 	const currentPage = useSelector(selectPageState);
 	const popularMovies = useSelector(selectMovieList);
 	const loading = useSelector(selectLoading);
+	const error = useSelector(selectError);
 
 	const history = useHistory();
 	const location = useLocation();
@@ -46,8 +49,10 @@ function MovieList() {
 			<Loading />
 		);
 	}
-	if (!popularMovies) {
-		return <p>No data available.</p>;
+	if (error) {
+		return (
+			<Error />
+		);
 	}
 	return (
 		<Main>
