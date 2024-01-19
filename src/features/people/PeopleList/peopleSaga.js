@@ -16,6 +16,7 @@ function* fetchPeopleListHandler() {
         const rawPeopleList = yield call(getPopularPeople, page);
         yield put(setPeopleList(rawPeopleList));
     } catch (error) {
+        console.error(error);
         yield put(setError(error.message));
     }
 }

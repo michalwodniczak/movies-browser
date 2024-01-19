@@ -33,8 +33,8 @@ function* fetchPersonDetailsHandler() {
         ]);
 
     } catch (error) {
-        console.error("Saga: Error in fetchPersonDetailsHandler", error);
-        yield put(fetchDataError());
+        console.error(error);
+        yield put(fetchDataError(error.message));
     }
 }
 

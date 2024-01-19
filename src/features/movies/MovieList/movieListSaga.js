@@ -7,6 +7,7 @@ import {
     selectPageState,
     setMovieList,
     setGenres,
+    setError,
 } from "./movieListSlice";
 import { getPopularMovies } from "../../../utils/API/getPopularMovies";
 import { getGenreList } from "../../../utils/API/getGenreList";
@@ -20,11 +21,14 @@ function* fetchMovieListHandler() {
             call(getGenreList),
         ]);
         const movies = yield call(processMovieListData, rawMovieList, rawGenreList);
-        yield put(setMovieList(movies));
-        yield put(setGenres(rawGenreList));
+        yield all([
+            put(setMovieList(movies)),
+            put(setGenres(rawGenreList)),
+        ]);
     }
     catch (error) {
-        yield call(alert, "Error fetching popular movies!");
+        console.error(error);
+        yield put(setError(error.message));
     }
 };
 
