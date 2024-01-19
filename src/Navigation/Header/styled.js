@@ -78,29 +78,24 @@ export const StyledNavLink = styled(NavLink)`
     text-align: center;
     line-height: 46px;
     padding: 0px 24px;
-    position: relative;
     color: ${({ theme }) => theme.color.white};
     border: 1px solid transparent;
+    border-radius: 24px;
+    transition: 0.2s ease-in-out;
 
-    &::after {
-        content: '';
-        position: absolute;
-        width: 50%;
-        height: 0.5px;
-        bottom: -1px;
-        left: 25%;
-        background-color: transparent;
-        transition: background-color 0.6s ease-in-out;
-    }
-
-    &:hover::after {
-        background-color: ${({ theme }) => theme.color.white};
-        bottom: -1px;
+    &:hover {
+        background: radial-gradient(ellipse farthest-side at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
     }
 
     &.active{
         border: 1px solid ${({ theme }) => theme.color.white};
-        border-radius: 24px;
+    };
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){
+        font-size: 12px;
+        line-height: 32px;
+        padding: 0px 12px;
+        border-radius: 29px;
     };
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){
