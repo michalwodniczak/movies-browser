@@ -38,9 +38,6 @@ const movieListSlice = createSlice({
         setGenres: (state, {payload: genreList}) => {
             state.genres = genreList.genres;
         },
-        setLoading: (state, { payload: loading }) => {
-            state.loading = loading;
-        },
     },
 });
 
@@ -52,7 +49,6 @@ export const {
 	pageNumberFromURL,
     setMovieList,
     setGenres, 
-    setLoading,
 } = movieListSlice.actions;
 
 const selectMovieListState = (state) => state.movieList;
