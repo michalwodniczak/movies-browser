@@ -7,7 +7,7 @@ import {
     setError,
 } from './movieSlice'
 import { getMovieDetails, getMovieCredits } from '../../../utils/API/getMovieDetails'
-import { processMovieData } from '../../../utils/API/processMovieData';
+import { processMovieData } from '../../../utils/API/processApiData';
 
 function* fetchMovieHandler() {
     try {
