@@ -134,3 +134,13 @@ export const processPersonCreditsData = (rawCredits, rawGenreList) => {
     }
   );
 };
+
+export const processSearchResults = (rawSearchResults, rawGenreList, path) => {
+
+  switch (path) {
+      case "movies":
+          return processMovieListData(rawSearchResults, rawGenreList);
+      case "people":
+          return {rawSearchResults};
+  };
+};
