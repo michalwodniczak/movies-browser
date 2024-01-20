@@ -11,7 +11,7 @@ import {
 } from "./movieListSlice";
 import { getPopularMovies } from "../../../utils/API/getPopularMovies";
 import { getGenreList } from "../../../utils/API/getGenreList";
-import { processMovieListData } from "../../../utils/API/processMovieListData";
+import { processMovieListData } from "../../../utils/API/processApiData";
 
 function* fetchMovieListHandler() {
     try {
