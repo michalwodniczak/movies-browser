@@ -16,7 +16,7 @@ const listCounties = (productionCountries) => productionCountries.map(
 const nameGenres = (genreIds, genres) => (
   genreIds.map(
     (id) => genres.find(
-      (genre) => genre.id == id).name
+      (genre) => genre.id === id).name
   )
 );
 
@@ -37,7 +37,7 @@ const formatVote = (vote) => {
 };
 
 const filterOutTv = (credits) => credits.filter(
-  ({ media_type }) => media_type != "tv"
+  ({ media_type }) => media_type !== "tv"
 );
 
 export const processMovieData = (movieDetails) => {
@@ -142,5 +142,7 @@ export const processSearchResults = (rawSearchResults, rawGenreList, path) => {
           return processMovieListData(rawSearchResults, rawGenreList);
       case "people":
           return {rawSearchResults};
+      default:
+        return {};
   };
 };
