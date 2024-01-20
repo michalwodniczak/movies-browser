@@ -90,7 +90,7 @@ export const StyledNavLink = styled(NavLink)`
     &.active{
         border: 1px solid ${({ theme }) => theme.color.white};
         background: none;
-        cursor: auto;
+        cursor: default;
     };
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){
