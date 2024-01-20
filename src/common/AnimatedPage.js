@@ -6,7 +6,7 @@ const AnimatedPage = ({ children }) => {
         opacity: 1,
         from: { opacity: 0 },
         config: {
-            duration: 800,
+            duration: 400,
         },
         onRest: () => {
         },
