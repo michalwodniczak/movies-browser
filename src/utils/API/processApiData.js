@@ -138,11 +138,11 @@ export const processPersonCreditsData = (rawCredits, rawGenreList) => {
 export const processSearchResults = (rawSearchResults, rawGenreList, path) => {
 
   switch (path) {
-      case "movies":
-          return processMovieListData(rawSearchResults, rawGenreList);
-      case "people":
-          return {rawSearchResults};
-      default:
-        return {};
+    case "movies":
+      return processMovieListData(rawSearchResults, rawGenreList);
+    case "people":
+      return rawSearchResults.results;
+    default:
+      return {};
   };
 };
