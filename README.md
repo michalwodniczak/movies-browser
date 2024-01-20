@@ -23,13 +23,13 @@ Movies Browser is a web application developed in collaboration with the YouCode 
 - **Movie Details:** Click on a movie from the popular lists to view detailed.
 - **List of Actors:** Discover a list of actors and click on each one to explore more details.
 - **Actor Page:** Explore details about different actors.
+- **Enhanced UI - Hover Styling:** Elevate user engagement with dynamic styling as you hover over movies, actors, or buttons, offering a visually pleasing experience.
+- **Responsiveness:** Ensuring a seamless experience on various devices, from mobile phones to tablets.
+- **Loading and Error States:** Our app gracefully handles loading and error states for a smoother user experience.
 
 ### What We Are Working On
 - **No Results Page:** We are actively developing a dedicated page for instances where search queries yield no results. This feature aims to provide users with a clear and informative page, guiding them effectively when their search doesn't match any records.
-- **Loading and Error States:** Our app gracefully handles loading and error states for a smoother user experience.
 - **Search Functionality:** Utilize the input for searching movies based on query parameters.
-- **Responsiveness:** Ensuring a seamless experience on various devices, from mobile phones to tablets.
-- **Enhanced UI - Hover Styling:** Elevate user engagement with dynamic styling as you hover over movies, actors, or buttons, offering a visually pleasing experience.
 
 Our ongoing efforts focus on refining every aspect of your interaction with our application, making it not only functional but also aesthetically enjoyable. Watch out for these exciting updates in the near future! 🚀
 
