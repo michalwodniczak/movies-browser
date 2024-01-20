@@ -34,7 +34,7 @@ const movieListSlice = createSlice({
             state.movies = movies;
             state.status = "success";
         },
-        setGenres: (state, {payload: genreList}) => {
+        setGenres: (state, { payload: genreList }) => {
             state.genres = genreList.genres;
         },
         setError: (state, { payload: message }) => {
@@ -44,15 +44,15 @@ const movieListSlice = createSlice({
     },
 });
 
-export const { 
+export const {
     incrementPage,
     decrementPage,
     goToFirstPage,
     goToLastPage,
-	pageNumberFromURL,
+    pageNumberFromURL,
     setMovieList,
     setGenres,
-    setError, 
+    setError,
 } = movieListSlice.actions;
 
 const selectMovieListState = (state) => state.movieList;

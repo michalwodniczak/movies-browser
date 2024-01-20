@@ -78,12 +78,18 @@ export const StyledNavLink = styled(NavLink)`
     text-align: center;
     line-height: 46px;
     padding: 0px 24px;
-    border-radius: 24px;
-    transition: 0.3s;
     color: ${({ theme }) => theme.color.white};
+    border: 1px solid transparent;
+    border-radius: 24px;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+        background: radial-gradient(ellipse farthest-side at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+    }
 
     &.active{
         border: 1px solid ${({ theme }) => theme.color.white};
+        background: none;
     };
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){

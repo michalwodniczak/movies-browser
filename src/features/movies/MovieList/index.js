@@ -18,6 +18,7 @@ import { StyledLink, LargeListWrapper } from '../../../common/Tile/styled';
 import Pagination from '../../../common/Pagination/index';
 import { Loading } from '../../../common/Loading';
 import Error from '../../../common/Error';
+import AnimatedPage from '../../../common/AnimatedPage';
 
 function MovieList() {
 	const dispatch = useDispatch();
@@ -49,36 +50,38 @@ function MovieList() {
 			return <Error />;
 		default:
 			return (
-				<Main>
-					<Section>
-						<SectionTitle>
-							Popular Movies
-						</SectionTitle>
-						<LargeListWrapper>
-							{popularMovies.map((movie) => (
-								<li key={movie.id}>
-									<StyledLink to={`/movies/${movie.id}`}>
-										<ListTileLarge
-											posterPath={movie.posterPath}
-											title={movie.title}
-											subtitle={movie.year}
-											tags={movie.namedGenres}
-											voteCount={movie.votes}
-											ratingValue={movie.rating}
-										/>
-									</StyledLink>
-								</li>
-							))}
-						</LargeListWrapper>
-					</Section>
-					<Pagination
-						currentPage={currentPage}
-						goToFirstPage={goToFirstPage}
-						incrementPage={incrementPage}
-						decrementPage={decrementPage}
-						goToLastPage={goToLastPage}
-					/>
-				</Main>
+				<AnimatedPage>
+					<Main>
+						<Section>
+							<SectionTitle>
+								Popular Movies
+							</SectionTitle>
+							<LargeListWrapper>
+								{popularMovies.map((movie) => (
+									<li key={movie.id}>
+										<StyledLink to={`/movies/${movie.id}`}>
+											<ListTileLarge
+												posterPath={movie.posterPath}
+												title={movie.title}
+												subtitle={movie.year}
+												tags={movie.namedGenres}
+												voteCount={movie.votes}
+												ratingValue={movie.rating}
+											/>
+										</StyledLink>
+									</li>
+								))}
+							</LargeListWrapper>
+						</Section>
+						<Pagination
+							currentPage={currentPage}
+							goToFirstPage={goToFirstPage}
+							incrementPage={incrementPage}
+							decrementPage={decrementPage}
+							goToLastPage={goToLastPage}
+						/>
+					</Main>
+				</AnimatedPage>
 			)
 	}
 };
