@@ -7,6 +7,7 @@ import {
 	getDetailsForPerson,
 	selectPersonCast,
 	selectPersonCrew,
+	fetchDataError,
 } from "./peopleDetailsSlice";
 import { DetailsTile, ListTileLarge } from "../../../common/Tile/index";
 import { Section, SectionTitle } from '../../../common/Section/Section';
@@ -14,6 +15,7 @@ import { LargeListWrapper, StyledLink } from "../../../common/Tile/styled";
 import { Main } from "../../../common/Main/Main";
 import Error from "../../../common/Error";
 import { Loading } from "../../../common/Loading";
+import { setError } from "../PeopleList/peopleSlice";
 
 const PersonDetails = () => {
 	const dispatch = useDispatch();
@@ -30,7 +32,7 @@ const PersonDetails = () => {
 
 	return (
 		status === "loading" ? <Loading />
-			: status === "error" ? <Error />
+			: status === "error" ? <Error setError={fetchDataError} />
 				: details && (
 					<Main>
 						<DetailsTile

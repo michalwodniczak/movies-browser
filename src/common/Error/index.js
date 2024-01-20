@@ -1,9 +1,8 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Container, StyledErrorIcon, Header, Instruction, StyledButton } from './styled';
-import { setError } from '../../features/movies/MovieDetails/movieSlice';
 
-const Error = () => {
+const Error = ({ setError }) => {
     const history = useHistory();
     const location = useLocation();
 

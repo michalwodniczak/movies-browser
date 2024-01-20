@@ -8,6 +8,7 @@ import {
   selectMovieCast,
   selectMovieCrew,
   selectError,
+  setError,
 } from './movieSlice';
 import { BackdropHeader } from './Backdrop';
 import { Main } from '../../../common/Main/Main';
@@ -34,7 +35,7 @@ function MovieDetails() {
   return loading ? (
     <Loading />
   ) : error ? (
-    <Error />
+    <Error setError={setError} />
   ) : (
     <>
       {movieDetails.backdropPath &&

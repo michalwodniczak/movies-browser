@@ -11,6 +11,7 @@ import {
   selectPeopleList,
   selectLoading,
   selectError,
+  setError,
 } from './peopleSlice';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
@@ -53,7 +54,7 @@ function PeopleList() {
 
   if (error) {
     return (
-      <Error />
+      <Error setError={setError} />
     )
   };
 

@@ -11,6 +11,7 @@ import {
 	selectLoading,
 	selectPageState,
 	selectError,
+	setError,
 } from "./movieListSlice";
 import { Main } from "../../../common/Main/Main";
 import { Section, SectionTitle } from "../../../common/Section/Section";
@@ -51,7 +52,7 @@ function MovieList() {
 	}
 	if (error) {
 		return (
-			<Error />
+			<Error setError={setError} />
 		);
 	}
 	return (
