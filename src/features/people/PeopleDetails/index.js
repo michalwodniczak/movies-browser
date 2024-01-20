@@ -13,7 +13,7 @@ import { Section, SectionTitle } from '../../../common/Section/Section';
 import { LargeListWrapper, StyledLink } from "../../../common/Tile/styled";
 import { Main } from "../../../common/Main/Main";
 import Error from "../../../common/Error";
-import { Loading } from "../../../common/Loading";
+import Loading from "../../../common/Loading";
 import AnimatedPage from "../../../common/AnimatedPage";
 
 const PersonDetails = () => {

@@ -16,7 +16,7 @@ import { Section, SectionTitle } from "../../../common/Section/Section";
 import { ListTileLarge } from '../../../common/Tile';
 import { StyledLink, LargeListWrapper } from '../../../common/Tile/styled';
 import Pagination from '../../../common/Pagination/index';
-import { Loading } from '../../../common/Loading';
+import Loading from '../../../common/Loading';
 import Error from '../../../common/Error';
 import AnimatedPage from '../../../common/AnimatedPage';
 

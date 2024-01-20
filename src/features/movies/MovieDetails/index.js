@@ -14,7 +14,7 @@ import { Section, SectionTitle } from '../../../common/Section/Section';
 import { DetailsTile, ListTileSmall } from '../../../common/Tile';
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import Error from '../../../common/Error';
-import { Loading } from '../../../common/Loading';
+import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
 
 function MovieDetails() {

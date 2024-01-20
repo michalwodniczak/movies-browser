@@ -17,7 +17,7 @@ import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import { ListTileSmall } from '../../../common/Tile';
 import Pagination from '../../../common/Pagination';
 import Error from '../../../common/Error';
-import { Loading } from '../../../common/Loading';
+import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
 
 function PeopleList() {
