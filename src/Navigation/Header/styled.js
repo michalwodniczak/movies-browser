@@ -89,13 +89,7 @@ export const StyledNavLink = styled(NavLink)`
 
     &.active{
         border: 1px solid ${({ theme }) => theme.color.white};
-    };
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){
-        font-size: 12px;
-        line-height: 32px;
-        padding: 0px 12px;
-        border-radius: 29px;
+        background: none;
     };
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){
