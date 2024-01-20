@@ -1,4 +1,4 @@
-import { all, call, put, takeEvery, select, delay } from "redux-saga/effects";
+import { all, call, put, takeEvery, select } from "redux-saga/effects";
 import {
     incrementPage,
     decrementPage,
