@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ReactComponent as VignetteSVG } from '../../../assets/backdrop-vignette.svg'
+import { ReactComponent as VignetteSVG } from '../../../../assets/backdrop-vignette.svg'
 
 export const Header = styled.div`
 	background-color: ${({ theme }) => theme.color.black};
@@ -8,7 +8,6 @@ export const Header = styled.div`
 		padding-left: 16px;
         padding-right: 16px;
 	}
-
 `
 
 export const Backdrop = styled.div`
@@ -43,7 +42,7 @@ export const TitleContainer = styled.div`
     }
 `
 
-export const TitlePrimary = styled.h1`
+export const Title = styled.h1`
 	color: ${({ theme }) => theme.color.white};
 	font-size: 64px;
 	font-weight: 600;
@@ -54,18 +53,4 @@ export const TitlePrimary = styled.h1`
 		font-size: 24px;
 		margin: 0 0 4px 0;
     }
-`
-
-export const SectionWrapper = styled.ul`
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 24px;
-	width: 100%;
-
-	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-		gap: 16px;
-	}
 `

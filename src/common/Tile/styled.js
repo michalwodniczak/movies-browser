@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { ReactComponent as NoPersonSVG } from "../../assets/icon-person.svg";
 import { ReactComponent as NoMovieSVG } from "../../assets/icon-noMovie.svg";
@@ -70,6 +70,17 @@ export const Tile = styled.article`
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
     border-radius: 5px;
+	transition: transform 0.3s ease-in-out;
+
+	&:hover {
+        transition: 0.3s ease-in-out;
+		transform: translateY(-0.5em);
+    }
+	&:hover  > div:first-child {
+    	filter: brightness(93%);
+		transition: 0.3s ease-in-out;
+		box-shadow: 0px 4px 12px 0px ${({ theme }) => theme.color.darkGray};
+  	}
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.desktop}px) {
         min-height: 100%;
@@ -96,6 +107,14 @@ export const DetailTile = styled(Tile)`
 	grid-template-columns: auto 1fr;
 	column-gap: 40px;
 	grid-row-gap: 0;
+
+	&:hover {
+		transform: none;
+    }
+	&:hover  > div:first-child {
+    	filter: none;
+		box-shadow: none;
+  	}
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		margin-top: 16px;
@@ -290,7 +309,6 @@ export const TileData = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
-	max-height: 52px;
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		margin-top: 4px;
@@ -315,6 +333,17 @@ export const TileDataTitle = styled.span`
 
 	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
 		display: none;
+	}
+`
+
+export const TileDataTitleException = styled(TileDataTitle)`
+	display: none;
+
+	@media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+
+		${({ $personTile }) => $personTile && css`
+			display: block;
+		`}
 	}
 `
 

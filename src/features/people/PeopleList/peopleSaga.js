@@ -8,14 +8,15 @@ import {
     selectPageState,
     setError,
 } from './peopleSlice'
-import { getPeopleData } from './getPeopleData';
+import { getPopularPeople } from '../../../utils/API/getPopularPeople';
 
 function* fetchPeopleListHandler() {
     try {
         const page = yield select(selectPageState)
-        const peopleList = yield call(getPeopleData, page);
-        yield put(setPeopleList(peopleList));
+        const rawPeopleList = yield call(getPopularPeople, page);
+        yield put(setPeopleList(rawPeopleList));
     } catch (error) {
+        console.error(error);
         yield put(setError(error.message));
     }
 }

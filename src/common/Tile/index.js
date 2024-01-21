@@ -24,6 +24,7 @@ import {
 	NoPersonIcon,
 	RatingContainer,
 	Description,
+	TileDataTitleException,
 } from "./styled";
 import Rating from "../Rating/Rating";
 
@@ -32,7 +33,7 @@ export const ListTileLarge = (
 		posterPath,
 		title,
 		subtitle,
-		character,
+		role,
 		tags,
 		voteCount,
 		ratingValue
@@ -55,8 +56,8 @@ export const ListTileLarge = (
 				<TileTitle>{title ? title : "No title available"}</TileTitle>
 				<TileSubTitle>
 					{
-						character
-							? `${character} (${subtitle})`
+						role
+							? `${role} (${subtitle})`
 							: `${subtitle}`
 					}
 				</TileSubTitle>
@@ -155,6 +156,9 @@ export const DetailsTile = (
 									movieTile ? `Production: ` : `Date of birth: `
 								}
 							</TileDataTitle>
+							<TileDataTitleException $personTile={!movieTile}>
+								{`Birth: `}
+							</TileDataTitleException>
 							{firstData}
 						</TileDataContent>
 						<TileDataContent>
@@ -163,15 +167,30 @@ export const DetailsTile = (
 									movieTile ? `Release date: ` : `Place of birth: `
 								}
 							</TileDataTitle>
+							<TileDataTitleException $personTile={!movieTile}>
+								{`Place of birth: `}
+							</TileDataTitleException>
 							{secondData}
 						</TileDataContent>
+					</TileData>
+				}
+				{
+					!description &&
+					<TileData>
+					<TileDataContent>
+						{
+							movieTile
+								? `No description available.`
+								: `No biography available.`
+						}
+					</TileDataContent>
 					</TileData>
 				}
 				{movieTile &&
 					<>
 						<TileTags>
 							{tags.map(({ name }) => (
-								<TileTag>{name}</TileTag>
+								<TileTag key={name}>{name}</TileTag>
 							))}
 						</TileTags>
 						<Rating
@@ -183,7 +202,11 @@ export const DetailsTile = (
 					</>
 				}
 			</DetailTileContent>
-			<Description>{description}</Description>
+			{description &&
+				<Description>
+					{description}
+				</Description>
+			}
 		</DetailTile>
 	)
 };

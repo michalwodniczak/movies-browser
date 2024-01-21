@@ -17,15 +17,21 @@ Explore our current progress on the live demo: https://bedicooper.github.io/movi
 Movies Browser is a web application developed in collaboration with the YouCode online school. Our teamwork is organized using Scrum, and we manage tasks through Trello. For design, we utilize Figma, and data for the app is sourced from The Movie Database API.
 
 ### Features
+- **Navigation:** Seamlessly navigate between movies and people sections for a well-organized exploration of both cinematic worlds.
+- **Pagination:** Enhance your browsing experience with pagination functionality. Utilizing current page parameters in the URL, our app provides intuitive buttons, including First, Previous, Next, and Last, allowing you to easily navigate through Movie List and People List pages.
 - **Popular Movie Lists:** Explore a curated selection of popular movies on our main homepage.
 - **Movie Details:** Click on a movie from the popular lists to view detailed.
 - **List of Actors:** Discover a list of actors and click on each one to explore more details.
+- **Actor Page:** Explore details about different actors.
 
 ### What We Are Working On
-- **Actor Page:** Explore details about different actors.
+- **No Results Page:** We are actively developing a dedicated page for instances where search queries yield no results. This feature aims to provide users with a clear and informative page, guiding them effectively when their search doesn't match any records.
 - **Loading and Error States:** Our app gracefully handles loading and error states for a smoother user experience.
 - **Search Functionality:** Utilize the input for searching movies based on query parameters.
 - **Responsiveness:** Ensuring a seamless experience on various devices, from mobile phones to tablets.
+- **Enhanced UI - Hover Styling:** Elevate user engagement with dynamic styling as you hover over movies, actors, or buttons, offering a visually pleasing experience.
+
+Our ongoing efforts focus on refining every aspect of your interaction with our application, making it not only functional but also aesthetically enjoyable. Watch out for these exciting updates in the near future! 🚀
 
 ### Development Workflow
 #### Project Bootstrapping 🚧

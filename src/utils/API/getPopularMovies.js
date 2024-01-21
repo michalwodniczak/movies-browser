@@ -1,4 +1,4 @@
-import { popularMoviesURL } from "../../../utils/API/APIURLS";
+import { popularMoviesURL } from "./APIURLS";
 
 export const getPopularMovies = async (page) => {
     try {

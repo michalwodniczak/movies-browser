@@ -6,23 +6,28 @@ const peopleDetailsSlice = createSlice({
         personId: 0,
         details: {},
         credits: {},
+        genres: [{}],
         status: "loading",
-        status: "error",
+        error: null,
     },
     reducers: {
-        fetchDataSuccess: (state, { payload }) => {
-            state.details = payload.details;
+        fetchDataSuccess: (state, { payload: details }) => {          
+            state.details = details;
             state.status = "success";
         },
-        fetchDataError: (state) => {
+        fetchDataError: (state, { payload: message }) => {
+            state.error = message;
             state.status = "error";
         },
-        getDetailsForPerson: (state, { payload }) => {
+        getDetailsForPerson: (state, { payload: id }) => {
+            state.personId = id;
             state.status = "loading";
-            state.personId = payload.personId;
         },
         setPeopleCredits: (state, { payload: peopleCredits }) => {
             state.credits = peopleCredits;
+        },
+        setGenres: (state, {payload: genreList}) => {
+            state.genres = genreList.genres;
         },
     },
 });
@@ -31,6 +36,7 @@ export const {
     getDetailsForPerson,
     fetchDataError,
     setPeopleCredits,
+    setGenres,
 } = peopleDetailsSlice.actions;
 
 const selectPersonState = (state) => state.peopleDetails;

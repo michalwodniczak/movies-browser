@@ -1,6 +1,6 @@
-import { backdropURL, posterURL } from "../../utils/API/APIURLS";
+import { backdropURL, posterURL } from "./APIURLS";
 
-export const customiseMovieDetails = (movieDetails) => {
+export const processMovieData = (movieDetails) => {
     const date = new Date(movieDetails.release_date);
     const justYear = date.getFullYear();
     const formattedDate = date.toLocaleDateString('pl-PL');;

@@ -1,4 +1,4 @@
-// import { genresURL } from "../../../utils/API/APIURLS";
+// import { genresURL } from "./APIURLS";
 
 const JSON_URL = "https://raw.githubusercontent.com/bedicooper/movies-browser/main/public/genres.json";
 

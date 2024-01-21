@@ -5,21 +5,39 @@ import {
     fetchDataError,
     getDetailsForPerson,
     setPeopleCredits,
+    setGenres,
 } from "./peopleDetailsSlice";
-import { getPeopleDetails, getPeopleCredits } from "./getPeopleDetails";
+import { 
+    getPeopleDetails, 
+    getPeopleCredits, 
+} from "../../../utils/API/getPeopleDetails";
+import { getGenreList } from "../../../utils/API/getGenreList";
+import {
+    processPersonData,
+    processPersonCreditsData,
+} from "../../../utils/API/processApiData";
 
 function* fetchPersonDetailsHandler() {
     try {
         const id = yield select(selectPersonId);
+        const [rawDetails, rawCredits, rawGenreList] = yield all([
+            call(getPeopleDetails, id),
+            call(getPeopleCredits, id),
+            call(getGenreList),
+        ]);  
         const [details, credits] = yield all([
-            call(getPeopleDetails, { personId: id }),
-            call(getPeopleCredits, { personId: id }),
+            call(processPersonData, rawDetails),
+            call(processPersonCreditsData, rawCredits, rawGenreList),
         ]);
-        yield put(fetchDataSuccess({ details }));
-        yield put(setPeopleCredits(credits));
+        yield all([
+            put(fetchDataSuccess(details)),
+            put(setPeopleCredits(credits)),
+            put(setGenres(rawGenreList)),
+        ]);
+
     } catch (error) {
-        console.error("Saga: Error in fetchPersonDetailsHandler", error);
-        yield put(fetchDataError());
+        console.error(error);
+        yield put(fetchDataError(error.message));
     }
 }
 

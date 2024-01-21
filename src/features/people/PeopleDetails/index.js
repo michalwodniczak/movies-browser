@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
@@ -10,11 +10,11 @@ import {
 } from "./peopleDetailsSlice";
 import { DetailsTile, ListTileLarge } from "../../../common/Tile/index";
 import { Section, SectionTitle } from '../../../common/Section/Section';
-import { getGenreList } from "../../movies/MovieList/getGenreList";
 import { LargeListWrapper, StyledLink } from "../../../common/Tile/styled";
 import { Main } from "../../../common/Main/Main";
 import Error from "../../../common/Error";
-import { Loading } from "../../../common/Loading";
+import Loading from "../../../common/Loading";
+import AnimatedPage from "../../../common/AnimatedPage";
 
 const PersonDetails = () => {
     const dispatch = useDispatch();
@@ -28,94 +28,61 @@ const PersonDetails = () => {
     const status = useSelector(selectStatus);
     const actorCast = useSelector(selectPersonCast);
     const actorCrew = useSelector(selectPersonCrew);
-    const [genres, setGenres] = useState([]);
 
-    useEffect(() => {
-        const fetchGenres = async () => {
-            const genresData = await getGenreList();
-            setGenres(genresData.genres);
-        };
-        fetchGenres();
-    }, []);
-
-    const nameGenres = (genreIds) => {
-        if (!genres || genres.length === 0) {
-            return [];
-        }
-
-        return genreIds.map((id) => {
-            const genre = genres.find((genre) => genre.id === id);
-            return genre ? genre.name : '';
-        });
-    };
-
-    const getReleaseYear = (releaseDate) => {
-        const date = new Date(releaseDate);
-        return date.getFullYear();
-    };
-
-    const formatVote = (vote) => {
-        const roundedNumber = vote.toFixed(1);
-        const localeString = (number) => number.toLocaleString(
-            'pl-PL',
-            {
-                maximumFractionDigits: 1,
-            }
-        );
-
-        if (Number.isInteger(vote) || Number.isInteger(+roundedNumber)) {
-            return `${localeString(vote)},0`
-        } else {
-            return localeString(vote)
-        };
-    };
-
-    return (
-        status === "loading" ? <Loading />
-            : status === "error" ? <Error />
-                : details && (
+    switch (status) {
+        case "loading":
+            return <Loading />;
+        case "error":
+            return <Error />;
+        default:
+            return (
+                <AnimatedPage>
                     <Main>
                         <DetailsTile
-                            posterPath={details.profile_path}
+                            posterPath={details.posterPath}
                             title={details.name}
-                            description={details.biography || "No biography available"}
+                            description={details.biography}
                             firstData={details.birthday || "No date of birth available"}
-                            secondData={details.place_of_birth || "No place of birth available"}
+                            secondData={details.birthplace || "No place of birth available"}
                         />
-
                         <Section>
-                            <SectionTitle>Movies - cast ({actorCast.length})</SectionTitle>
+                            <SectionTitle>
+                                {`Movies - cast (${actorCast.length})`}
+                            </SectionTitle>
                             <LargeListWrapper>
                                 {actorCast.map((cast) => (
-                                    <li key={cast.credit_id}>
+                                    <li key={cast.creditID}>
                                         <StyledLink to={`/movies/${cast.id}`}>
                                             <ListTileLarge
-                                                posterPath={cast.backdrop_path}
+                                                posterPath={cast.posterPath}
                                                 title={cast.title}
-                                                subtitle={getReleaseYear(cast.release_date) || "No release year available"}
-                                                tags={nameGenres(cast.genre_ids)}
-                                                voteCount={cast.vote_count}
-                                                ratingValue={formatVote(cast.vote_average)}
+                                                role={cast.role}
+                                                subtitle={cast.year || "No release year available"}
+                                                tags={cast.namedGenres}
+                                                voteCount={cast.votes}
+                                                ratingValue={cast.rating}
                                             />
                                         </StyledLink>
                                     </li>
                                 ))}
                             </LargeListWrapper>
                         </Section>
-
                         <Section>
-                            <SectionTitle>Movies - crew ({actorCrew.length})</SectionTitle>
+                            <SectionTitle>
+                                {`Movies - crew (${actorCrew.length})`}
+                            </SectionTitle>
                             <LargeListWrapper>
                                 {actorCrew.map((crew) => (
-                                    <li key={crew.credit_id}>
+                                    <li key={crew.creditID}>
                                         <StyledLink to={`/movies/${crew.id}`}>
                                             <ListTileLarge
-                                                posterPath={crew.backdrop_path}
+                                                posterPath={crew.posterPath}
                                                 title={crew.title}
-                                                subtitle={getReleaseYear(crew.release_date) || "No release year available"}
-                                                tags={nameGenres(crew.genre_ids)}
-                                                voteCount={crew.vote_count}
-                                                ratingValue={formatVote(crew.vote_average)}
+                                                role={crew.role}
+                                                subtitle={crew.year || "No release year available"}
+                                                tags={crew.namedGenres}
+                                                voteCount={crew.votes}
+                                                ratingValue={crew.rating}
                                             />
                                         </StyledLink>
                                     </li>
@@ -123,8 +90,9 @@ const PersonDetails = () => {
                             </LargeListWrapper>
                         </Section>
                     </Main>
-                )
-    )
+                </AnimatedPage>
+            )
+    }
 };
 
 export default PersonDetails;
