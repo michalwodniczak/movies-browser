@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useHistory } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import {
 	incrementPage,
 	decrementPage,
 	goToFirstPage,
 	goToLastPage,
-	pageNumberFromURL,
 	selectMovieList,
 	selectPageState,
 	selectStatus
@@ -15,32 +13,28 @@ import { Main } from "../../../common/Main/Main";
 import { Section, SectionTitle } from "../../../common/Section/Section";
 import { ListTileLarge } from '../../../common/Tile';
 import { StyledLink, LargeListWrapper } from '../../../common/Tile/styled';
+import { useURLParameter, useUpdatePageFromURL, useReplacePageParameter } from '../../../utils/useURLParams';
+import paginationParamName from '../../../utils/paginationParamName';
 import Pagination from '../../../common/Pagination/index';
 import Loading from '../../../common/Loading';
 import Error from '../../../common/Error';
 import AnimatedPage from '../../../common/AnimatedPage';
 
 function MovieList() {
-	const dispatch = useDispatch();
 	const currentPage = useSelector(selectPageState);
 	const popularMovies = useSelector(selectMovieList);
 	const status = useSelector(selectStatus);
 
-	const history = useHistory();
-	const location = useLocation();
-	const searchParams = new URLSearchParams(location.search);
-	const query = searchParams.get('page');
+	const paramValue = useURLParameter(paginationParamName);
+	const updatePageFromURL = useUpdatePageFromURL();
+	const replacePageParameter = useReplacePageParameter();
 
 	useEffect(() => {
-		if (query < 1) {
-			searchParams.set('page', 1);
-		} else {
-			dispatch(pageNumberFromURL(Math.floor(query)));
-		}
-	}, [query]);
+		updatePageFromURL(paramValue);
+	}, [paramValue]);
 
 	useEffect(() => {
-		history.push(`${location.pathname}?page=${currentPage}`);
+		replacePageParameter(currentPage);
 	}, [currentPage]);
 
 	switch (status) {
