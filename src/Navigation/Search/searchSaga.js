@@ -1,26 +1,28 @@
-import { all, put, call, debounce } from "redux-saga/effects";
-import { fetchDataSucces, fetchDataFailure, fetchData, setGenres, setMoviesList } from "./searchSlice";
-import { getSearchMovie } from "./getSearch";
-import { getGenreList } from "../../features/movies/MovieList/getGenreList";
-import { customiseMovieList } from "../../features/movies/MovieList/customiseMovieList";
+import { all, put, call, debounce, select } from "redux-saga/effects";
+import { fetchDataSucces, fetchDataFailure, setGenres, setInputValue, selectPath, } from "./searchSlice";
+import { getSearch } from "../../utils/API/getSearch";
+import { getGenreList } from "../../utils/API/getGenreList";
+import { processSearchResults } from "../../utils/API/processApiData";
 
 function* fetchDataHandler(action) {
     try {
-        yield call(fetchData);
-        const [movieList, genreList] = yield all([
-            call(getSearchMovie, action.payload.query),
+        const query = action.payload;
+        const path = yield select(selectPath);
+        const [rawSearchResults, rawGenreList] = yield all([
+            call(getSearch, query, path),
             call(getGenreList),
         ]);
-        const movies = yield call(customiseMovieList, movieList, genreList);
-        // yield put(fetchDataSucces({ data: result }));
-    
-        yield put(setMoviesList(movies));
-        yield put(setGenres(genreList));
+        const result = yield call(processSearchResults, rawSearchResults, rawGenreList, path);
+        yield all([
+            put(fetchDataSucces(result)),
+            put(setGenres(rawGenreList)),
+        ]);
+
     } catch (error) {
-        yield put(fetchDataFailure({ error }));
+        yield put(fetchDataFailure(error.message));
     };
 };
 
 export function* searchSaga() {
-    yield debounce(1500, fetchData.type, fetchDataHandler);
+    yield debounce(500, setInputValue.type, fetchDataHandler);
 };
