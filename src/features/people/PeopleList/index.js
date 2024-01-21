@@ -9,8 +9,7 @@ import {
   pageNumberFromURL,
   selectPageState,
   selectPeopleList,
-  selectLoading,
-  selectError,
+  selectStatus,
   setError,
 } from './peopleSlice';
 import { Main } from '../../../common/Main/Main';
@@ -19,14 +18,14 @@ import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import { ListTileSmall } from '../../../common/Tile';
 import Pagination from '../../../common/Pagination';
 import Error from '../../../common/Error';
-import { Loading } from '../../../common/Loading';
+import Loading from '../../../common/Loading';
+import AnimatedPage from '../../../common/AnimatedPage';
 
 function PeopleList() {
   const dispatch = useDispatch();
   const currentPage = useSelector(selectPageState);
   const peopleList = useSelector(selectPeopleList);
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
+  const status = useSelector(selectStatus)
 
   const history = useHistory();
   const location = useLocation();
@@ -46,46 +45,43 @@ function PeopleList() {
     history.push(`${location.pathname}?page=${currentPage}`);
   }, [currentPage]);
 
-  if (loading) {
-    return (
-      <Loading />
-    )
-  };
-
-  if (error) {
-    return (
-      <Error setError={setError} />
-    )
-  };
-
-  return (
-    <Main>
-      <Section>
-        <SectionTitle>
-          Popular People
-        </SectionTitle>
-        <SmallListWrapper>
-          {peopleList.map((person) => (
-            <li key={person.id}>
-              <StyledLink to={`/people/${person.id}`}>
-                <ListTileSmall
-                  posterPath={person.profile_path}
-                  title={person.name}
-                />
-              </StyledLink>
-            </li>
-          ))}
-        </SmallListWrapper>
-      </Section>
-      <Pagination
-        currentPage={currentPage}
-        goToFirstPage={goToFirstPage}
-        incrementPage={incrementPage}
-        decrementPage={decrementPage}
-        goToLastPage={goToLastPage}
-      />
-    </Main>
-  )
+  switch (status) {
+    case "loading":
+      return <Loading />;
+    case "error":
+      return <Error setError={setError} />;
+    default:
+      return (
+        <AnimatedPage>
+          <Main>
+            <Section>
+              <SectionTitle>
+                Popular People
+              </SectionTitle>
+              <SmallListWrapper>
+                {peopleList.map((person) => (
+                  <li key={person.id}>
+                    <StyledLink to={`/people/${person.id}`}>
+                      <ListTileSmall
+                        posterPath={person.profile_path}
+                        title={person.name}
+                      />
+                    </StyledLink>
+                  </li>
+                ))}
+              </SmallListWrapper>
+            </Section>
+            <Pagination
+              currentPage={currentPage}
+              goToFirstPage={goToFirstPage}
+              incrementPage={incrementPage}
+              decrementPage={decrementPage}
+              goToLastPage={goToLastPage}
+            />
+          </Main>
+        </AnimatedPage>
+      )
+  }
 };
 
 export default PeopleList;

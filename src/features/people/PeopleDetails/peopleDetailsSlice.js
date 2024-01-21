@@ -10,16 +10,17 @@ const peopleDetailsSlice = createSlice({
         status: "loading",
     },
     reducers: {
-        fetchDataSuccess: (state, { payload: details }) => {
+        fetchDataSuccess: (state, { payload: details }) => {          
             state.details = details;
             state.status = "success";
         },
-        fetchDataError: (state) => {
+        fetchDataError: (state, { payload: message }) => {
+            state.error = message;
             state.status = "error";
         },
         getDetailsForPerson: (state, { payload: id }) => {
-            state.status = "loading";
             state.personId = id;
+            state.status = "loading";
         },
         setPeopleCredits: (state, { payload: peopleCredits }) => {
             state.credits = peopleCredits;

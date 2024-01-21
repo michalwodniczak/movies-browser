@@ -7,7 +7,7 @@ import {
     setError,
 } from './movieSlice'
 import { getMovieDetails, getMovieCredits } from '../../../utils/API/getMovieDetails'
-import { processMovieData } from '../../../utils/API/processMovieData';
+import { processMovieData } from '../../../utils/API/processApiData';
 
 function* fetchMovieHandler() {
     try {
@@ -17,10 +17,13 @@ function* fetchMovieHandler() {
             call(getMovieCredits, movieId),
         ]);
         const processedDetails = yield call(processMovieData, rawDetails);
-        yield put(setMovieDetails(processedDetails));
-        yield put(setMovieCredits(rawCredits));
+        yield all([
+            put(setMovieDetails(processedDetails)),
+            put(setMovieCredits(rawCredits)),
+        ]);
 
     } catch (error) {
+        console.error(error);
         yield put(setError(error.message));
     }
 }

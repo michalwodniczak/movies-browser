@@ -7,12 +7,15 @@ import {
     setPeopleCredits,
     setGenres,
 } from "./peopleDetailsSlice";
-import { getPeopleDetails, getPeopleCredits } from "../../../utils/API/getPeopleDetails";
+import { 
+    getPeopleDetails, 
+    getPeopleCredits, 
+} from "../../../utils/API/getPeopleDetails";
 import { getGenreList } from "../../../utils/API/getGenreList";
 import {
     processPersonData,
     processPersonCreditsData,
-} from "../../../utils/API/processPersonData";
+} from "../../../utils/API/processApiData";
 
 function* fetchPersonDetailsHandler() {
     try {
@@ -33,8 +36,8 @@ function* fetchPersonDetailsHandler() {
         ]);
 
     } catch (error) {
-        console.error("Saga: Error in fetchPersonDetailsHandler", error);
-        yield put(fetchDataError());
+        console.error(error);
+        yield put(fetchDataError(error.message));
     }
 }
 

@@ -6,41 +6,39 @@ const movieListSlice = createSlice({
         page: 1,
         movies: [{}],
         genres: [{}],
-        loading: true,
-        success: false,
-        error: null,
+        status: "loading",
     },
     reducers: {
         incrementPage: (state) => {
             state.page += 1;
-            state.loading = true;
+            state.status = "loading";
         },
         decrementPage: (state) => {
             state.page -= 1;
-            state.loading = true;
+            state.status = "loading";
         },
         goToFirstPage: (state) => {
             state.page = 1;
-            state.loading = true;
+            state.status = "loading";
         },
         goToLastPage: (state, { payload: lastPage }) => {
             state.page = +lastPage;
-            state.loading = true;
+            state.status = "loading";
         },
         pageNumberFromURL: (state, { payload: query }) => {
             state.page = +query;
-            state.loading = true;
+            state.status = "loading";
         },
         setMovieList: (state, { payload: movies }) => {
             state.movies = movies;
-            state.loading = false;
-            state.success = true;
+            state.status = "success";
         },
         setGenres: (state, { payload: genreList }) => {
             state.genres = genreList.genres;
         },
-        setLoading: (state, { payload: loading }) => {
-            state.loading = loading;
+        setError: (state, { payload: message }) => {
+            state.error = message;
+            state.status = "error";
         },
         setError: (state, action) => {
             state.error = action.payload;
@@ -56,14 +54,13 @@ export const {
     pageNumberFromURL,
     setMovieList,
     setGenres,
-    setLoading,
     setError,
 } = movieListSlice.actions;
 
 const selectMovieListState = (state) => state.movieList;
 
 export const selectMovieList = (state) => selectMovieListState(state).movies;
-export const selectLoading = (state) => selectMovieListState(state).loading;
+export const selectStatus = (state) => selectMovieListState(state).status;
 export const selectPageState = (state) => selectMovieListState(state).page;
 export const selectError = state => selectMovieListState(state).error;
 

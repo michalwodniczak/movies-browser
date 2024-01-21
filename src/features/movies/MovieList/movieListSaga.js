@@ -7,12 +7,11 @@ import {
     selectPageState,
     setMovieList,
     setGenres,
-    setLoading,
     setError,
 } from "./movieListSlice";
 import { getPopularMovies } from "../../../utils/API/getPopularMovies";
 import { getGenreList } from "../../../utils/API/getGenreList";
-import { processMovieListData } from "../../../utils/API/processMovieListData";
+import { processMovieListData } from "../../../utils/API/processApiData";
 
 function* fetchMovieListHandler() {
     try {
@@ -24,14 +23,14 @@ function* fetchMovieListHandler() {
             call(getGenreList),
         ]);
         const movies = yield call(processMovieListData, rawMovieList, rawGenreList);
-        yield put(setMovieList(movies));
-        yield put(setGenres(rawGenreList));
+        yield all([
+            put(setMovieList(movies)),
+            put(setGenres(rawGenreList)),
+        ]);
     }
     catch (error) {
+        console.error(error);
         yield put(setError(error.message));
-    }
-    finally {
-        yield put(setLoading(false));
     }
 };
 

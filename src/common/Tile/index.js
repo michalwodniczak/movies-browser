@@ -190,7 +190,7 @@ export const DetailsTile = (
 					<>
 						<TileTags>
 							{tags.map(({ name }) => (
-								<TileTag>{name}</TileTag>
+								<TileTag key={name}>{name}</TileTag>
 							))}
 						</TileTags>
 						<Rating
