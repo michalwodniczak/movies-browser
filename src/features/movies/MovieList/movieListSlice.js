@@ -35,13 +35,11 @@ const movieListSlice = createSlice({
         },
         setGenres: (state, { payload: genreList }) => {
             state.genres = genreList.genres;
+            state.status = "success";
         },
-        setError: (state, { payload: message }) => {
-            state.error = message;
-            state.status = "error";
-        },
-        setError: (state, action) => {
-            state.error = action.payload;
+        setError: (state, { payload: error }) => {
+            state.error = error.message;
+            state.status = error.status || "error";
         },
     },
 });
