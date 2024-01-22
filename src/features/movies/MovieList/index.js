@@ -19,6 +19,12 @@ import Pagination from '../../../common/Pagination/index';
 import Loading from '../../../common/Loading';
 import Error from '../../../common/Error';
 import AnimatedPage from '../../../common/AnimatedPage';
+import {
+	setInputValue,
+	selectData,
+	selectInputValue
+} from '../../SearchPage/searchSlice';
+import { SearchPage } from '../../SearchPage';
 
 function MovieList() {
 	const dispatch = useDispatch();
@@ -31,6 +37,9 @@ function MovieList() {
 	const searchParams = new URLSearchParams(location.search);
 	const query = searchParams.get('page');
 
+	const searchResults = useSelector(selectData);
+	const searchQuery = useSelector(selectInputValue);
+
 	useEffect(() => {
 		if (query < 1) {
 			searchParams.set('page', 1);
@@ -42,6 +51,14 @@ function MovieList() {
 	useEffect(() => {
 		history.push(`${location.pathname}?page=${currentPage}`);
 	}, [currentPage]);
+
+	useEffect(() => {
+		dispatch(setInputValue(``));
+	}, []);
+
+	if (searchResults && searchQuery) {
+		return <SearchPage />
+	}
 
 	switch (status) {
 		case "loading":
