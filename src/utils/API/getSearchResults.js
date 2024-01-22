@@ -1,7 +1,7 @@
 import axios from "axios";
 import { URL, AuthorizationAndLanguage } from "./APIURLS";
 
-export const getSearch = async (query, path) => {
+export const getSearchResults = async (query, path) => {
 
     const searchPath = () => {
         switch(path){
