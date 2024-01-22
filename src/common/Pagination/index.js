@@ -18,9 +18,11 @@ const Pagination = ({
 	goToFirstPage,
 	goToLastPage,
 	decrementPage,
-	incrementPage
+	incrementPage,
+	totalPages,
 }) => {
 	const dispatch = useDispatch();
+	const maxPages = totalPages || pageLimit;
 
 	return (
 		<Wrapper>
@@ -43,18 +45,18 @@ const Pagination = ({
 				<RegularText>Page</RegularText>
 				<BoldText>{currentPage}</BoldText>
 				<RegularText>of</RegularText>
-				<BoldText>{pageLimit}</BoldText>
+				<BoldText>{maxPages}</BoldText>
 			</TextContainer>
 			<StyledButton 
 				onClick={() => dispatch(incrementPage())}
-				disabled={currentPage > (pageLimit - 1)}
+				disabled={currentPage > (maxPages - 1)}
 			>
 				<ButtonText>Next</ButtonText>
 				<Chevron />
 			</StyledButton>
 			<StyledButton 
-				onClick={() => dispatch(goToLastPage(pageLimit))}
-				disabled={currentPage > (pageLimit - 1)}
+				onClick={() => dispatch(goToLastPage(maxPages))}
+				disabled={currentPage > (maxPages - 1)}
 			>
 				<ButtonText>Last</ButtonText>
 				<Chevron />
