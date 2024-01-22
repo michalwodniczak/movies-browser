@@ -7,7 +7,7 @@ import {
 import { NoResult } from "./NoResults";
 import { SearchedMovies } from "./SearchedMovies";
 import { SearchedPeople } from "./SearchedPeople";
-import { Loading } from "../../common/Loading";
+import Loading from "../../common/Loading";
 import Error from "../../common/Error";
 
 export const SearchPage = () => {
