@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
 	incrementPage,
 	decrementPage,
@@ -25,6 +25,7 @@ function MovieList() {
 	const currentPage = useSelector(selectPageState);
 	const popularMovies = useSelector(selectMovieList);
 	const status = useSelector(selectStatus);
+	const dispatch = useDispatch();
 
 	const paramValue = useURLParameter(paginationParamName);
 	const updatePageFromURL = useUpdatePageFromURL();
