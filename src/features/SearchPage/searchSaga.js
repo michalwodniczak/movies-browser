@@ -12,6 +12,7 @@ import {
     decrementPage,
     goToLastSearchPage,
     goToFirstSearchPage,
+    setTotalResults,
 } from "./searchSlice";
 import { getSearchResults } from "../../utils/API/getSearchResults";
 import { getGenreList } from "../../utils/API/getGenreList";
@@ -38,6 +39,7 @@ function* fetchDataHandler() {
             put(fetchDataSucces(result)),
             put(setGenres(rawGenreList)),
             put(setTotalPages(rawSearchResults)),
+            put(setTotalResults(rawSearchResults)),
         ]);
 
     } catch (error) {

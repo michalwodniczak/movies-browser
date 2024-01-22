@@ -7,6 +7,7 @@ const searchSlice = createSlice({
         inputValue: "",
         page: 1,
         totalPages: 1,
+        totalResults: 0,
         data: null,
         genres: [{}],
         status: "",
@@ -31,8 +32,11 @@ const searchSlice = createSlice({
         setGenres: (state, { payload: genresList }) => {
             state.genres = genresList.genres;
         },
-        setTotalPages: (state, {payload: result}) => {
+        setTotalPages: (state, { payload: result }) => {
             state.totalPages = result.total_pages;
+        },
+        setTotalResults: (state, { payload: result }) => {
+            state.totalResults = result.total_results;
         },
         incrementPage: (state) => {
             state.page += 1;
@@ -61,18 +65,21 @@ export const selectInputValue = (state) => selectSearchState(state).inputValue;
 export const selectStatus = (state) => selectSearchState(state).status;
 export const selectCurrnetPage = (state) => selectSearchState(state).page;
 export const selectTotalPages = (state) => selectSearchState(state).totalPages;
+export const selectTotalResults = (state) => selectSearchState(state).totalResults;
 
-export const { 
-    setPath, 
-    fetchDataFailure, 
-    fetchDataSucces, 
+
+export const {
+    setPath,
+    fetchDataFailure,
+    fetchDataSucces,
     setInputValue,
     setGenres,
     setTotalPages,
+    setTotalResults,
     incrementPage,
     decrementPage,
     goToFirstSearchPage,
-    goToLastSearchPage, 
+    goToLastSearchPage,
 } = searchSlice.actions;
 
 export default searchSlice.reducer

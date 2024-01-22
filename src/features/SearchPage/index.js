@@ -3,7 +3,8 @@ import {
     selectData, 
     selectInputValue, 
     selectPath, 
-    selectStatus } from "./searchSlice";
+    selectStatus, 
+    selectTotalResults} from "./searchSlice";
 import { NoResult } from "./NoResults";
 import { SearchedMovies } from "./SearchedMovies";
 import { SearchedPeople } from "./SearchedPeople";
@@ -13,6 +14,7 @@ import Error from "../../common/Error";
 export const SearchPage = () => {
     const searchQuery = useSelector(selectInputValue);
     const searchResults = useSelector(selectData);
+    const searchTotalResults = useSelector(selectTotalResults);
     const path = useSelector(selectPath);
     const status = useSelector(selectStatus);
 
@@ -35,6 +37,7 @@ export const SearchPage = () => {
                 return <SearchedMovies
                     searchQuery={searchQuery}
                     searchResults={searchResults}
+                    totalResults={searchTotalResults}
                 />
             }
 
@@ -42,6 +45,7 @@ export const SearchPage = () => {
                 return <SearchedPeople
                     searchQuery={searchQuery}
                     searchResults={searchResults}
+                    totalResults={searchTotalResults}
                 />
             }
     }

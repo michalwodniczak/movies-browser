@@ -1,17 +1,28 @@
+import { useSelector } from "react-redux";
 import { Main } from "../../common/Main/Main";
 import { Section, SectionTitle } from "../../common/Section/Section";
 import { StyledLink } from "../../common/Tile/styled";
 import { ListTileLarge } from "../../common/Tile";
 import { LargeListWrapper } from "../../common/Tile/styled";
+import Pagination from '../../common/Pagination';
+import {
+    incrementPage,
+    decrementPage,
+    goToFirstSearchPage,
+    goToLastSearchPage,
+    selectCurrnetPage,
+    selectTotalPages,
+} from '../SearchPage/searchSlice'
 
-export const SearchedMovies = ({ searchQuery, searchResults }) => {
-
+export const SearchedMovies = ({ searchQuery, searchResults, totalResults }) => {
     const result = searchResults;
+    const currentPage = useSelector(selectCurrnetPage);
+    const totalPages = useSelector(selectTotalPages);
 
     return (
         <Main>
             <Section>
-                <SectionTitle>{`Search result for "${searchQuery}" (${result.length})`}</SectionTitle>
+                <SectionTitle>{`Search result for "${searchQuery}" (${totalResults})`}</SectionTitle>
                 <LargeListWrapper>
                     {result.map((movie) => (
                         <li key={movie.id}>
@@ -29,6 +40,14 @@ export const SearchedMovies = ({ searchQuery, searchResults }) => {
                     ))}
                 </LargeListWrapper>
             </Section>
+            <Pagination
+                currentPage={currentPage}
+                goToFirstPage={goToFirstSearchPage}
+                incrementPage={incrementPage}
+                decrementPage={decrementPage}
+                goToLastPage={goToLastSearchPage}
+                totalPages={totalPages}
+            />
         </Main>
     );
 };
