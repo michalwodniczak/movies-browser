@@ -1,4 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { createPaginationActions } from '../../../common/Pagination/createPaginationActions';
+
+const { paginationReducers } = createPaginationActions('movieListSlice');
 
 const movieListSlice = createSlice({
     name: 'movieList',
@@ -9,26 +12,7 @@ const movieListSlice = createSlice({
         status: "loading",
     },
     reducers: {
-        incrementPage: (state) => {
-            state.page += 1;
-            state.status = "loading";
-        },
-        decrementPage: (state) => {
-            state.page -= 1;
-            state.status = "loading";
-        },
-        goToFirstPage: (state) => {
-            state.page = 1;
-            state.status = "loading";
-        },
-        goToLastPage: (state, { payload: lastPage }) => {
-            state.page = +lastPage;
-            state.status = "loading";
-        },
-        pageNumberFromURL: (state, { payload: query }) => {
-            state.page = +query;
-            state.status = "loading";
-        },
+        ...paginationReducers,
         setMovieList: (state, { payload: movies }) => {
             state.movies = movies;
             state.status = "success";
