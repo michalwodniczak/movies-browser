@@ -1,22 +1,31 @@
-import { all, put, call, debounce, select } from "redux-saga/effects";
+import { all, put, call, debounce, takeEvery, select } from "redux-saga/effects";
 import {
     fetchDataSucces,
     fetchDataFailure,
     setGenres,
     setInputValue,
     selectPath,
-    setTotalPages
+    setTotalPages,
+    selectInputValue,
+    selectCurrnetPage,
+    incrementPage,
+    decrementPage,
+    goToLastSearchPage,
+    goToFirstSearchPage,
 } from "./searchSlice";
 import { getSearchResults } from "../../utils/API/getSearchResults";
 import { getGenreList } from "../../utils/API/getGenreList";
 import { processSearchResults } from "../../utils/API/processApiData";
 
-function* fetchDataHandler(action) {
+function* fetchDataHandler() {
     try {
-        const query = action.payload;
-        const path = yield select(selectPath);
+        const [query, path, page] = yield all([
+            select(selectInputValue),
+            select(selectPath),
+            select(selectCurrnetPage),
+        ]);
         const [rawSearchResults, rawGenreList] = yield all([
-            call(getSearchResults, query, path),
+            call(getSearchResults, query, path, page),
             call(getGenreList),
         ]);
         const result = yield call(
@@ -37,5 +46,17 @@ function* fetchDataHandler(action) {
 };
 
 export function* searchSaga() {
-    yield debounce(500, setInputValue.type, fetchDataHandler);
+    yield debounce(
+        500,
+        setInputValue,
+        fetchDataHandler);
+
+    yield takeEvery(
+        [
+            incrementPage,
+            decrementPage,
+            goToFirstSearchPage,
+            goToLastSearchPage
+        ],
+        fetchDataHandler);
 };
