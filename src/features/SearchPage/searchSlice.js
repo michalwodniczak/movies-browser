@@ -34,6 +34,22 @@ const searchSlice = createSlice({
         setTotalPages: (state, {payload: result}) => {
             state.totalPages = result.total_pages;
         },
+        incrementPage: (state) => {
+            state.page += 1;
+            state.status = "loading";
+        },
+        decrementPage: (state) => {
+            state.page -= 1;
+            state.status = "loading";
+        },
+        goToFirstSearchPage: (state) => {
+            state.page = 1;
+            state.status = "loading";
+        },
+        goToLastSearchPage: (state, { payload: lastPage }) => {
+            state.page = +lastPage;
+            state.status = "loading";
+        },
     },
 });
 
@@ -43,6 +59,8 @@ export const selectPath = (state) => selectSearchState(state).path;
 export const selectData = (state) => selectSearchState(state).data;
 export const selectInputValue = (state) => selectSearchState(state).inputValue;
 export const selectStatus = (state) => selectSearchState(state).status;
+export const selectCurrnetPage = (state) => selectSearchState(state).page;
+export const selectTotalPages = (state) => selectSearchState(state).totalPages;
 
 export const { 
     setPath, 
@@ -50,7 +68,11 @@ export const {
     fetchDataSucces, 
     setInputValue,
     setGenres,
-    setTotalPages, 
+    setTotalPages,
+    incrementPage,
+    decrementPage,
+    goToFirstSearchPage,
+    goToLastSearchPage, 
 } = searchSlice.actions;
 
 export default searchSlice.reducer
