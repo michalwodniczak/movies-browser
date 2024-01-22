@@ -50,25 +50,40 @@ Implementing asynchronous functionality using Axios, Async/Await, and Redux-Saga
 This project draws inspiration from the "Frontend Developer from the Basics" course at the online programming school YouCode.
 
 ## Technologies
-This project incorporates a variety of technologies and tools, including but not limited to:
-- JSX (JavaScript XML) 
-- Flexbox 
-- CSS Grid
-- JavaScript ES6+ Features
-- React.js
-- Create React App (Webpack, Babel, ESLint, PostCSS, CSS Loader & Style Loader)
-- React Router (including BrowserRouter, Route, Switch, and NavLink for navigation)
-- Styled components (utilization of syntax with template literals)
-- Media Queries
-- Immutability with the immer library in Redux (for state management)
-- Custom Hooks
-- Local Storage with Redux-Saga
-- Redux (utilizing actions, reducers, and middleware for asynchronous operations) 
+### Libraries
+This project incorporates a variety of libraries, including but not limited to:
+- Create React App: provides a streamlined setup for project, including Webpack, Babel, ESLint, PostCSS, CSS Loader & Style Loader
+- React.js: the core library for building user interface
+- React DOM: handles DOM-specific methods, including rendering React elements into the DOM
+- React Spring: enables smooth and interactive animations
+- React Router (including BrowserRouter, Route, Switch, and NavLink for navigation): supports routing, facilitates navigation and URL handling
+- Redux (utilizing actions, reducers, and middleware for asynchronous operations): provides a predictable state container and enables the management of complex application states 
+- Redux-Saga: enables handling side effects in Redux, enhancing asynchronous operations
+- Redux-Toolkit (set of tools for efficient Redux development): simplifies common Redux patterns and provides tools
+- immer library in Redux: simplifies the creation of immutable data structures, used to manage state immutability
+- Axios: a promise-based HTTP client for making asynchronous requests
+- Styled components: styling components with tagged template literals, offers a dynamic and limited approach to styling
+
+### Technologies and Tools
+Other technologies and tools used in this project include, but are not limited to:
+- JSX (JavaScript XML): syntax extension for JS to describe what the UI should look like
+- CSS Flexbox: design of complex web layout 
+- CSS Grid: create complex grid-based layouts
+- JavaScript ES6+ Features: arrow functions, template literals, let and const declarations, destructuring assignment, promises etc.
+- Media Queries: different styles for different devices and screen sizes
+- Custom Hooks: reusable pieces of logic that are shared by multiple components
 - JavaScript generator functions (pause and resume functions), providing a mechanism for powerful asynchronous programming 
 - URL-related features like URLSearchParams, useLocation, useHistory: React Router and React Hooks for working with and manipulating the browser's URL
-- Axios
-- Async/Await
-- API Integration
+- Async/Await: handling asynchronous operations 
+- API Integration: incorporating external API - The Movie Database API, to source data for the application
+
+### Build and Deployment
+- npm | Node Package Manager(for managing project dependencies and providing scripts for common tasks)
+- Webpack (for bundling)
+- Babel (for JavaScript transpilation)
+- ESLint (for code linting)
+- PostCSS (for processing CSS)
+- CSS Loader & Style Loader (for handling CSS in the build process)
 
 Feel free to explore the demo and join us on this exciting journey of building the Movies Browser! If you have any questions or suggestions, don't hesitate to reach out. Thank you for your interest and support!
 
