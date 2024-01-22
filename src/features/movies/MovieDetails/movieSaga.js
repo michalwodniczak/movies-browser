@@ -24,7 +24,7 @@ function* fetchMovieHandler() {
 
     } catch (error) {
         console.error(error);
-        yield put(setError(error.message));
+        yield put(setError({ message: error.message, status: "error" }));
     }
 }
 
