@@ -8,6 +8,7 @@ import {
     selectPersonCast,
     selectPersonCrew,
 } from "./peopleDetailsSlice";
+import {goToFirstSearchPage} from "../../SearchPage/searchSlice"
 import { DetailsTile, ListTileLarge } from "../../../common/Tile/index";
 import { Section, SectionTitle } from '../../../common/Section/Section';
 import { LargeListWrapper, StyledLink } from "../../../common/Tile/styled";
@@ -30,6 +31,7 @@ const PersonDetails = () => {
 
     useEffect(() => {
       dispatch(setInputValue(``));
+      dispatch(goToFirstSearchPage());
     }, [location.pathname]);
 
     useEffect(() => {

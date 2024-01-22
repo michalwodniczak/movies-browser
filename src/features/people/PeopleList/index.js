@@ -11,6 +11,7 @@ import {
   selectPeopleList,
   selectStatus,
 } from './peopleSlice';
+import {goToFirstSearchPage} from "../../SearchPage/searchSlice"
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
@@ -55,6 +56,7 @@ function PeopleList() {
 
   useEffect(() => {
     dispatch(setInputValue(``));
+    dispatch(goToFirstSearchPage());
   }, []);
 
   if (searchResults && searchQuery) {

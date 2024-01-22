@@ -8,6 +8,7 @@ import {
   selectMovieCrew,
   selectStatus,
 } from './movieSlice';
+import {goToFirstSearchPage} from "../../SearchPage/searchSlice"
 import { BackdropHeader } from './Backdrop';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from '../../../common/Section/Section';
@@ -31,6 +32,7 @@ function MovieDetails() {
   useEffect(() => {
     dispatch(setMovieId(id));
     dispatch(setInputValue(``));
+    dispatch(goToFirstSearchPage());
   }, [location.pathname]);
 
   const status = useSelector(selectStatus);

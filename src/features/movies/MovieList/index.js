@@ -11,6 +11,7 @@ import {
 	selectPageState,
 	selectStatus
 } from "./movieListSlice";
+import {goToFirstSearchPage} from "../../SearchPage/searchSlice"
 import { Main } from "../../../common/Main/Main";
 import { Section, SectionTitle } from "../../../common/Section/Section";
 import { ListTileLarge } from '../../../common/Tile';
@@ -54,6 +55,7 @@ function MovieList() {
 
 	useEffect(() => {
 		dispatch(setInputValue(``));
+		dispatch(goToFirstSearchPage());
 	}, []);
 
 	if (searchResults && searchQuery) {
