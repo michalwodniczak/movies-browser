@@ -82,6 +82,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+#### `npm run deploy`
+This script is available for deployment and is responsible for deploying the app to GitHub Pages. Use it to showcase your project to the world!
+
 #### `npm run build`
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
