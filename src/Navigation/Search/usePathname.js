@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { setPath } from './searchSlice';
+import { setPath } from '../../features/SearchPage/searchSlice';
 
 export const usePathname = () => {
     const dispatch = useDispatch();
