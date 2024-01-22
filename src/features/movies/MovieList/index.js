@@ -48,7 +48,10 @@ function MovieList() {
 		case "loading":
 			return <Loading />;
 		case "error":
-			return <Error setError={setError} />;
+			return <Error error={{
+				message: 'Error fetching movie list data',
+				setError: (error) => dispatch(setError(error))
+			}} />;
 		default:
 			return (
 				<AnimatedPage>
