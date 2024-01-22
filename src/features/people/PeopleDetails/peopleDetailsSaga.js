@@ -2,14 +2,14 @@ import { call, put, takeLatest, select, all } from "redux-saga/effects";
 import {
     fetchDataSuccess,
     selectPersonId,
-    fetchDataError,
     getDetailsForPerson,
     setPeopleCredits,
     setGenres,
+    setError,
 } from "./peopleDetailsSlice";
-import { 
-    getPeopleDetails, 
-    getPeopleCredits, 
+import {
+    getPeopleDetails,
+    getPeopleCredits,
 } from "../../../utils/API/getPeopleDetails";
 import { getGenreList } from "../../../utils/API/getGenreList";
 import {
@@ -24,7 +24,7 @@ function* fetchPersonDetailsHandler() {
             call(getPeopleDetails, id),
             call(getPeopleCredits, id),
             call(getGenreList),
-        ]);  
+        ]);
         const [details, credits] = yield all([
             call(processPersonData, rawDetails),
             call(processPersonCreditsData, rawCredits, rawGenreList),
@@ -37,7 +37,7 @@ function* fetchPersonDetailsHandler() {
 
     } catch (error) {
         console.error(error);
-        yield put(fetchDataError(error.message));
+        yield put(setError({ message: error.message, status: "error" }));
     }
 }
 

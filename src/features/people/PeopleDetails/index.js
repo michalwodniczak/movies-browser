@@ -7,6 +7,7 @@ import {
     getDetailsForPerson,
     selectPersonCast,
     selectPersonCrew,
+    setError,
 } from "./peopleDetailsSlice";
 import { DetailsTile, ListTileLarge } from "../../../common/Tile/index";
 import { Section, SectionTitle } from '../../../common/Section/Section';
@@ -33,7 +34,10 @@ const PersonDetails = () => {
         case "loading":
             return <Loading />;
         case "error":
-            return <Error />;
+            return <Error error={{
+                message: 'Error fetching person detail data',
+                setError: (error) => dispatch(setError(error))
+            }} />;
         default:
             return (
                 <AnimatedPage>

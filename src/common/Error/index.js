@@ -1,14 +1,13 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Container, StyledErrorIcon, Header, Instruction, StyledButton } from './styled';
-import { setError } from '../../features/movies/MovieDetails/movieSlice';
 
-const Error = () => {
+const Error = ({ error }) => {
     const history = useHistory();
+    const location = useLocation();
 
     const handleBackToHomepage = () => {
-        setError(null); // Reset the error state before redirecting
-        history.push('/movies');
+        history.push('/movies?page=1');
     };
 
     return (
@@ -16,11 +15,12 @@ const Error = () => {
             <StyledErrorIcon />
             <Header>Ooops! Something went wrong...</Header>
             <Instruction>
+                {error.message}<br />
                 Please check your network connection<br />
                 and try again
             </Instruction>
             <StyledButton onClick={handleBackToHomepage}>
-                Back to homepage
+                {location.pathname === '/movies' ? 'Reload page' : 'Back to home page'}
             </StyledButton>
         </Container>
     );

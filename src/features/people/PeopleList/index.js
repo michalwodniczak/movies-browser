@@ -10,6 +10,7 @@ import {
   selectPageState,
   selectPeopleList,
   selectStatus,
+  setError,
 } from './peopleSlice';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
@@ -48,7 +49,10 @@ function PeopleList() {
     case "loading":
       return <Loading />;
     case "error":
-      return <Error />;
+      return <Error error={{
+        message: 'Error fetching people list data',
+        setError: (error) => dispatch(setError(error))
+      }} />;
     default:
       return (
         <AnimatedPage>

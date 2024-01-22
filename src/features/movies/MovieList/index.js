@@ -7,7 +7,8 @@ import {
 	goToLastPage,
 	selectMovieList,
 	selectPageState,
-	selectStatus
+	selectStatus,
+	setError,
 } from "./movieListSlice";
 import { Main } from "../../../common/Main/Main";
 import { Section, SectionTitle } from "../../../common/Section/Section";
@@ -41,7 +42,10 @@ function MovieList() {
 		case "loading":
 			return <Loading />;
 		case "error":
-			return <Error />;
+			return <Error error={{
+				message: 'Error fetching movie list data',
+				setError: (error) => dispatch(setError(error))
+			}} />;
 		default:
 			return (
 				<AnimatedPage>

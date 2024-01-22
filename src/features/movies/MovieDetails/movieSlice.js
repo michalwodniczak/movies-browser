@@ -7,7 +7,6 @@ const movieSlice = createSlice({
         details: {},
         credits: {},
         status: "loading",
-        error: null,
     },
     reducers: {
         setMovieId: (state, { payload: id }) => {
@@ -20,10 +19,11 @@ const movieSlice = createSlice({
         },
         setMovieCredits: (state, { payload: movieCredits }) => {
             state.credits = movieCredits;
+            state.status = "success";
         },
-        setError: (state, { payload: message }) => {
-            state.error = message;
-            state.status = "error";
+        setError: (state, { payload: error }) => {
+            state.error = error.message;
+            state.status = error.status || "error";
         },
     },
 });

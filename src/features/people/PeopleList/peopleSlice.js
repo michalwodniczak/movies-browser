@@ -9,7 +9,6 @@ const peopleSlice = createSlice({
             results: [{}],
         },
         status: "loading",
-        error: null,
     },
     reducers: {
         incrementPage: (state) => {
@@ -34,11 +33,11 @@ const peopleSlice = createSlice({
         },
         setPeopleList: (state, { payload: peopleList }) => {
             state.peopleList = peopleList;
-            state.status = "success";
+            state.status = peopleList ? "success" : "error";
         },
-        setError: (state, { payload: message }) => {
-            state.error = message;
-            state.status = "error";
+        setError: (state, { payload: error }) => {
+            state.error = error.message;
+            state.status = error.status || "error";
         },
     },
 });

@@ -7,6 +7,7 @@ import {
   selectMovieCast,
   selectMovieCrew,
   selectStatus,
+  setError,
 } from './movieSlice';
 import { BackdropHeader } from './Backdrop';
 import { Main } from '../../../common/Main/Main';
@@ -34,7 +35,10 @@ function MovieDetails() {
     case "loading":
       return <Loading />;
     case "error":
-      return <Error />;
+      return <Error error={{
+        message: 'Error fetching movie detail data',
+        setError: (error) => dispatch(setError(error))
+      }} />;
     default:
       return (
         <AnimatedPage>
