@@ -1,7 +1,7 @@
 import axios from "axios";
 import { URL, AuthorizationAndLanguage } from "./APIURLS";
 
-export const getSearchResults = async (query, path) => {
+export const getSearchResults = async (query, path, page) => {
 
     const searchPath = () => {
         switch(path){
@@ -11,7 +11,7 @@ export const getSearchResults = async (query, path) => {
                 return "person";
         }
     }
-    const fetchURL = `${URL}search/${searchPath()}${AuthorizationAndLanguage}&query=${query}`;
+    const fetchURL = `${URL}search/${searchPath()}${AuthorizationAndLanguage}&query=${query}&page=${page}`;
 
     try {
         const response = await axios.get(fetchURL);
