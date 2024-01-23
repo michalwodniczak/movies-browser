@@ -34,48 +34,42 @@ Movies Browser is a web application developed in collaboration with the YouCode 
 Our ongoing efforts focus on refining every aspect of your interaction with our application, making it not only functional but also aesthetically enjoyable. Watch out for these exciting updates in the near future! 🚀
 
 ### Development Workflow
-#### Project Bootstrapping 🚧
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+#### `🚧 Project Bootstrapping:` This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-#### State Management 🔄
-Leveraging Redux for state management, including middleware for asynchronous operations.
+#### `🔄 State Management:` Leveraging Redux for state management, including middleware for asynchronous operations.
+#### `💅 Styling:` Utilizing JSX, Flexbox, CSS Grid, and Styled Components for an appealing and responsive design.
 
-#### Styling 💅
-Utilizing JSX, Flexbox, CSS Grid, and Styled Components for an appealing and responsive design.
+#### `⏳ Asynchronous Operations:` Implementing asynchronous functionality using Axios, Async/Await, and Redux-Saga.
 
-#### Asynchronous Operations ⏳
-Implementing asynchronous functionality using Axios, Async/Await, and Redux-Saga.
-
-#### Inspiration 💡
-This project draws inspiration from the "Frontend Developer from the Basics" course at the online programming school YouCode.
+#### `💡 Inspiration:` This project draws inspiration from the "Frontend Developer from the Basics" course at the online programming school YouCode.
 
 ## Technologies
 ### Libraries
 This project incorporates a variety of libraries, including but not limited to:
-- Create React App: provides a streamlined setup for project, including Webpack, Babel, ESLint, PostCSS, CSS Loader & Style Loader
-- React.js: the core library for building user interface
-- React DOM: handles DOM-specific methods, including rendering React elements into the DOM
-- React Spring: enables smooth and interactive animations
-- React Router (including BrowserRouter, Route, Switch, and NavLink for navigation): supports routing, facilitates navigation and URL handling
-- Redux (utilizing actions, reducers, and middleware for asynchronous operations): provides a predictable state container and enables the management of complex application states 
-- Redux-Saga: enables handling side effects in Redux, enhancing asynchronous operations
-- Redux-Toolkit (set of tools for efficient Redux development): simplifies common Redux patterns and provides tools
-- immer library in Redux: simplifies the creation of immutable data structures, used to manage state immutability
-- Axios: a promise-based HTTP client for making asynchronous requests
-- Styled components: styling components with tagged template literals, offers a dynamic and limited approach to styling
+- ***Create React App:*** provides a streamlined setup for project, including Webpack, Babel, ESLint, PostCSS, CSS Loader & Style Loader
+- ***React.js:*** the core library for building user interface
+- ***React DOM:*** handles DOM-specific methods, including rendering React elements into the DOM
+- ***React Spring:*** enables smooth and interactive animations
+- ***React Router (including BrowserRouter, Route, Switch, and NavLink for navigation):*** supports routing, facilitates navigation and URL handling
+- ***Redux (utilizing actions, reducers, and middleware for asynchronous operations):*** provides a predictable state container and enables the management of complex application states 
+- ***Redux-Saga:*** enables handling side effects in Redux, enhancing asynchronous operations
+- ***Redux-Toolkit (set of tools for efficient Redux development):*** simplifies common Redux patterns and provides tools
+- ***Immer library in Redux:*** simplifies the creation of immutable data structures, used to manage state immutability
+- ***Axios:*** a promise-based HTTP client for making asynchronous requests
+- ***Styled components:*** styling components with tagged template literals, offers a dynamic and limited approach to styling
 
 ### Technologies and Tools
 Other technologies and tools used in this project include, but are not limited to:
-- JSX (JavaScript XML): syntax extension for JS to describe what the UI should look like
-- CSS Flexbox: design of complex web layout 
-- CSS Grid: create complex grid-based layouts
-- JavaScript ES6+ Features: arrow functions, template literals, let and const declarations, destructuring assignment, promises etc.
-- Media Queries: different styles for different devices and screen sizes
-- Custom Hooks: reusable pieces of logic that are shared by multiple components
-- JavaScript generator functions (pause and resume functions), providing a mechanism for powerful asynchronous programming 
-- URL-related features like URLSearchParams, useLocation, useHistory: React Router and React Hooks for working with and manipulating the browser's URL
-- Async/Await: handling asynchronous operations 
-- API Integration: incorporating external API - The Movie Database API, to source data for the application
+- ***JSX (JavaScript XML):*** syntax extension for JS to describe what the UI should look like
+- ***CSS Flexbox:*** design of complex web layout 
+- ***CSS Grid:*** create complex grid-based layouts
+- ***JavaScript ES6+ Features:*** arrow functions, template literals, let and const declarations, destructuring assignment, promises etc.
+- ***Media Queries:*** different styles for different devices and screen sizes
+- ***Custom Hooks:*** reusable pieces of logic that are shared by multiple components
+- ***JavaScript generator functions:*** pause and resume functions, providing a mechanism for powerful asynchronous programming 
+- ***URL-related features:*** like URLSearchParams, useLocation, useHistory, React Router and React Hooks for working with and manipulating the browser's URL
+- ***Async/Await:*** handling asynchronous operations 
+- ***API Integration:*** incorporating external API - The Movie Database API, to source data for the application
 
 ### Build and Deployment
 - npm | Node Package Manager(for managing project dependencies and providing scripts for common tasks)
@@ -117,3 +111,51 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+
+## Cloning and Setting Up API Access
+Thank you for your interest in our Movies Browser project! To begin working with the codebase, follow the steps outlined below. Please note that the following instructions are applicable when cloning our repository.
+
+### Prerequisites
+Before you start, ensure that you have the following installed on your machine:
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+
+### Cloning the Repository
+```bash
+git clone https://github.com/bedicooper/movies-browser.git
+cd movies-browser
+```
+
+### API Key Setup (Applicable only when cloning the repository)
+Our application relies on The Movie Database (TMDb) API to fetch movie and actor information. Follow these steps to set up your API key:
+
+1. Visit the [TMDb website](https://www.themoviedb.org/) and create an account.
+2. Once logged in, navigate to the [API section](https://www.themoviedb.org/settings/api) in your account settings.
+3. Generate a new API key.
+
+### Updating the API Key in the Code
+To integrate your API key with the codebase, follow these steps:
+1. Open the project in your preferred code editor.
+2. Locate the `APIURLS.js` file in the `src/utils/API` directory.
+3. Replace the placeholder string with your TMDb API key.
+
+```javascript
+// src/utils/API/APIURLS.js
+
+export const URL = "https://api.themoviedb.org/3/";
+export const URLImages = "https://image.tmdb.org/t/p/";
+export const apiKey = "YOUR_API_KEY"; // Replace with your TMDb API key
+
+export const AuthorizationAndLanguage = `?api_key=${apiKey}&language=en-US`;
+```
+
+### Running the Application
+Now that you have your API key configured, you can run the application locally:
+```bash
+npm install
+npm start
+```
+Open http://localhost:3000 in your browser to view the app.
+
+Feel free to explore your customized version of the application, and if you have any questions or feedback, don't hesitate to reach out. Happy coding! 
