@@ -1,23 +1,22 @@
 import { useSelector } from "react-redux";
-import { selectData, selectInputValue } from "../searchSlice";
-import { Main } from "../../../common/Main/Main";
-import { Section, SectionTitle } from "../../../common/Section/Section";
-import { StyledLink } from "../../../common/Tile/styled";
-import { ListTileLarge } from "../../../common/Tile";
-import { LargeListWrapper } from "../../../common/Tile/styled";
-import { selectStatus } from "../../../features/movies/MovieList/movieListSlice";
+import { selectData, selectInputValue, selectPath, selectStatus, selectTotalResults } from "../searchSlice";
 import { NoResults } from "../NoResults";
 import Loading from "../../../common/Loading";
 import Error from "../../../common/Error";
+import { SearchedMovies } from "./SearchedMovies";
 
 export const SearchPage = () => {
     const searchQuery = useSelector(selectInputValue);
     const searchResults = useSelector(selectData);
+    const searchTotalResults = useSelector(selectTotalResults);
     const status = useSelector(selectStatus);
+    const path = useSelector(selectPath);
 
     if (!searchResults.length && status !== "loading") {
         return (
-            <NoResults />
+            <NoResults
+                searchQuery={searchQuery}
+            />
         );
     };
 
@@ -29,28 +28,12 @@ export const SearchPage = () => {
             return <Error />;
 
         default:
-            return (
-                <Main>
-                    <Section>
-                        <SectionTitle>Search result for "{searchQuery}" ({searchResults.length})</SectionTitle>
-                        <LargeListWrapper>
-                            {searchResults.map((movie) => (
-                                <li key={movie.id}>
-                                    <StyledLink to={`/movies/${movie.id}`}>
-                                        <ListTileLarge
-                                            posterPath={movie.posterPath}
-                                            title={movie.title}
-                                            subtitle={movie.year}
-                                            tags={movie.namedGenres}
-                                            voteCount={movie.votes}
-                                            ratingValue={movie.rating}
-                                        />
-                                    </StyledLink>
-                                </li>
-                            ))}
-                        </LargeListWrapper>
-                    </Section>
-                </Main>
-            );
+            if (path === "movies") {
+                return <SearchedMovies
+                    searchQuery={searchQuery}
+                    searchResults={searchResults}
+                    totalResults={searchTotalResults}
+                />
+            }
     };
 };
