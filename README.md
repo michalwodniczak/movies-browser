@@ -5,7 +5,7 @@ Welcome to our Movies Browser project! We're excited to have you here at the ear
 ## Demo
 Explore our current progress on the live demo: https://bedicooper.github.io/movies-browser/
 
-<img src="./readme_imgPopularMovies.png" alt="Demo" width="500">
+![gif](https://raw.githubusercontent.com/bedicooper/movies-browser/main/readme_gifAnimation.gif)
 
 ## Authors
 - [Patrycja Gomza](https://github.com/patrycja-gomza)
@@ -26,6 +26,7 @@ Movies Browser is a web application developed in collaboration with the YouCode 
 - **Enhanced UI - Hover Styling:** Elevate user engagement with dynamic styling as you hover over movies, actors, or buttons, offering a visually pleasing experience.
 - **Responsiveness:** Ensuring a seamless experience on various devices, from mobile phones to tablets.
 - **Loading and Error States:** Our app gracefully handles loading and error states for a smoother user experience.
+![error png](https://raw.githubusercontent.com/bedicooper/movies-browser/main/readme_imgError.png)
 
 ### What We Are Working On
 - **No Results Page:** We are actively developing a dedicated page for instances where search queries yield no results. This feature aims to provide users with a clear and informative page, guiding them effectively when their search doesn't match any records.
