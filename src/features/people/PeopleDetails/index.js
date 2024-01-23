@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import {
     selectStatus,
     selectDetails,
@@ -15,19 +15,34 @@ import { Main } from "../../../common/Main/Main";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
 import AnimatedPage from "../../../common/AnimatedPage";
+import { goToFirstSearchPage, selectInputValue, setInputValue, selectData } from "../../../Navigation/Search/searchSlice";
+import { SearchPage } from "../../../Navigation/Search/SearchPage";
+
 
 const PersonDetails = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
+    const location = useLocation();
 
     useEffect(() => {
         dispatch(getDetailsForPerson({ personId: id }));
     }, [id, dispatch]);
 
+    useEffect(() => {
+        dispatch(setInputValue(``));
+        dispatch(goToFirstSearchPage());
+    }, [location.pathname]);
+
     const details = useSelector(selectDetails);
     const status = useSelector(selectStatus);
     const actorCast = useSelector(selectPersonCast);
     const actorCrew = useSelector(selectPersonCrew);
+    const searchResults = useSelector(selectData);
+    const searchQuery = useSelector(selectInputValue);
+
+    if (searchQuery && searchResults) {
+        return <SearchPage />
+    }
 
     switch (status) {
         case "loading":
