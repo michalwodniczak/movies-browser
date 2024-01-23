@@ -117,3 +117,51 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+
+## Cloning and Setting Up API Access
+Thank you for your interest in our Movies Browser project! To begin working with the codebase, follow the steps outlined below. Please note that the following instructions are applicable when cloning our repository.
+
+### Prerequisites
+Before you start, ensure that you have the following installed on your machine:
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+
+### Cloning the Repository
+```bash
+git clone https://github.com/bedicooper/movies-browser.git
+cd movies-browser
+```
+
+### API Key Setup (Applicable only when cloning the repository)
+Our application relies on The Movie Database (TMDb) API to fetch movie and actor information. Follow these steps to set up your API key:
+
+1. Visit the [TMDb website](https://www.themoviedb.org/) and create an account.
+2. Once logged in, navigate to the [API section](https://www.themoviedb.org/settings/api) in your account settings.
+3. Generate a new API key.
+
+### Updating the API Key in the Code
+To integrate your API key with the codebase, follow these steps:
+1. Open the project in your preferred code editor.
+2. Locate the `APIURLS.js` file in the `src/utils/API` directory.
+3. Replace the placeholder string with your TMDb API key.
+
+```javascript
+// src/utils/API/APIURLS.js
+
+export const URL = "https://api.themoviedb.org/3/";
+export const URLImages = "https://image.tmdb.org/t/p/";
+export const apiKey = "YOUR_API_KEY"; // Replace with your TMDb API key
+
+export const AuthorizationAndLanguage = `?api_key=${apiKey}&language=en-US`;
+```
+
+### Running the Application
+Now that you have your API key configured, you can run the application locally:
+```bash
+npm install
+npm start
+```
+Open http://localhost:3000 in your browser to view the app.
+
+Feel free to explore your customized version of the application, and if you have any questions or feedback, don't hesitate to reach out. Happy coding! 
