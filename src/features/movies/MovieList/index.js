@@ -20,28 +20,41 @@ import Pagination from '../../../common/Pagination/index';
 import Loading from '../../../common/Loading';
 import Error from '../../../common/Error';
 import AnimatedPage from '../../../common/AnimatedPage';
+import { setInputValue, goToFirstSearchPage, selectData, selectInputValue } from '../../../Navigation/Search/searchSlice';
+import { SearchPage } from '../../../Navigation/Search/SearchPage';
 
 function MovieList() {
 	const currentPage = useSelector(selectPageState);
 	const popularMovies = useSelector(selectMovieList);
 	const status = useSelector(selectStatus);
 	const dispatch = useDispatch();
+	const searchResults = useSelector(selectData);
+	const searchQuery = useSelector(selectInputValue);
 
 	const paramValue = useURLParameter(paginationParamName);
 	const params = {
-	  key: "movies",
-	  value: paramValue,
+		key: "movies",
+		value: paramValue,
 	};
 	const updatePageFromURL = useUpdatePageFromURL();
 	const replacePageParameter = useReplacePageParameter();
-  
+
 	useEffect(() => {
-	  updatePageFromURL(params);
+		updatePageFromURL(params);
 	}, [paramValue]);
 
 	useEffect(() => {
 		replacePageParameter(currentPage);
 	}, [currentPage]);
+
+	useEffect(() => {
+		dispatch(setInputValue(``));
+		dispatch(goToFirstSearchPage());
+	}, []);
+
+	if (searchResults && searchQuery) {
+		return <SearchPage />
+	};
 
 	switch (status) {
 		case "loading":

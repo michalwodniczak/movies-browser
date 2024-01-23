@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import {
   incrementPage,
   decrementPage,
@@ -20,11 +20,16 @@ import Pagination from '../../../common/Pagination';
 import Error from '../../../common/Error';
 import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
+import { selectInputValue, selectData, setInputValue, goToFirstSearchPage } from '../../../Navigation/Search/searchSlice';
+import { SearchPage } from '../../../Navigation/Search/SearchPage';
 
 function PeopleList() {
   const currentPage = useSelector(selectPageState);
   const peopleList = useSelector(selectPeopleList);
-  const status = useSelector(selectStatus)
+  const status = useSelector(selectStatus);
+  const searchQuery = useSelector(selectInputValue);
+  const searchResults = useSelector(selectData);
+  const dispatch = useDispatch();
 
   const paramValue = useURLParameter(paginationParamName);
   const params = {
@@ -41,6 +46,15 @@ function PeopleList() {
   useEffect(() => {
     replacePageParameter(currentPage);
   }, [currentPage]);
+
+  useEffect(() => {
+    dispatch(setInputValue(""));
+    dispatch(goToFirstSearchPage());
+  }, []);
+
+  if (searchQuery && searchResults) {
+    return <SearchPage />
+  }
 
   switch (status) {
     case "loading":

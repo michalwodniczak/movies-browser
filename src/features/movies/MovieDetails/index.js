@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setMovieId,
@@ -17,19 +17,30 @@ import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import Error from '../../../common/Error';
 import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
+import { goToFirstSearchPage, selectInputValue, setInputValue, selectData } from '../../../Navigation/Search/searchSlice';
+import { SearchPage } from '../../../Navigation/Search/SearchPage';
 
 function MovieDetails() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(setMovieId(id))
-  }, []);
+    dispatch(setInputValue(``));
+    dispatch(goToFirstSearchPage())
+  }, [location.pathname]);
 
   const status = useSelector(selectStatus);
   const movieDetails = useSelector(selectMovieDetails);
   const movieCast = useSelector(selectMovieCast);
   const movieCrew = useSelector(selectMovieCrew);
+  const searchResults = useSelector(selectData);
+  const searchQuery = useSelector(selectInputValue);
+
+  if (searchResults && searchQuery) {
+    return <SearchPage />
+  }
 
   switch (status) {
     case "loading":

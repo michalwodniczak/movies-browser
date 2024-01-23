@@ -1,35 +1,29 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { usePathname } from "./usePathname";
 import { Wrapper, Input, Icon } from "./styled";
-import { fetchData, selectPath,setPath} from "./searchSlice";
+import { selectInputValue, selectPath, setInputValue } from "./searchSlice";
 
 export const Search = () => {
     const location = useLocation();
     const dispatch = useDispatch();
-    const path = useSelector(selectPath);
-    const [query, setQuery] = useState("");
+    const updatePath = usePathname();
 
-    const onInputChange = ({ target }) => {
-        setQuery(target.value);
-        dispatch(fetchData({ query: target.value }));
-    };
+    const path = useSelector(selectPath);
+    const inputValue = useSelector(selectInputValue);
 
     useEffect(() => {
-        const path = location.pathname;
+        updatePath();
+    }, [location.pathname])
 
-        switch (path) {
-            case "/":
-            case "/movies":
-                dispatch(setPath("movies"));
-                break;
-
-            case "/people":
-                dispatch(setPath("people"));
-                break;
-            default:
-        };
-    }, [location.pathname, dispatch]);
+    const onInputChange = ({ target }) => {
+        const trimmedValue = target.value.trim();
+        
+        if (trimmedValue.length !== 0) {
+            dispatch(setInputValue(target.value));
+        } else dispatch(setInputValue(trimmedValue));
+    };
 
     return (
         <Wrapper>
@@ -37,7 +31,7 @@ export const Search = () => {
             <Input
                 placeholder={`Search for ${path}...`}
                 onChange={onInputChange}
-                value={query}
+                value={inputValue || ""}
             />
         </Wrapper>
     );
