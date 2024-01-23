@@ -19,12 +19,16 @@ import Pagination from '../../../common/Pagination/index';
 import Loading from '../../../common/Loading';
 import Error from '../../../common/Error';
 import AnimatedPage from '../../../common/AnimatedPage';
+import { selectData, selectInputValue, setInputValue, goToFirstSearchPage } from '../../../Navigation/Search/searchSlice';
+import { SearchPage } from '../../../Navigation/Search/SearchPage';
 
 function MovieList() {
 	const dispatch = useDispatch();
 	const currentPage = useSelector(selectPageState);
 	const popularMovies = useSelector(selectMovieList);
 	const status = useSelector(selectStatus);
+	const searchQuery = useSelector(selectInputValue);
+	const searchResults = useSelector(selectData);
 
 	const history = useHistory();
 	const location = useLocation();
@@ -42,6 +46,15 @@ function MovieList() {
 	useEffect(() => {
 		history.push(`${location.pathname}?page=${currentPage}`);
 	}, [currentPage]);
+
+	useEffect(() => {
+		dispatch(setInputValue(``));
+		dispatch(goToFirstSearchPage());
+	}, []);
+
+	if (searchResults && searchQuery) {
+		return <SearchPage />
+	};
 
 	switch (status) {
 		case "loading":
