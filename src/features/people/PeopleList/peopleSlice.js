@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createPaginationActions } from '../../../common/Pagination/createPaginationActions';
+
+const { paginationReducers } = createPaginationActions('peopleSlice');
 
 const peopleSlice = createSlice({
     name: 'people',
@@ -11,26 +14,7 @@ const peopleSlice = createSlice({
         status: "loading",
     },
     reducers: {
-        incrementPage: (state) => {
-            state.page += 1;
-            state.status = "loading";
-        },
-        decrementPage: (state) => {
-            state.page -= 1;
-            state.status = "loading";
-        },
-        goToFirstPage: (state) => {
-            state.page = 1;
-            state.status = "loading";
-        },
-        goToLastPage: (state, { payload: lastPage }) => {
-            state.page = +lastPage;
-            state.status = "loading";
-        },
-        pageNumberFromURL: (state, { payload: query }) => {
-            state.page = +query;
-            state.status = "loading";
-        },
+        ...paginationReducers,
         setPeopleList: (state, { payload: peopleList }) => {
             state.peopleList = peopleList;
             state.status = peopleList ? "success" : "error";
