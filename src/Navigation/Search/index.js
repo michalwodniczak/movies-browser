@@ -1,53 +1,29 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { usePathname } from "./usePathname";
 import { Wrapper, Input, Icon } from "./styled";
-import { fetchData, selectInputValue, selectPath, setInputValue, setPath } from "./searchSlice";
+import { selectInputValue, selectPath, setInputValue } from "./searchSlice";
 
 export const Search = () => {
     const location = useLocation();
     const dispatch = useDispatch();
+    const updatePath = usePathname();
+
     const path = useSelector(selectPath);
     const inputValue = useSelector(selectInputValue);
-    const history = useHistory();
-    const searchParams = new URLSearchParams(location.search);
-    const query = searchParams.get("search");
 
     useEffect(() => {
-        if (!query) {
-            history.push(`${location.pathname}`);
-        }
-    }, [query]);
-
-    useEffect(() => {
-        history.push(`${location.pathname}?search=${inputValue}`);
-    }, [inputValue]);
+        updatePath();
+    }, [location.pathname])
 
     const onInputChange = ({ target }) => {
-        const inputValue = target.value
-        dispatch(setInputValue(inputValue));
-        dispatch(fetchData({ query: inputValue }));
-
-        if (inputValue === "") {
-            dispatch(fetchData());
-        }
+        const trimmedValue = target.value.trim();
+        
+        if (trimmedValue.length !== 0) {
+            dispatch(setInputValue(target.value));
+        } else dispatch(setInputValue(trimmedValue));
     };
-
-    useEffect(() => {
-        const path = location.pathname;
-
-        switch (path) {
-            case "/":
-            case "/movies":
-                dispatch(setPath("movies"));
-                break;
-
-            case "/people":
-                dispatch(setPath("people"));
-                break;
-            default:
-        };
-    }, [location.pathname, dispatch]);
 
     return (
         <Wrapper>
@@ -55,7 +31,7 @@ export const Search = () => {
             <Input
                 placeholder={`Search for ${path}...`}
                 onChange={onInputChange}
-                value={inputValue}
+                value={inputValue || ""}
             />
         </Wrapper>
     );
