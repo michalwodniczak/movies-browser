@@ -28,11 +28,15 @@ function MovieList() {
 	const dispatch = useDispatch();
 
 	const paramValue = useURLParameter(paginationParamName);
+	const params = {
+	  key: "movies",
+	  value: paramValue,
+	};
 	const updatePageFromURL = useUpdatePageFromURL();
 	const replacePageParameter = useReplacePageParameter();
-
+  
 	useEffect(() => {
-		updatePageFromURL(paramValue);
+	  updatePageFromURL(params);
 	}, [paramValue]);
 
 	useEffect(() => {
