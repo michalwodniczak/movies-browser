@@ -1,21 +1,46 @@
-import { all, put, call, debounce, select } from "redux-saga/effects";
-import { fetchDataSucces, fetchDataFailure, setGenres, setInputValue, selectPath, } from "./searchSlice";
+import { all, put, call, debounce, select, takeEvery } from "redux-saga/effects";
+import {
+    fetchDataSucces,
+    fetchDataFailure,
+    setGenres,
+    setInputValue,
+    selectInputValue,
+    selectPath,
+    setTotalPages,
+    selectCurrnetPage,
+    incrementPage,
+    decrementPage,
+    goToFirstSearchPage,
+    goToLastSearchPage,
+    setTotalResults,
+} from "./searchSlice";
 import { getSearch } from "../../utils/API/getSearch";
 import { getGenreList } from "../../utils/API/getGenreList";
 import { processSearchResults } from "../../utils/API/processApiData";
 
-function* fetchDataHandler(action) {
+function* fetchDataHandler() {
     try {
-        const query = action.payload;
-        const path = yield select(selectPath);
-        const [rawSearchResults, rawGenreList] = yield all([
-            call(getSearch, query, path),
-            call(getGenreList),
+        const [query, path, page] = yield all([
+            select(selectInputValue),
+            select(selectPath),
+            select(selectCurrnetPage),
         ]);
-        const result = yield call(processSearchResults, rawSearchResults, rawGenreList, path);
+        const [rawSearchResults, rawGenreList] = yield all([
+            call(getSearch, query, path, page),
+            call(getGenreList),
+        ])
+        const result = yield call(
+            processSearchResults,
+            rawSearchResults,
+            rawGenreList,
+            path
+        );
+
         yield all([
             put(fetchDataSucces(result)),
             put(setGenres(rawGenreList)),
+            put(setTotalPages(rawSearchResults)),
+            put(setTotalResults(rawSearchResults)),
         ]);
 
     } catch (error) {
@@ -24,5 +49,14 @@ function* fetchDataHandler(action) {
 };
 
 export function* searchSaga() {
-    yield debounce(500, setInputValue.type, fetchDataHandler);
-};
+    yield debounce(500, setInputValue, fetchDataHandler);
+    yield takeEvery(
+        [
+            incrementPage,
+            decrementPage,
+            goToFirstSearchPage,
+            goToLastSearchPage,
+        ],
+        fetchDataHandler
+    )
+}
