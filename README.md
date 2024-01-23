@@ -34,48 +34,42 @@ Movies Browser is a web application developed in collaboration with the YouCode 
 Our ongoing efforts focus on refining every aspect of your interaction with our application, making it not only functional but also aesthetically enjoyable. Watch out for these exciting updates in the near future! 🚀
 
 ### Development Workflow
-#### Project Bootstrapping 🚧
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+#### `🚧 Project Bootstrapping:` This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-#### State Management 🔄
-Leveraging Redux for state management, including middleware for asynchronous operations.
+#### `🔄 State Management:` Leveraging Redux for state management, including middleware for asynchronous operations.
+#### `💅 Styling:` Utilizing JSX, Flexbox, CSS Grid, and Styled Components for an appealing and responsive design.
 
-#### Styling 💅
-Utilizing JSX, Flexbox, CSS Grid, and Styled Components for an appealing and responsive design.
+#### `⏳ Asynchronous Operations:` Implementing asynchronous functionality using Axios, Async/Await, and Redux-Saga.
 
-#### Asynchronous Operations ⏳
-Implementing asynchronous functionality using Axios, Async/Await, and Redux-Saga.
-
-#### Inspiration 💡
-This project draws inspiration from the "Frontend Developer from the Basics" course at the online programming school YouCode.
+#### `💡 Inspiration:` This project draws inspiration from the "Frontend Developer from the Basics" course at the online programming school YouCode.
 
 ## Technologies
 ### Libraries
 This project incorporates a variety of libraries, including but not limited to:
-- Create React App: provides a streamlined setup for project, including Webpack, Babel, ESLint, PostCSS, CSS Loader & Style Loader
-- React.js: the core library for building user interface
-- React DOM: handles DOM-specific methods, including rendering React elements into the DOM
-- React Spring: enables smooth and interactive animations
-- React Router (including BrowserRouter, Route, Switch, and NavLink for navigation): supports routing, facilitates navigation and URL handling
-- Redux (utilizing actions, reducers, and middleware for asynchronous operations): provides a predictable state container and enables the management of complex application states 
-- Redux-Saga: enables handling side effects in Redux, enhancing asynchronous operations
-- Redux-Toolkit (set of tools for efficient Redux development): simplifies common Redux patterns and provides tools
-- immer library in Redux: simplifies the creation of immutable data structures, used to manage state immutability
-- Axios: a promise-based HTTP client for making asynchronous requests
-- Styled components: styling components with tagged template literals, offers a dynamic and limited approach to styling
+- ***Create React App:*** provides a streamlined setup for project, including Webpack, Babel, ESLint, PostCSS, CSS Loader & Style Loader
+- ***React.js:*** the core library for building user interface
+- ***React DOM:*** handles DOM-specific methods, including rendering React elements into the DOM
+- ***React Spring:*** enables smooth and interactive animations
+- ***React Router (including BrowserRouter, Route, Switch, and NavLink for navigation):*** supports routing, facilitates navigation and URL handling
+- ***Redux (utilizing actions, reducers, and middleware for asynchronous operations):*** provides a predictable state container and enables the management of complex application states 
+- ***Redux-Saga:*** enables handling side effects in Redux, enhancing asynchronous operations
+- ***Redux-Toolkit (set of tools for efficient Redux development):*** simplifies common Redux patterns and provides tools
+- ***Immer library in Redux:*** simplifies the creation of immutable data structures, used to manage state immutability
+- ***Axios:*** a promise-based HTTP client for making asynchronous requests
+- ***Styled components:*** styling components with tagged template literals, offers a dynamic and limited approach to styling
 
 ### Technologies and Tools
 Other technologies and tools used in this project include, but are not limited to:
-- JSX (JavaScript XML): syntax extension for JS to describe what the UI should look like
-- CSS Flexbox: design of complex web layout 
-- CSS Grid: create complex grid-based layouts
-- JavaScript ES6+ Features: arrow functions, template literals, let and const declarations, destructuring assignment, promises etc.
-- Media Queries: different styles for different devices and screen sizes
-- Custom Hooks: reusable pieces of logic that are shared by multiple components
-- JavaScript generator functions (pause and resume functions), providing a mechanism for powerful asynchronous programming 
-- URL-related features like URLSearchParams, useLocation, useHistory: React Router and React Hooks for working with and manipulating the browser's URL
-- Async/Await: handling asynchronous operations 
-- API Integration: incorporating external API - The Movie Database API, to source data for the application
+- ***JSX (JavaScript XML):*** syntax extension for JS to describe what the UI should look like
+- ***CSS Flexbox:*** design of complex web layout 
+- ***CSS Grid:*** create complex grid-based layouts
+- ***JavaScript ES6+ Features:*** arrow functions, template literals, let and const declarations, destructuring assignment, promises etc.
+- ***Media Queries:*** different styles for different devices and screen sizes
+- ***Custom Hooks:*** reusable pieces of logic that are shared by multiple components
+- ***JavaScript generator functions:*** pause and resume functions, providing a mechanism for powerful asynchronous programming 
+- ***URL-related features:*** like URLSearchParams, useLocation, useHistory, React Router and React Hooks for working with and manipulating the browser's URL
+- ***Async/Await:*** handling asynchronous operations 
+- ***API Integration:*** incorporating external API - The Movie Database API, to source data for the application
 
 ### Build and Deployment
 - npm | Node Package Manager(for managing project dependencies and providing scripts for common tasks)
