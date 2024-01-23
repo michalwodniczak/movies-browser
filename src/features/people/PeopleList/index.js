@@ -19,6 +19,8 @@ import Pagination from '../../../common/Pagination';
 import Error from '../../../common/Error';
 import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
+import { selectInputValue, selectData, setInputValue, goToFirstSearchPage } from '../../../Navigation/Search/searchSlice';
+import { SearchPage } from '../../../Navigation/Search/SearchPage';
 
 function PeopleList() {
   const dispatch = useDispatch();
@@ -30,6 +32,8 @@ function PeopleList() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get('page');
+  const searchQuery = useSelector(selectInputValue);
+  const searchResults = useSelector(selectData);
 
   useEffect(() => {
     if (query < 1) {
@@ -40,9 +44,17 @@ function PeopleList() {
   }, [query]);
 
   useEffect(() => {
-
     history.push(`${location.pathname}?page=${currentPage}`);
   }, [currentPage]);
+
+  useEffect(() => {
+    dispatch(setInputValue(""));
+    dispatch(goToFirstSearchPage());
+  }, []);
+
+  if (searchQuery && searchResults) {
+    return <SearchPage />
+  }
 
   switch (status) {
     case "loading":
