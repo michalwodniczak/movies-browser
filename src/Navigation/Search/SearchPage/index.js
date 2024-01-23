@@ -4,6 +4,7 @@ import { NoResults } from "../NoResults";
 import Loading from "../../../common/Loading";
 import Error from "../../../common/Error";
 import { SearchedMovies } from "./SearchedMovies";
+import { SearchedPeople } from "./SearchedPeople";
 
 export const SearchPage = () => {
     const searchQuery = useSelector(selectInputValue);
@@ -34,6 +35,14 @@ export const SearchPage = () => {
                     searchResults={searchResults}
                     totalResults={searchTotalResults}
                 />
-            }
+            };
+
+            if (path === "people") {
+                return <SearchedPeople
+                    searchQuery={searchQuery}
+                    searchResults={searchResults}
+                    totalResults={searchTotalResults}
+                />
+            };
     };
 };
