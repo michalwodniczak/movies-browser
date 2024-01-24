@@ -4,7 +4,7 @@ import MovieList from "./features/movies/MovieList";
 import MovieDetails from "./features/movies/MovieDetails";
 import PeopleList from "./features/people/PeopleList";
 import PeopleDetails from "./features/people/PeopleDetails";
-import { toMovieList, toMovieDetails, toPeopleList, toPeopleDetails } from "./routes";
+import { toMovieList, toMovieDetails, toPeopleList, toPeopleDetails } from "./app/routes";
 
 function App() {
   return (
