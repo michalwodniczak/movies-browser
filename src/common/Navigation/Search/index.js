@@ -3,7 +3,18 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { usePathname } from "./usePathname";
 import { Wrapper, Input, Icon } from "./styled";
-import { selectInputValue, selectPath, setInputValue } from "./searchSlice";
+import { 
+    selectInputValue, 
+    selectPath, 
+    setInputValue, 
+    selectCurrnetPage 
+} from "./searchSlice";
+import { 
+    useURLParameter, 
+    useReplaceQueryParameter 
+} from "../../../utils/useURLParams";
+import paginationParamName from "../../../utils/paginationParamName";
+import queryParamName from "../../../utils/queryParamName";
 
 export const Search = () => {
     const location = useLocation();
@@ -12,6 +23,18 @@ export const Search = () => {
 
     const path = useSelector(selectPath);
     const inputValue = useSelector(selectInputValue);
+    const currentPage = useSelector(selectCurrnetPage);
+
+    const pageParam = useURLParameter(paginationParamName);
+    const query = useURLParameter(queryParamName);
+    const replaceQueryParameter = useReplaceQueryParameter();
+
+    const params = {
+        pageKey: paginationParamName,
+        pageValue: currentPage,
+        queryKey: queryParamName,
+        queryValue: inputValue
+    };
 
     useEffect(() => {
         updatePath();
@@ -19,11 +42,15 @@ export const Search = () => {
 
     const onInputChange = ({ target }) => {
         const trimmedValue = target.value.trim();
-        
+
         if (trimmedValue.length !== 0) {
             dispatch(setInputValue(target.value));
         } else dispatch(setInputValue(trimmedValue));
     };
+
+    useEffect(() => {
+        replaceQueryParameter(params);
+    }, [inputValue, currentPage, query, pageParam])
 
     return (
         <Wrapper>
