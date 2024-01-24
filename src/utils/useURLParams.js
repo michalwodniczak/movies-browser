@@ -38,6 +38,28 @@ export const useUpdatePageFromURL = () => {
     };
 };
 
+export const useReplaceQueryParameter = () => {
+    const location = useLocation();
+    const history = useHistory();
+    const queryParams = new URLSearchParams(location.search);
+
+    return ({
+        pageKey,
+        pageValue,
+        queryKey,
+        queryValue }) => {
+
+        if (!queryValue) {
+            queryParams.delete(queryKey);
+        } else {
+            queryParams.set(pageKey, pageValue);
+            queryParams.set(queryKey, queryValue);
+
+            history.push(`${location.pathname}?${queryParams.toString()}`);
+        }
+    }
+};
+
 export const useReplacePageParameter = () => {
     const location = useLocation();
     const history = useHistory();
