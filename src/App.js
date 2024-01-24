@@ -1,10 +1,10 @@
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
-import Navigation from "./Navigation";
+import { toMovieList, toMovieDetails, toPeopleList, toPeopleDetails } from "./app/routes";
+import Navigation from "./common/Navigation";
 import MovieList from "./features/movies/MovieList";
 import MovieDetails from "./features/movies/MovieDetails";
 import PeopleList from "./features/people/PeopleList";
 import PeopleDetails from "./features/people/PeopleDetails";
-import { toMovieList, toMovieDetails, toPeopleList, toPeopleDetails } from "./app/routes";
 
 function App() {
   return (

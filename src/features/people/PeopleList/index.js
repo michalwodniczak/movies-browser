@@ -20,7 +20,7 @@ import Pagination from '../../../common/Pagination';
 import Error from '../../../common/Error';
 import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
-import { selectInputValue, selectData, setInputValue, goToFirstSearchPage } from '../../../Navigation/Search/searchSlice';
+import { selectInputValue, selectData, setInputValue, goToFirstSearchPage } from '../../../common/Navigation/Search/searchSlice';
 import { SearchPage } from '../../../Navigation/Search/SearchPage';
 
 function PeopleList() {

@@ -20,7 +20,7 @@ import Pagination from '../../../common/Pagination/index';
 import Loading from '../../../common/Loading';
 import Error from '../../../common/Error';
 import AnimatedPage from '../../../common/AnimatedPage';
-import { setInputValue, goToFirstSearchPage, selectData, selectInputValue } from '../../../Navigation/Search/searchSlice';
+import { setInputValue, goToFirstSearchPage, selectData, selectInputValue } from '../../../common/Navigation/Search/searchSlice';
 import { SearchPage } from '../../../Navigation/Search/SearchPage';
 
 function MovieList() {

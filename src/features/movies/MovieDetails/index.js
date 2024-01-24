@@ -17,7 +17,7 @@ import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import Error from '../../../common/Error';
 import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
-import { goToFirstSearchPage, selectInputValue, setInputValue, selectData } from '../../../Navigation/Search/searchSlice';
+import { goToFirstSearchPage, selectInputValue, setInputValue, selectData } from '../../../common/Navigation/Search/searchSlice';
 import { SearchPage } from '../../../Navigation/Search/SearchPage';
 
 function MovieDetails() {

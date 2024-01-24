@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectData, selectInputValue, selectPath, selectStatus, selectTotalResults } from "../searchSlice";
+import { selectData, selectInputValue, selectPath, selectStatus, selectTotalResults } from "../../../common/Navigation/Search/searchSlice";
 import { NoResults } from "../NoResults";
 import Loading from "../../../common/Loading";
 import Error from "../../../common/Error";

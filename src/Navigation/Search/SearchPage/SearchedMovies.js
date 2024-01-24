@@ -5,7 +5,7 @@ import { LargeListWrapper, StyledLink } from "../../../common/Tile/styled";
 import { ListTileLarge } from "../../../common/Tile/index";
 import AnimatedPage from "../../../common/AnimatedPage";
 import Pagination from "../../../common/Pagination";
-import { incrementPage, decrementPage, goToFirstSearchPage, goToLastSearchPage, selectCurrnetPage, selectTotalPages } from "../searchSlice";
+import { incrementPage, decrementPage, goToFirstSearchPage, goToLastSearchPage, selectCurrnetPage, selectTotalPages } from "../../../common/Navigation/Search/searchSlice";
 
 export const SearchedMovies = ({ searchQuery, searchResults, totalResults }) => {
     const result = searchResults;
