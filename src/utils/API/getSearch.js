@@ -1,6 +1,7 @@
 import axios from "axios";
+import { URL, AuthorizationAndLanguage } from "./APIURLS";
 
-export const getSearch = async (query, path) => {
+export const getSearch = async (query, path, page) => {
 
     const searchPath = () => {
         switch (path) {
@@ -13,13 +14,12 @@ export const getSearch = async (query, path) => {
             default:
                 break;
         }
-    }
+    };
 
-    const apiKey = "f9cdeaf9af4ca30fda858745e2b12712";
-    const URL = `https://api.themoviedb.org/3/search/${searchPath()}?api_key=${apiKey}&query=${query}`;
+    const fetchURL = `${URL}search/${searchPath()}${AuthorizationAndLanguage}&query=${query}&page=${page}`;
 
     try {
-        const response = await axios.get(URL);
+        const response = await axios.get(fetchURL);
         return response.data;
     } catch {
         throw new Error("Failed to search");
