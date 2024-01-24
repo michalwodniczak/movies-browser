@@ -16,6 +16,9 @@ export const Container = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px){
         flex-wrap: wrap;
         justify-content: center;
+    };
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px){
         padding-bottom: 16px;
     };
 
