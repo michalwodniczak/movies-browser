@@ -25,24 +25,25 @@ function* fetchDataHandler() {
             select(selectPath),
             select(selectCurrnetPage),
         ]);
-        const [rawSearchResults, rawGenreList] = yield all([
-            call(getSearch, query, path, page),
-            call(getGenreList),
-        ])
-        const result = yield call(
-            processSearchResults,
-            rawSearchResults,
-            rawGenreList,
-            path
-        );
+        if (query !== '') {
+            const [rawSearchResults, rawGenreList] = yield all([
+                call(getSearch, query, path, page),
+                call(getGenreList),
+            ])
+            const result = yield call(
+                processSearchResults,
+                rawSearchResults,
+                rawGenreList,
+                path
+            );
 
-        yield all([
-            put(fetchDataSucces(result)),
-            put(setGenres(rawGenreList)),
-            put(setTotalPages(rawSearchResults)),
-            put(setTotalResults(rawSearchResults)),
-        ]);
-
+            yield all([
+                put(fetchDataSucces(result)),
+                put(setGenres(rawGenreList)),
+                put(setTotalPages(rawSearchResults)),
+                put(setTotalResults(rawSearchResults)),
+            ]);
+        }
     } catch (error) {
         yield put(fetchDataFailure(error.message));
     };
@@ -58,5 +59,5 @@ export function* searchSaga() {
             goToLastSearchPage,
         ],
         fetchDataHandler
-    )
-}
+    );
+};
