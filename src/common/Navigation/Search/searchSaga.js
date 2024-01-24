@@ -14,9 +14,9 @@ import {
     goToLastSearchPage,
     setTotalResults,
 } from "./searchSlice";
-import { getSearch } from "../../utils/API/getSearch";
-import { getGenreList } from "../../utils/API/getGenreList";
-import { processSearchResults } from "../../utils/API/processApiData";
+import { getSearch } from "../../../utils/API/getSearch";
+import { getGenreList } from "../../../utils/API/getGenreList";
+import { processSearchResults } from "../../../utils/API/processApiData";
 
 function* fetchDataHandler() {
     try {

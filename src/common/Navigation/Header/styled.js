@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { ReactComponent as WebsiteLogo } from "../../assets/icon-video.svg"
+import { ReactComponent as WebsiteLogo } from "../../../assets/icon-video.svg"
 
 export const StyledHeader = styled.header`
     display: flex;

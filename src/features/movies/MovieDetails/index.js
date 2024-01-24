@@ -9,16 +9,21 @@ import {
   selectStatus,
   setError,
 } from './movieSlice';
+import {
+  goToFirstSearchPage,
+  selectInputValue,
+  setInputValue,
+  selectData
+} from '../../../common/Navigation/Search/searchSlice';
 import { BackdropHeader } from './Backdrop';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from '../../../common/Section/Section';
 import { DetailsTile, ListTileSmall } from '../../../common/Tile';
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
+import { SearchPage } from '../../SearchPage';
 import Error from '../../../common/Error';
 import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
-import { goToFirstSearchPage, selectInputValue, setInputValue, selectData } from '../../../Navigation/Search/searchSlice';
-import { SearchPage } from '../../../Navigation/Search/SearchPage';
 
 function MovieDetails() {
   const { id } = useParams();

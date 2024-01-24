@@ -1,6 +1,6 @@
 import { Main } from "../../common/Main/Main";
 import { Section, SectionTitle } from "../../common/Section/Section";
-import { Wrapper } from "./SearchPage/styled";
+import { Wrapper } from "./styled";
 import { ReactComponent as IconEmpty } from "../../assets/icon-empty.svg";
 
 export const NoResults = ({ searchQuery }) => {

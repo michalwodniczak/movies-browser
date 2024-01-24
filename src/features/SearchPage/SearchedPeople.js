@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
-import { Main } from "../../../common/Main/Main";
-import { Section, SectionTitle } from "../../../common/Section/Section";
-import { SmallListWrapper, StyledLink } from "../../../common/Tile/styled";
-import { ListTileSmall, } from "../../../common/Tile";
-import Pagination from "../../../common/Pagination";
-import { selectCurrnetPage, selectTotalPages } from "../searchSlice";
-import { goToFirstSearchPage, goToLastSearchPage, incrementPage, decrementPage } from "../searchSlice";
-import AnimatedPage from "../../../common/AnimatedPage";
+import { Main } from "../../common/Main/Main";
+import { Section, SectionTitle } from "../../common/Section/Section";
+import { SmallListWrapper, StyledLink } from "../../common/Tile/styled";
+import { ListTileSmall, } from "../../common/Tile";
+import Pagination from "../../common/Pagination";
+import { selectCurrnetPage, selectTotalPages } from "../../common/Navigation/Search/searchSlice";
+import { goToFirstSearchPage, goToLastSearchPage, incrementPage, decrementPage } from "../../common/Navigation/Search/searchSlice";
+import AnimatedPage from "../../common/AnimatedPage";
 
 
 
