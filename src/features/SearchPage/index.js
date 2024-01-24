@@ -1,10 +1,16 @@
 import { useSelector } from "react-redux";
-import { selectData, selectInputValue, selectPath, selectStatus, selectTotalResults } from "../../../common/Navigation/Search/searchSlice";
-import { NoResults } from "../NoResults";
-import Loading from "../../../common/Loading";
-import Error from "../../../common/Error";
+import {
+    selectData,
+    selectInputValue,
+    selectPath,
+    selectStatus,
+    selectTotalResults
+} from "../../common/Navigation/Search/searchSlice";
+import { NoResults } from "./NoResults";
 import { SearchedMovies } from "./SearchedMovies";
 import { SearchedPeople } from "./SearchedPeople";
+import Loading from "../../common/Loading";
+import Error from "../../common/Error";
 
 export const SearchPage = () => {
     const searchQuery = useSelector(selectInputValue);
