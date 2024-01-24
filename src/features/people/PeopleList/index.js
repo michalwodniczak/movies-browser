@@ -10,18 +10,29 @@ import {
   selectStatus,
   setError,
 } from './peopleSlice';
+import { 
+  selectInputValue, 
+  selectData, 
+  setInputValue, 
+  goToFirstSearchPage 
+} from '../../../common/Navigation/Search/searchSlice';
+import { 
+  useURLParameter, 
+  useUpdatePageFromURL, 
+  useReplacePageParameter 
+} from '../../../utils/useURLParams';
+
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import { ListTileSmall } from '../../../common/Tile';
-import { useURLParameter, useUpdatePageFromURL, useReplacePageParameter } from '../../../utils/useURLParams';
+import { SearchPage } from '../../SearchPage';
 import paginationParamName from '../../../utils/paginationParamName';
 import Pagination from '../../../common/Pagination';
 import Error from '../../../common/Error';
 import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
-import { selectInputValue, selectData, setInputValue, goToFirstSearchPage } from '../../../common/Navigation/Search/searchSlice';
-import { SearchPage } from '../../../Navigation/Search/SearchPage';
+
 
 function PeopleList() {
   const currentPage = useSelector(selectPageState);
