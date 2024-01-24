@@ -10,7 +10,8 @@ import {
     selectCurrnetPage 
 } from "./searchSlice";
 import { 
-    useURLParameter, 
+    useURLParameter,
+    useUpdateQueryFromURL, 
     useReplaceQueryParameter 
 } from "../../../utils/useURLParams";
 import paginationParamName from "../../../utils/paginationParamName";
@@ -28,17 +29,22 @@ export const Search = () => {
     const pageParam = useURLParameter(paginationParamName);
     const query = useURLParameter(queryParamName);
     const replaceQueryParameter = useReplaceQueryParameter();
+    const updateQueryFromURL = useUpdateQueryFromURL();
 
     const params = {
         pageKey: paginationParamName,
         pageValue: currentPage,
         queryKey: queryParamName,
-        queryValue: inputValue
+        queryValue: inputValue,
     };
 
     useEffect(() => {
         updatePath();
-    }, [location.pathname])
+    }, [location.pathname]);
+
+    useEffect(()=>{
+        updateQueryFromURL(pageParam, query)
+    },[pageParam, query]);
 
     const onInputChange = ({ target }) => {
         const trimmedValue = target.value.trim();
@@ -50,7 +56,7 @@ export const Search = () => {
 
     useEffect(() => {
         replaceQueryParameter(params);
-    }, [inputValue, currentPage, query, pageParam])
+    }, [inputValue, currentPage, query, pageParam]);
 
     return (
         <Wrapper>
