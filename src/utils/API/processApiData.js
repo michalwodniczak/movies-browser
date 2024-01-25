@@ -1,29 +1,38 @@
 import { backdropURL, posterURL } from "./APIURLS";
 
 const getReleaseYear = (releaseDate) => {
-  if (releaseDate) {
+  if (releaseDate && typeof releaseDate === "string") {
     const date = new Date(releaseDate);
-    return date.getFullYear();
+
+    if (!isNaN(date.getFullYear())) {
+      return date.getFullYear();
+    }
+
   } return "";
 };
 
 const formatDate = (releaseDate) => {
-  if (releaseDate) {
+  if (releaseDate && typeof releaseDate === "string") {
     const date = new Date(releaseDate);
-    return date.toLocaleDateString('pl-PL');
+
+    if (!isNaN(date.getFullYear())) {
+      return date.toLocaleDateString('pl-PL');
+    }
   } return "";
-}
+};
 
 const listCounties = (productionCountries) => (
-    productionCountries || []
-  ).map(country => country.name).join(", ");
+  productionCountries || []
+).map(country => country.name).join(", ");
 
-const nameGenres = (genreIds, genres) => (
-  (genreIds || []).map(
-    (id) => genres.find(
-      (genre) => genre.id === id).name
-  )
-);
+const nameGenres = (genreIds, genres) => {
+  if (Array.isArray(genreIds)) {
+    (genreIds || []).map(
+      (id) => genres.find(
+        (genre) => genre.id === id).name
+    )
+  } return ([]);
+};
 
 const formatVote = (vote) => {
   if (vote) {
@@ -60,7 +69,7 @@ export const processMovieData = (movieDetails) => {
       releaseDate: formatDate(movieDetails.release_date),
       production: listCounties(movieDetails.production_countries),
       genres: movieDetails.genres,
-      rating: formatVote(movieDetails.vote_average),
+      rating: formatVote(+movieDetails.vote_average),
       votes: movieDetails.vote_count,
       description: movieDetails.overview,
     }
@@ -78,7 +87,7 @@ export const processMovieListData = (rawMovieList, rawGenreList) => {
       title: movie.title,
       year: getReleaseYear(movie.release_date),
       namedGenres: nameGenres(movie.genre_ids, genres),
-      rating: formatVote(movie.vote_average),
+      rating: formatVote(+movie.vote_average),
       votes: movie.vote_count,
     }
   ));
@@ -110,7 +119,7 @@ export const processPersonCreditsData = (rawCredits, rawGenreList) => {
         title: cast.title,
         year: getReleaseYear(cast.release_date),
         namedGenres: nameGenres(cast.genre_ids, genres),
-        rating: formatVote(cast.vote_average),
+        rating: formatVote(+cast.vote_average),
         votes: cast.vote_count,
         role: cast.character,
         creditID: cast.credit_id,
@@ -126,7 +135,7 @@ export const processPersonCreditsData = (rawCredits, rawGenreList) => {
         title: crew.title,
         year: getReleaseYear(crew.release_date),
         namedGenres: nameGenres(crew.genre_ids, genres),
-        rating: formatVote(crew.vote_average),
+        rating: formatVote(+crew.vote_average),
         votes: crew.vote_count,
         role: crew.job,
         creditID: crew.credit_id,
