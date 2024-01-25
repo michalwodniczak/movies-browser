@@ -3,16 +3,17 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { usePathname } from "./usePathname";
 import { Wrapper, Input, Icon } from "./styled";
-import { 
-    selectInputValue, 
-    selectPath, 
-    setInputValue, 
-    selectCurrnetPage 
+import {
+    selectInputValue,
+    selectPath,
+    setInputValue,
+    selectCurrnetPage
 } from "./searchSlice";
-import { 
+import {
     useURLParameter,
-    useUpdateQueryFromURL, 
-    useReplaceQueryParameter 
+    useUpdatePageFromURL,
+    useUpdateQueryFromURL,
+    useReplaceQueryParameter
 } from "../../../utils/useURLParams";
 import paginationParamName from "../../../utils/paginationParamName";
 import queryParamName from "../../../utils/queryParamName";
@@ -30,6 +31,7 @@ export const Search = () => {
     const query = useURLParameter(queryParamName);
     const replaceQueryParameter = useReplaceQueryParameter();
     const updateQueryFromURL = useUpdateQueryFromURL();
+    const updatePageFromURL = useUpdatePageFromURL();
 
     const params = {
         pageKey: paginationParamName,
@@ -42,9 +44,20 @@ export const Search = () => {
         updatePath();
     }, [location.pathname]);
 
-    useEffect(()=>{
-        updateQueryFromURL(pageParam, query)
-    },[pageParam, query]);
+    useEffect(() => {
+        updatePageFromURL({
+            key: "search",
+            value: +pageParam,
+        });
+    }, [pageParam]);
+
+    useEffect(() => {
+        updateQueryFromURL(query)
+    }, [query]);
+  
+    useEffect(() => {
+        replaceQueryParameter(params);
+    }, [inputValue, currentPage, query, pageParam]);
 
     const onInputChange = ({ target }) => {
         const trimmedValue = target.value.trim();
@@ -53,10 +66,6 @@ export const Search = () => {
             dispatch(setInputValue(target.value));
         } else dispatch(setInputValue(trimmedValue));
     };
-
-    useEffect(() => {
-        replaceQueryParameter(params);
-    }, [inputValue, currentPage, query, pageParam]);
 
     return (
         <Wrapper>

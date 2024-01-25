@@ -14,6 +14,7 @@ export const useURLParameter = (arg) => {
 
 export const useUpdatePageFromURL = () => {
     const dispatch = useDispatch();
+    const totalPages = useSelector(selectTotalPages);
 
     return ({ key, value }) => {
 
@@ -36,7 +37,23 @@ export const useUpdatePageFromURL = () => {
                 return dispatch(peoplePageNumber(Math.floor(value)));
             }
         };
-    };
+
+        if (key === "search") {
+            if (!value || value < 1) {
+                return dispatch(searchPageNumberFromURL(1));
+            } if (value >= (totalPages + 1)) {
+                return dispatch(searchPageNumberFromURL(totalPages));
+            } else {
+                return dispatch(searchPageNumberFromURL(Math.floor(value)));
+            };
+        };
+    }
+};
+
+export const useUpdateQueryFromURL = () => {
+    const dispatch = useDispatch();
+
+    return (query) => dispatch(setInputValue(query));
 };
 
 export const useReplacePageParameter = () => {
@@ -45,30 +62,6 @@ export const useReplacePageParameter = () => {
 
     return (value) => {
         history.push(`${location.pathname}?${paginationParamName}=${value}`);
-    };
-};
-
-export const useUpdateQueryFromURL = () => {
-    const dispatch = useDispatch();
-    const totalPages = useSelector(selectTotalPages);
-
-    return (value, query) => {
-        if (!value || value < 1) {
-            return (
-                dispatch(searchPageNumberFromURL(1)),
-                dispatch(setInputValue(query))
-            )
-        } if (value >= (totalPages + 1)) {
-            return (
-                dispatch(searchPageNumberFromURL(totalPages)),
-                dispatch(setInputValue(query))
-            )
-        } else {
-            return (
-                dispatch(searchPageNumberFromURL(Math.floor(value))),
-                dispatch(setInputValue(query))
-            )
-        };
     };
 };
 
