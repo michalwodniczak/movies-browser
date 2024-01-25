@@ -12,6 +12,7 @@ import {
 import { getPopularMovies } from "../../../utils/API/getPopularMovies";
 import { getGenreList } from "../../../utils/API/getGenreList";
 import { processMovieListData } from "../../../utils/API/processApiData";
+import { saveDataInSessionStorage } from "../../../utils/genresSessionStorage";
 
 function* fetchMovieListHandler() {
     try {
@@ -22,6 +23,7 @@ function* fetchMovieListHandler() {
         ]);
         const movies = yield call(processMovieListData, rawMovieList, rawGenreList);
         yield all([
+            call(saveDataInSessionStorage, rawGenreList),
             put(setMovieList(movies)),
             put(setGenres(rawGenreList)),
         ]);
