@@ -141,17 +141,13 @@ Our application relies on The Movie Database (TMDb) API to fetch movie and actor
 ### Updating the API Key in the Code
 To integrate your API key with the codebase, follow these steps:
 1. Open the project in your preferred code editor.
-2. Locate the `APIURLS.js` file in the `src/utils/API` directory.
-3. Replace the placeholder string with your TMDb API key.
+2. Locate the `apiKey.js` file in the `src/utils` directory.
+3. Replace the exported string with your TMDb API key.
 
 ```javascript
-// src/utils/API/APIURLS.js
+// src/utils/apiKey.js
 
-export const URL = "https://api.themoviedb.org/3/";
-export const URLImages = "https://image.tmdb.org/t/p/";
-export const apiKey = "YOUR_API_KEY"; // Replace with your TMDb API key
-
-export const AuthorizationAndLanguage = `?api_key=${apiKey}&language=en-US`;
+export default "YOUR_API_KEY"; // Replace with your TMDb API key
 ```
 
 ### Running the Application
