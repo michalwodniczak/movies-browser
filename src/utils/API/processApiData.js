@@ -1,39 +1,46 @@
 import { backdropURL, posterURL } from "./APIURLS";
 
 const getReleaseYear = (releaseDate) => {
-  const date = new Date(releaseDate);
-  return date.getFullYear();
+  if (releaseDate) {
+    const date = new Date(releaseDate);
+    return date.getFullYear();
+  } return "";
 };
 
 const formatDate = (releaseDate) => {
-  const date = new Date(releaseDate);
-  return date.toLocaleDateString('pl-PL');
+  if (releaseDate) {
+    const date = new Date(releaseDate);
+    return date.toLocaleDateString('pl-PL');
+  } return "";
 }
 
-const listCounties = (productionCountries) => productionCountries.map(
-  country => country.name).join(", ");
+const listCounties = (productionCountries) => (
+    productionCountries || []
+  ).map(country => country.name).join(", ");
 
 const nameGenres = (genreIds, genres) => (
-  genreIds.map(
+  (genreIds || []).map(
     (id) => genres.find(
       (genre) => genre.id === id).name
   )
 );
 
 const formatVote = (vote) => {
-  const roundedNumber = vote.toFixed(1);
-  const localeString = (number) => number.toLocaleString(
-    'pl-PL',
-    {
-      maximumFractionDigits: 1,
-    }
-  );
+  if (vote) {
+    const roundedNumber = vote.toFixed(1);
+    const localeString = (number) => number.toLocaleString(
+      'pl-PL',
+      {
+        maximumFractionDigits: 1,
+      }
+    );
 
-  if (Number.isInteger(vote) || Number.isInteger(+roundedNumber)) {
-    return `${localeString(vote)},0`
-  } else {
-    return localeString(vote)
-  };
+    if (Number.isInteger(vote) || Number.isInteger(+roundedNumber)) {
+      return `${localeString(vote)},0`
+    } else {
+      return localeString(vote)
+    };
+  } return "";
 };
 
 const filterOutTv = (credits) => credits.filter(
@@ -91,8 +98,8 @@ export const processPersonData = (rawDetails) => {
 };
 
 export const processPersonCreditsData = (rawCredits, rawGenreList) => {
-  const castCredits = rawCredits.cast;
-  const crewCredits = rawCredits.crew;
+  const castCredits = (rawCredits.cast || []);
+  const crewCredits = (rawCredits.crew || []);
   const genres = rawGenreList.genres;
 
   const cast = filterOutTv(castCredits).map(
