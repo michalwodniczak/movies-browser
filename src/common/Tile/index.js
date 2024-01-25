@@ -186,7 +186,7 @@ export const DetailsTile = (
 						</TileDataContent>
 					</TileData>
 				}
-				{movieTile && movieTile.length > 0 && (
+				{movieTile &&
 					<>
 						<TileTags>
 							{tags.map(({ name }) => (
@@ -200,7 +200,7 @@ export const DetailsTile = (
 							isOnMainTile={isOnMainTile}
 						/>
 					</>
-				)}
+				}
 			</DetailTileContent>
 			{description &&
 				<Description>
