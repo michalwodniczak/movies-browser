@@ -28,16 +28,12 @@ This project enriched our skills in collaborative teamwork, focusing on effectiv
 - **Enhanced UI - Hover Styling:** Elevate user engagement with dynamic styling as you hover over movies, actors, or buttons, offering a visually pleasing experience.
 - **Responsiveness:** Ensuring a seamless experience on various devices, from mobile phones to tablets.
 - **Loading and Error States:** Our app gracefully handles loading and error states for a smoother user experience.
-<div align="center">
-<img src="https://raw.githubusercontent.com/bedicooper/movies-browser/main/readme_imgError.png" alt="error png" width="300">
-</div>
+<img src="https://raw.githubusercontent.com/bedicooper/movies-browser/main/readme_imgError.png" alt="error png" width="500">
+
 - **No Results Page:** We are actively developing a dedicated page for instances where search queries yield no results. This feature aims to provide users with a clear and informative page, guiding them effectively when their search doesn't match any records.
 - **Search Functionality:** Utilize the input for searching movies based on query parameters.
-<div align="center">
 
 ![gif](https://raw.githubusercontent.com/bedicooper/movies-browser/main/readme_gifSearch.gif)
-
-</div>
 
 Our ongoing efforts focus on refining every aspect of your interaction with our application, making it not only functional but also aesthetically enjoyable. Watch out for these exciting updates in the near future! 🚀
 
