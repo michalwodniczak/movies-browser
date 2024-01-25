@@ -83,35 +83,39 @@ function MovieDetails() {
             />
             <Section>
               <SectionTitle>Cast</SectionTitle>
-              <SmallListWrapper>
-                {movieCast.slice(0, 12).map((actor) => (
-                  <li key={actor.credit_id}>
-                    <StyledLink to={`/people/${actor.id}`}>
-                      <ListTileSmall
-                        posterPath={actor.profile_path}
-                        title={actor.name}
-                        subtitle={actor.character}
-                      />
-                    </StyledLink>
-                  </li>
-                ))}
-              </SmallListWrapper>
+              {movieCast && movieCast.length > 0 && (
+                <SmallListWrapper>
+                  {movieCast.slice(0, 12).map((actor) => (
+                    <li key={actor.credit_id}>
+                      <StyledLink to={`/people/${actor.id}`}>
+                        <ListTileSmall
+                          posterPath={actor.profile_path}
+                          title={actor.name}
+                          subtitle={actor.character}
+                        />
+                      </StyledLink>
+                    </li>
+                  ))}
+                </SmallListWrapper>
+              )}
             </Section>
             <Section>
               <SectionTitle>Crew</SectionTitle>
-              <SmallListWrapper>
-                {movieCrew.slice(0, 6).map((crew) => (
-                  <li key={crew.credit_id}>
-                    <StyledLink to={`/people/${crew.id}`}>
-                      <ListTileSmall
-                        posterPath={crew.profile_path}
-                        title={crew.name}
-                        subtitle={crew.job}
-                      />
-                    </StyledLink>
-                  </li>
-                ))}
-              </SmallListWrapper>
+              {movieCrew && movieCrew.length > 0 && (
+                <SmallListWrapper>
+                  {movieCrew.slice(0, 6).map((crew) => (
+                    <li key={crew.credit_id}>
+                      <StyledLink to={`/people/${crew.id}`}>
+                        <ListTileSmall
+                          posterPath={crew.profile_path}
+                          title={crew.name}
+                          subtitle={crew.job}
+                        />
+                      </StyledLink>
+                    </li>
+                  ))}
+                </SmallListWrapper>
+              )}
             </Section>
           </Main>
         </AnimatedPage>

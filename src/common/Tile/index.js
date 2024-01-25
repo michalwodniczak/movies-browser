@@ -177,13 +177,13 @@ export const DetailsTile = (
 				{
 					!description &&
 					<TileData>
-					<TileDataContent>
-						{
-							movieTile
-								? `No description available.`
-								: `No biography available.`
-						}
-					</TileDataContent>
+						<TileDataContent>
+							{
+								movieTile
+									? `No description available.`
+									: `No biography available.`
+							}
+						</TileDataContent>
 					</TileData>
 				}
 				{movieTile &&

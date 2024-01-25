@@ -10,8 +10,13 @@ export const getPeopleDetails = async ({ personId }) => {
     );
 
     if (!response.ok) {
-      throw new Error(response.statusText);
+      if (response.status === 404) {
+        throw { status: 404, message: 'Person not found' };
+      } else {
+        throw new Error(response.statusText);
+      }
     }
+
     return await response.json();
 
   } catch (error) {
@@ -25,9 +30,12 @@ export const getPeopleCredits = async ({ personId }) => {
       `${URL}person/${personId}/combined_credits${AuthorizationAndLanguage}`
     );
 
-    if (!response.ok) {
-      new Error(response.statusText);
+    if (response.status === 404) {
+      throw { status: 404, message: 'Person credits not found' };
+    } else if (!response.ok) {
+      throw new Error(response.statusText);
     }
+
     return await response.json();
 
   } catch (error) {
