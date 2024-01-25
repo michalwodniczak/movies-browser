@@ -27,9 +27,11 @@ const listCounties = (productionCountries) => (
 
 const nameGenres = (genreIds, genres) => {
   if (Array.isArray(genreIds)) {
-    (genreIds || []).map(
-      (id) => genres.find(
-        (genre) => genre.id === id).name
+    return (
+      (genreIds || []).map(
+        (id) => genres.find(
+          (genre) => genre.id === id).name
+      )
     )
   } return ([]);
 };
