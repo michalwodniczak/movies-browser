@@ -1,20 +1,23 @@
-// import { genresURL } from "./APIURLS";
-
-const JSON_URL = "https://raw.githubusercontent.com/bedicooper/movies-browser/main/public/genres.json";
+import { genresURL } from "./APIURLS";
+import { sessionStorageKey, getDataFromSessionStorage } from "../genresSessionStorage";
 
 export const getGenreList = async () => {
     try {
-        // const response = await fetch(genresURL);
-        const response = await fetch(JSON_URL);
+        const sessionStorageState = sessionStorage.getItem(sessionStorageKey);
 
-        if (!response.ok) {
-            throw new Error(response.statusText);
+        if (sessionStorageState !== null) {
+            return await getDataFromSessionStorage();
+        } else {
+            const response = await fetch(genresURL);
+
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+
+            return await response.json();
+
         }
-
-        const jsonData = await response.json();
-        return jsonData;
-
     } catch (error) {
         throw error;
-    }
+    };
 };
