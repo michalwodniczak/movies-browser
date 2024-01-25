@@ -16,6 +16,7 @@ import {
     processPersonData,
     processPersonCreditsData,
 } from "../../../utils/API/processApiData";
+import { saveDataInSessionStorage } from "../../../utils/genresSessionStorage";
 
 function* fetchPersonDetailsHandler() {
     try {
@@ -30,6 +31,7 @@ function* fetchPersonDetailsHandler() {
             call(processPersonCreditsData, rawCredits, rawGenreList),
         ]);
         yield all([
+            call(saveDataInSessionStorage, rawGenreList),
             put(fetchDataSuccess(details)),
             put(setPeopleCredits(credits)),
             put(setGenres(rawGenreList)),
