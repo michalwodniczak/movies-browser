@@ -10,8 +10,13 @@ export const getMovieDetails = async (id) => {
     );
 
     if (!response.ok) {
-      new Error(response.statusText);
+      if (response.status === 404) {
+        throw { status: 404, message: 'Movie not found' };
+      } else {
+        throw new Error(response.statusText);
+      }
     }
+
     return await response.json();
 
   } catch (error) {
@@ -25,9 +30,12 @@ export const getMovieCredits = async (id) => {
       `${URL}movie/${id}/credits${AuthorizationAndLanguage}`
     );
 
-    if (!response.ok) {
-      new Error(response.statusText);
+    if (response.status === 404) {
+      throw { status: 404, message: 'Movie credits not found' };
+    } else if (!response.ok) {
+      throw new Error(response.statusText);
     }
+
     return await response.json();
 
   } catch (error) {
