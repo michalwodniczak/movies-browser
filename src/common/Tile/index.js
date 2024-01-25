@@ -177,16 +177,16 @@ export const DetailsTile = (
 				{
 					!description &&
 					<TileData>
-					<TileDataContent>
-						{
-							movieTile
-								? `No description available.`
-								: `No biography available.`
-						}
-					</TileDataContent>
+						<TileDataContent>
+							{
+								movieTile
+									? `No description available.`
+									: `No biography available.`
+							}
+						</TileDataContent>
 					</TileData>
 				}
-				{movieTile &&
+				{movieTile && movieTile.length > 0 && (
 					<>
 						<TileTags>
 							{tags.map(({ name }) => (
@@ -200,7 +200,7 @@ export const DetailsTile = (
 							isOnMainTile={isOnMainTile}
 						/>
 					</>
-				}
+				)}
 			</DetailTileContent>
 			{description &&
 				<Description>
