@@ -5,7 +5,7 @@ Welcome to our Movies Browser project! We're excited to have you here at the ear
 ## Demo
 Explore our current progress on the live demo: https://bedicooper.github.io/movies-browser/
 
-![gif](https://raw.githubusercontent.com/bedicooper/movies-browser/main/readme_gifAnimation.gif)
+![gif](https://raw.githubusercontent.com/bedicooper/movies-browser/main/readme_gifMain.gif)
 
 ## Authors
 - [Patrycja Gomza](https://github.com/patrycja-gomza)
@@ -14,7 +14,9 @@ Explore our current progress on the live demo: https://bedicooper.github.io/movi
 
 ## General Info
 ### Overview
-Movies Browser is a web application developed in collaboration with the YouCode online school. Our teamwork is organized using Scrum, and we manage tasks through Trello. For design, we utilize Figma, and data for the app is sourced from The Movie Database API.
+Movies Browser is a web application created as part of a 4-week group project, marking the culmination of our Frontend Developer course at the YouCode online programming school. Our teamwork was organized using Scrum, and we managed tasks through Trello. For design, we utilized Figma, and data for the application is sourced from The Movie Database API.
+
+This project enriched our skills in collaborative teamwork, focusing on effective communication, code reviews within the team, creating and reviewing pull requests, and working on code under time pressure to meet project deadlines. We also gained valuable experience in Scrum methodology, participated in daily stand-ups within our team, and engaged in weekly check-ins with our mentor, who assumed the role of the client/product owner, evaluating our progress. This comprehensive experience has allowed us to grow as developers and navigate various aspects of real-world project development.
 
 ### Features
 - **Navigation:** Seamlessly navigate between movies and people sections for a well-organized exploration of both cinematic worlds.
@@ -26,11 +28,12 @@ Movies Browser is a web application developed in collaboration with the YouCode 
 - **Enhanced UI - Hover Styling:** Elevate user engagement with dynamic styling as you hover over movies, actors, or buttons, offering a visually pleasing experience.
 - **Responsiveness:** Ensuring a seamless experience on various devices, from mobile phones to tablets.
 - **Loading and Error States:** Our app gracefully handles loading and error states for a smoother user experience.
-![error png](https://raw.githubusercontent.com/bedicooper/movies-browser/main/readme_imgError.png)
+<img src="https://raw.githubusercontent.com/bedicooper/movies-browser/main/readme_imgError.png" alt="error png" width="500">
 
-### What We Are Working On
 - **No Results Page:** We are actively developing a dedicated page for instances where search queries yield no results. This feature aims to provide users with a clear and informative page, guiding them effectively when their search doesn't match any records.
 - **Search Functionality:** Utilize the input for searching movies based on query parameters.
+
+![gif](https://raw.githubusercontent.com/bedicooper/movies-browser/main/readme_gifSearch.gif)
 
 Our ongoing efforts focus on refining every aspect of your interaction with our application, making it not only functional but also aesthetically enjoyable. Watch out for these exciting updates in the near future! 🚀
 
@@ -138,17 +141,13 @@ Our application relies on The Movie Database (TMDb) API to fetch movie and actor
 ### Updating the API Key in the Code
 To integrate your API key with the codebase, follow these steps:
 1. Open the project in your preferred code editor.
-2. Locate the `APIURLS.js` file in the `src/utils/API` directory.
-3. Replace the placeholder string with your TMDb API key.
+2. Locate the `apiKey.js` file in the `src/utils` directory.
+3. Replace the exported string with your TMDb API key.
 
 ```javascript
-// src/utils/API/APIURLS.js
+// src/utils/apiKey.js
 
-export const URL = "https://api.themoviedb.org/3/";
-export const URLImages = "https://image.tmdb.org/t/p/";
-export const apiKey = "YOUR_API_KEY"; // Replace with your TMDb API key
-
-export const AuthorizationAndLanguage = `?api_key=${apiKey}&language=en-US`;
+export default "YOUR_API_KEY"; // Replace with your TMDb API key
 ```
 
 ### Running the Application
