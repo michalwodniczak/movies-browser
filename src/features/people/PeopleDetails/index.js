@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 import {
   selectStatus,
   selectDetails,
@@ -28,6 +28,7 @@ const PersonDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getDetailsForPerson({ personId: id }));
@@ -36,6 +37,7 @@ const PersonDetails = () => {
   useEffect(() => {
     dispatch(setInputValue(``));
     dispatch(goToFirstSearchPage());
+    history.push(`${location.pathname}`);
   }, [location.pathname]);
 
   const details = useSelector(selectDetails);

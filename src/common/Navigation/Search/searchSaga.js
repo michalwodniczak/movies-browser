@@ -13,6 +13,7 @@ import {
     goToFirstSearchPage,
     goToLastSearchPage,
     setTotalResults,
+    searchPageNumberFromURL,
 } from "./searchSlice";
 import { getSearch } from "../../../utils/API/getSearch";
 import { getGenreList } from "../../../utils/API/getGenreList";
@@ -57,6 +58,7 @@ export function* searchSaga() {
             decrementPage,
             goToFirstSearchPage,
             goToLastSearchPage,
+            searchPageNumberFromURL,
         ],
         fetchDataHandler
     );

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setMovieId,
@@ -29,11 +29,13 @@ function MovieDetails() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(setMovieId(id))
     dispatch(setInputValue(``));
     dispatch(goToFirstSearchPage())
+    history.push(`${location.pathname}`);
   }, [location.pathname]);
 
   const status = useSelector(selectStatus);

@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+// import { createPaginationActions } from "../../Pagination/createPaginationActions";
+
+// const { paginationReducers } = createPaginationActions('searchSlice');
 
 const searchSlice = createSlice({
     name: "search",
@@ -15,10 +18,6 @@ const searchSlice = createSlice({
     reducers: {
         setPath: (state, { payload: path }) => {
             state.path = path;
-        },
-        setLoading: (state, { payload: data }) => {
-            state.status = "loading"
-            state.data = data;
         },
         setGenres: (state, { payload: genresList }) => {
             state.genres = genresList.genres;
@@ -42,6 +41,7 @@ const searchSlice = createSlice({
             state.status = "loading"
             state.inputValue = query;
         },
+        // ...paginationReducers,
         incrementPage: (state) => {
             state.page += 1;
             state.status = "loading";
@@ -57,7 +57,11 @@ const searchSlice = createSlice({
         goToLastSearchPage: (state, { payload: lastPage }) => {
             state.page = +lastPage;
             state.status = "loading";
-        }
+        },
+        searchPageNumberFromURL: (state, { payload: query }) => {
+            state.page = +query;
+            state.status = "loading";
+        },
     },
 });
 
@@ -77,13 +81,13 @@ export const {
     fetchDataSucces,
     setInputValue,
     setGenres,
-    setLoading,
     setTotalPages,
     setTotalResults,
     incrementPage,
     decrementPage,
     goToFirstSearchPage,
     goToLastSearchPage,
+    searchPageNumberFromURL,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;
