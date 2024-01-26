@@ -3,9 +3,15 @@ import { Main } from "../../common/Main/Main";
 import { Section, SectionTitle } from "../../common/Section/Section";
 import { SmallListWrapper, StyledLink } from "../../common/Tile/styled";
 import { ListTileSmall, } from "../../common/Tile";
+import { 
+    selectCurrnetPage, 
+    selectTotalPages,
+    goToFirstSearchPage, 
+    goToLastSearchPage, 
+    incrementPage, 
+    decrementPage 
+} from "../../common/Navigation/Search/searchSlice";
 import Pagination from "../../common/Pagination";
-import { selectCurrnetPage, selectTotalPages } from "../../common/Navigation/Search/searchSlice";
-import { goToFirstSearchPage, goToLastSearchPage, incrementPage, decrementPage } from "../../common/Navigation/Search/searchSlice";
 import AnimatedPage from "../../common/AnimatedPage";
 
 
