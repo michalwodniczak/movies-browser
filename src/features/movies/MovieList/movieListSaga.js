@@ -1,8 +1,8 @@
 import { all, call, put, takeEvery, select } from "redux-saga/effects";
 import {
-    incrementPage,
-    decrementPage,
-    goToFirstPage,
+    // incrementPage,
+    // decrementPage,
+    // goToFirstPage,
     pageNumberFromURL,
     selectPageState,
     setMovieList,
@@ -35,12 +35,5 @@ function* fetchMovieListHandler() {
 };
 
 export function* watchFetchMovieList() {
-    yield takeEvery(
-        [
-            incrementPage,
-            decrementPage,
-            goToFirstPage,
-            pageNumberFromURL
-        ],
-        fetchMovieListHandler);
+    yield takeEvery(pageNumberFromURL, fetchMovieListHandler);
 };
