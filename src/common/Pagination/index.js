@@ -1,6 +1,4 @@
 import { useHistory, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectPageState } from '../../features/movies/MovieList/movieListSlice';
 import {
 	Wrapper,
 	StyledButton,
@@ -15,9 +13,9 @@ import {
 } from './styled';
 import pageLimit from "../../utils/pageLimit";
 import paginationParamName from '../../utils/paginationParamName';
+import { useEffect } from 'react';
 
 const Pagination = ({ totalPages }) => {
-	const currentPage = useSelector(selectPageState);
 	const location = useLocation();
 	const history = useHistory();
 
@@ -25,6 +23,30 @@ const Pagination = ({ totalPages }) => {
 	const pageParam = searchParams.get(paginationParamName);
 
 	const maxPages = totalPages || pageLimit;
+
+	const limitedPageParam = () => {
+		if (+pageParam < 1 || !pageParam) {
+			return 1;
+		} if (+pageParam >= (maxPages + 1)) {
+			return maxPages;
+		} else {
+			return Math.floor(+pageParam);
+		};
+	};
+
+	useEffect(() => {
+		if (+pageParam < 1) {
+			return (
+				searchParams.set(paginationParamName, 1),
+				history.push(`${location.pathname}?${searchParams.toString()}`)
+			);
+		} if (+pageParam >= (maxPages + 1)) {
+			return (
+				searchParams.set(paginationParamName, maxPages),
+				history.push(`${location.pathname}?${searchParams.toString()}`)
+			);
+		};
+	}, [pageParam])
 
 	const onIncrement = () => {
 		searchParams.set(paginationParamName, +pageParam + 1);
@@ -50,7 +72,7 @@ const Pagination = ({ totalPages }) => {
 		<Wrapper>
 			<StyledButton
 				onClick={onToFirstPage}
-				disabled={currentPage < 2}
+				disabled={+pageParam < 2}
 			>
 				<ChevronLeft />
 				<MobileChevronLeft />
@@ -58,27 +80,27 @@ const Pagination = ({ totalPages }) => {
 			</StyledButton>
 			<StyledButton
 				onClick={onDecrement}
-				disabled={currentPage < 2}
+				disabled={+pageParam < 2}
 			>
 				<ChevronLeft />
 				<ButtonText>Previous</ButtonText>
 			</StyledButton>
 			<TextContainer>
 				<RegularText>Page</RegularText>
-				<BoldText>{currentPage}</BoldText>
+				<BoldText>{limitedPageParam()}</BoldText>
 				<RegularText>of</RegularText>
 				<BoldText>{maxPages}</BoldText>
 			</TextContainer>
 			<StyledButton
 				onClick={onIncrement}
-				disabled={currentPage > (maxPages - 1)}
+				disabled={+pageParam > (maxPages - 1)}
 			>
 				<ButtonText>Next</ButtonText>
 				<Chevron />
 			</StyledButton>
 			<StyledButton
 				onClick={onToLastPage}
-				disabled={currentPage > (maxPages - 1)}
+				disabled={+pageParam > (maxPages - 1)}
 			>
 				<ButtonText>Last</ButtonText>
 				<Chevron />
