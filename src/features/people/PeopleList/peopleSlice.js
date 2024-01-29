@@ -27,10 +27,6 @@ const peopleSlice = createSlice({
 });
 
 export const {
-    incrementPage,
-    decrementPage,
-    goToFirstPage,
-    goToLastPage,
     pageNumberFromURL,
     setPeopleList,
     setError,
