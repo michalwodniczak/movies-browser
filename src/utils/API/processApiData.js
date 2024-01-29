@@ -1,4 +1,6 @@
 import { backdropURL, posterURL } from "./APIURLS";
+import popularMoviesPathName from "../popularMoviesPathName";
+import popularPeoplePathName from "../popularPeoplePathName";
 
 const getReleaseYear = (releaseDate) => {
   if (releaseDate && typeof releaseDate === "string") {
@@ -156,9 +158,9 @@ export const processPersonCreditsData = (rawCredits, rawGenreList) => {
 export const processSearchResults = (rawSearchResults, rawGenreList, path) => {
 
   switch (path) {
-    case "movies":
+    case popularMoviesPathName:
       return processMovieListData(rawSearchResults, rawGenreList);
-    case "people":
+    case popularPeoplePathName:
       return rawSearchResults.results;
     default:
       return {};

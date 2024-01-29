@@ -4,6 +4,9 @@ import { pageNumberFromURL as moviesPageNumber } from '../features/movies/MovieL
 import { pageNumberFromURL as peoplePageNumber } from '../features/people/PeopleList/peopleSlice';
 import { searchPageNumberFromURL, selectTotalPages, setInputValue } from '../common/Navigation/Search/searchSlice';
 import paginationParamName from './paginationParamName';
+import queryParamName from './queryParamName';
+import popularMoviesPathName from './popularMoviesPathName';
+import popularPeoplePathName from './popularPeoplePathName';
 import pageLimit from './pageLimit';
 
 export const useURLParameter = (arg) => {
@@ -18,7 +21,7 @@ export const useUpdatePageFromURL = () => {
 
     return ({ key, value }) => {
 
-        if (key === "movies") {
+        if (key === popularMoviesPathName) {
             if (value < 1 || !value) {
                 return dispatch(moviesPageNumber(1));
             } if (value >= (pageLimit + 1)) {
@@ -28,7 +31,7 @@ export const useUpdatePageFromURL = () => {
             }
         };
 
-        if (key === "people") {
+        if (key === popularPeoplePathName) {
             if (value < 1 || !value) {
                 return dispatch(peoplePageNumber(1));
             } if (value >= (pageLimit + 1)) {
@@ -38,7 +41,7 @@ export const useUpdatePageFromURL = () => {
             }
         };
 
-        if (key === "search") {
+        if (key === queryParamName) {
             if (!value || value < 1) {
                 return dispatch(searchPageNumberFromURL(1));
             } if (totalPages !== 0 && value >= (totalPages + 1)) {

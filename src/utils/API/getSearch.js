@@ -1,14 +1,16 @@
 import axios from "axios";
 import { URL, AuthorizationAndLanguage } from "./APIURLS";
+import popularMoviesPathName from "../popularMoviesPathName";
+import popularPeoplePathName from "../popularPeoplePathName";
 
 export const getSearch = async (query, path, page) => {
 
     const searchPath = () => {
         switch (path) {
-            case "movies":
+            case popularMoviesPathName:
                 return "movie";
 
-            case "people":
+            case popularPeoplePathName:
                 return "person";
 
             default:
