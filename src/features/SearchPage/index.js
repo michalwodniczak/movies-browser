@@ -4,11 +4,13 @@ import {
     selectInputValue,
     selectPath,
     selectStatus,
-    selectTotalResults
+    selectTotalResults,
 } from "../../common/Navigation/Search/searchSlice";
 import { NoResults } from "./NoResults";
 import { SearchedMovies } from "./SearchedMovies";
 import { SearchedPeople } from "./SearchedPeople";
+import popularMoviesPathName from "../../utils/popularMoviesPathName";
+import popularPeoplePathName from "../../utils/popularPeoplePathName";
 import Loading from "../../common/Loading";
 import Error from "../../common/Error";
 
@@ -35,7 +37,7 @@ export const SearchPage = () => {
             return <Error />;
 
         default:
-            if (path === "movies") {
+            if (path === popularMoviesPathName) {
                 return <SearchedMovies
                     searchQuery={searchQuery}
                     searchResults={searchResults}
@@ -43,7 +45,7 @@ export const SearchPage = () => {
                 />
             };
 
-            if (path === "people") {
+            if (path === popularPeoplePathName) {
                 return <SearchedPeople
                     searchQuery={searchQuery}
                     searchResults={searchResults}
