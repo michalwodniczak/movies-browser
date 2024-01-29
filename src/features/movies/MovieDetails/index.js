@@ -10,7 +10,6 @@ import {
   setError,
 } from './movieSlice';
 import {
-  goToFirstSearchPage,
   selectInputValue,
   setInputValue,
   selectData
@@ -34,7 +33,6 @@ function MovieDetails() {
   useEffect(() => {
     dispatch(setMovieId(id))
     dispatch(setInputValue(``));
-    dispatch(goToFirstSearchPage())
     history.push(`${location.pathname}`);
   }, [location.pathname]);
 

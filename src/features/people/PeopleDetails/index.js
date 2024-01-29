@@ -10,7 +10,6 @@ import {
   setError,
 } from "./peopleDetailsSlice";
 import {
-  goToFirstSearchPage,
   selectInputValue,
   setInputValue,
   selectData
@@ -36,7 +35,6 @@ const PersonDetails = () => {
 
   useEffect(() => {
     dispatch(setInputValue(``));
-    dispatch(goToFirstSearchPage());
     history.push(`${location.pathname}`);
   }, [location.pathname]);
 
