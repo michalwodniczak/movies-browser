@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createPaginationActions } from '../../Pagination/createPaginationActions';
+
+const { paginationReducers } = createPaginationActions('movieListSlice');
 
 const searchSlice = createSlice({
     name: "search",
@@ -13,6 +16,7 @@ const searchSlice = createSlice({
         page: 1,
     },
     reducers: {
+        ...paginationReducers,
         setPath: (state, { payload: path }) => {
             state.path = path;
         },
@@ -38,10 +42,6 @@ const searchSlice = createSlice({
             state.status = "loading"
             state.inputValue = query;
         },
-        searchPageNumberFromURL: (state, { payload: query }) => {
-            state.page = +query;
-            state.status = "loading";
-        },
     },
 });
 
@@ -63,7 +63,7 @@ export const {
     setGenres,
     setTotalPages,
     setTotalResults,
-    searchPageNumberFromURL,
+    pageNumberFromURL: searchPageNumberFromURL,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;
