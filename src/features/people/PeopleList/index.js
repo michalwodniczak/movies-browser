@@ -23,7 +23,7 @@ import { ListTileSmall } from '../../../common/Tile';
 import { SearchPage } from '../../SearchPage';
 import paginationParamName from '../../../utils/paginationParamName';
 import queryParamName from '../../../utils/queryParamName';
-import popularPeoplePathName from '../../../utils/popularMoviesPathName';
+import popularPeoplePathName from '../../../utils/popularPeoplePathName';
 import Pagination from '../../../common/Pagination';
 import Error from '../../../common/Error';
 import Loading from '../../../common/Loading';
