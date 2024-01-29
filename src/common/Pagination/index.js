@@ -1,4 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectPageState } from '../../features/movies/MovieList/movieListSlice';
 import {
 	Wrapper,
 	StyledButton,
@@ -12,22 +14,42 @@ import {
 	BoldText,
 } from './styled';
 import pageLimit from "../../utils/pageLimit";
+import paginationParamName from '../../utils/paginationParamName';
 
-const Pagination = ({
-	currentPage,
-	goToFirstPage,
-	goToLastPage,
-	decrementPage,
-	incrementPage,
-	totalPages,
-}) => {
-	const dispatch = useDispatch();
+const Pagination = ({ totalPages }) => {
+	const currentPage = useSelector(selectPageState);
+	const location = useLocation();
+	const history = useHistory();
+
+	const searchParams = new URLSearchParams(location.search);
+	const pageParam = searchParams.get(paginationParamName);
+
 	const maxPages = totalPages || pageLimit;
+
+	const onIncrement = () => {
+		searchParams.set(paginationParamName, +pageParam + 1);
+		history.push(`${location.pathname}?${searchParams.toString()}`);
+	};
+
+	const onDecrement = () => {
+		searchParams.set(paginationParamName, +pageParam - 1);
+		history.push(`${location.pathname}?${searchParams.toString()}`);
+	};
+
+	const onToFirstPage = () => {
+		searchParams.set(paginationParamName, 1);
+		history.push(`${location.pathname}?${searchParams.toString()}`);
+	};
+
+	const onToLastPage = () => {
+		searchParams.set(paginationParamName, maxPages);
+		history.push(`${location.pathname}?${searchParams.toString()}`);
+	};
 
 	return (
 		<Wrapper>
 			<StyledButton
-				onClick={() => dispatch(goToFirstPage())}
+				onClick={onToFirstPage}
 				disabled={currentPage < 2}
 			>
 				<ChevronLeft />
@@ -35,7 +57,7 @@ const Pagination = ({
 				<ButtonText>First</ButtonText>
 			</StyledButton>
 			<StyledButton
-				onClick={() => dispatch(decrementPage())}
+				onClick={onDecrement}
 				disabled={currentPage < 2}
 			>
 				<ChevronLeft />
@@ -47,15 +69,15 @@ const Pagination = ({
 				<RegularText>of</RegularText>
 				<BoldText>{maxPages}</BoldText>
 			</TextContainer>
-			<StyledButton 
-				onClick={() => dispatch(incrementPage())}
+			<StyledButton
+				onClick={onIncrement}
 				disabled={currentPage > (maxPages - 1)}
 			>
 				<ButtonText>Next</ButtonText>
 				<Chevron />
 			</StyledButton>
-			<StyledButton 
-				onClick={() => dispatch(goToLastPage(maxPages))}
+			<StyledButton
+				onClick={onToLastPage}
 				disabled={currentPage > (maxPages - 1)}
 			>
 				<ButtonText>Last</ButtonText>
