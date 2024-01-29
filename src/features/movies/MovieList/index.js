@@ -1,20 +1,15 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  incrementPage,
-  decrementPage,
-  goToFirstPage,
-  goToLastPage,
   selectMovieList,
-  selectPageState,
   selectStatus,
   setError,
+  pageNumberFromURL,
 } from "./movieListSlice";
 import {
   setInputValue,
-  goToFirstSearchPage,
   selectData,
-  selectInputValue
 } from '../../../common/Navigation/Search/searchSlice';
 import {
   useURLParameter,
@@ -27,41 +22,42 @@ import { ListTileLarge } from '../../../common/Tile';
 import { StyledLink, LargeListWrapper } from '../../../common/Tile/styled';
 import { SearchPage } from '../../SearchPage';
 import paginationParamName from '../../../utils/paginationParamName';
+import queryParamName from '../../../utils/queryParamName';
+import popularMoviesPathName from '../../../utils/popularMoviesPathName';
 import Pagination from '../../../common/Pagination/index';
 import Error from '../../../common/Error';
 import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
 
 function MovieList() {
-  const currentPage = useSelector(selectPageState);
+  const dispatch = useDispatch();
+  const location = useLocation();
+
   const popularMovies = useSelector(selectMovieList);
   const status = useSelector(selectStatus);
-  const dispatch = useDispatch();
   const searchResults = useSelector(selectData);
-  const searchQuery = useSelector(selectInputValue);
 
-  const paramValue = useURLParameter(paginationParamName);
-  const params = {
-    key: "movies",
-    value: paramValue,
-  };
   const updatePageFromURL = useUpdatePageFromURL();
   const replacePageParameter = useReplacePageParameter();
+  const query = useURLParameter(queryParamName);
+  const pageParam = useURLParameter(paginationParamName);
+  const params = {
+    key: query ? queryParamName : popularMoviesPathName,
+    value: pageParam,
+  };
 
   useEffect(() => {
-    updatePageFromURL(params);
-  }, [paramValue]);
+    replacePageParameter(pageParam);
 
-  useEffect(() => {
-    replacePageParameter(currentPage);
-  }, [currentPage]);
+    if (!query) {
+      dispatch(setInputValue(""));
+      updatePageFromURL(params);
+    } else
+      updatePageFromURL(params);
+      dispatch(setInputValue(query));
+  }, [location]);
 
-  useEffect(() => {
-    dispatch(setInputValue(``));
-    dispatch(goToFirstSearchPage());
-  }, []);
-
-  if (searchResults && searchQuery) {
+  if (searchResults && query) {
     return <SearchPage />
   };
 
@@ -99,11 +95,7 @@ function MovieList() {
               </LargeListWrapper>
             </Section>
             <Pagination
-              currentPage={currentPage}
-              goToFirstPage={goToFirstPage}
-              incrementPage={incrementPage}
-              decrementPage={decrementPage}
-              goToLastPage={goToLastPage}
+              pageNumberFromURL={pageNumberFromURL}
             />
           </Main>
         </AnimatedPage>

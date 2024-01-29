@@ -15,14 +15,12 @@ import {
   setInputValue,
   selectData
 } from '../../../common/Navigation/Search/searchSlice';
-import { useURLParameter } from '../../../utils/useURLParams';
 import { BackdropHeader } from './Backdrop';
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from '../../../common/Section/Section';
 import { DetailsTile, ListTileSmall } from '../../../common/Tile';
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import { SearchPage } from '../../SearchPage';
-import queryParamName from '../../../utils/queryParamName';
 import Error from '../../../common/Error';
 import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
@@ -32,8 +30,6 @@ function MovieDetails() {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
-
-  const query = useURLParameter(queryParamName);
 
   useEffect(() => {
     dispatch(setMovieId(id))
