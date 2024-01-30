@@ -1,69 +1,63 @@
 import { useEffect } from 'react';
-import { useSelector,useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import {
-  incrementPage,
-  decrementPage,
-  goToFirstPage,
-  goToLastPage,
-  selectPageState,
   selectPeopleList,
   selectStatus,
   setError,
+  pageNumberFromURL,
 } from './peopleSlice';
-import { 
-  selectInputValue, 
-  selectData, 
-  setInputValue, 
-  goToFirstSearchPage 
+import {
+  selectData,
+  setInputValue,
 } from '../../../common/Navigation/Search/searchSlice';
-import { 
-  useURLParameter, 
-  useUpdatePageFromURL, 
-  useReplacePageParameter 
+import {
+  useURLParameter,
+  useUpdatePageFromURL,
+  useReplacePageParameter
 } from '../../../utils/useURLParams';
-
 import { Main } from '../../../common/Main/Main';
 import { Section, SectionTitle } from "../../../common/Section/Section";
 import { SmallListWrapper, StyledLink } from '../../../common/Tile/styled';
 import { ListTileSmall } from '../../../common/Tile';
 import { SearchPage } from '../../SearchPage';
 import paginationParamName from '../../../utils/paginationParamName';
+import queryParamName from '../../../utils/queryParamName';
+import popularPeoplePathName from '../../../utils/popularPeoplePathName';
 import Pagination from '../../../common/Pagination';
 import Error from '../../../common/Error';
 import Loading from '../../../common/Loading';
 import AnimatedPage from '../../../common/AnimatedPage';
 
-
 function PeopleList() {
-  const currentPage = useSelector(selectPageState);
+  const dispatch = useDispatch();
+  const location = useLocation();
+  
   const peopleList = useSelector(selectPeopleList);
   const status = useSelector(selectStatus);
-  const searchQuery = useSelector(selectInputValue);
   const searchResults = useSelector(selectData);
-  const dispatch = useDispatch();
 
-  const paramValue = useURLParameter(paginationParamName);
-  const params = {
-    key: "people",
-    value: paramValue,
-  };
   const updatePageFromURL = useUpdatePageFromURL();
   const replacePageParameter = useReplacePageParameter();
+  const query = useURLParameter(queryParamName);
+  const pageParam = useURLParameter(paginationParamName);
+  const params = {
+    key: query ? queryParamName : popularPeoplePathName,
+    value: pageParam,
+  };
 
   useEffect(() => {
-    updatePageFromURL(params);
-  }, [paramValue]);
+    replacePageParameter(pageParam);
 
-  useEffect(() => {
-    replacePageParameter(currentPage);
-  }, [currentPage]);
+    if (!query) {
+      dispatch(setInputValue(""));
+      updatePageFromURL(params);
+    } else
+      updatePageFromURL(params);
+      dispatch(setInputValue(query));
+  }, [location]);
 
-  useEffect(() => {
-    dispatch(setInputValue(""));
-    dispatch(goToFirstSearchPage());
-  }, []);
-
-  if (searchQuery && searchResults) {
+  if (searchResults && query) {
     return <SearchPage />
   }
 
@@ -97,11 +91,7 @@ function PeopleList() {
               </SmallListWrapper>
             </Section>
             <Pagination
-              currentPage={currentPage}
-              goToFirstPage={goToFirstPage}
-              incrementPage={incrementPage}
-              decrementPage={decrementPage}
-              goToLastPage={goToLastPage}
+              pageNumberFromURL={pageNumberFromURL}
             />
           </Main>
         </AnimatedPage>

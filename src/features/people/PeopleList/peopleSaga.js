@@ -1,8 +1,5 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects'
 import {
-    incrementPage,
-    decrementPage,
-    goToFirstPage,
     pageNumberFromURL,
     setPeopleList,
     selectPageState,
@@ -22,10 +19,5 @@ function* fetchPeopleListHandler() {
 }
 
 export function* peopleSaga() {
-    yield takeEvery([
-        incrementPage,
-        decrementPage,
-        goToFirstPage,
-        pageNumberFromURL],
-        fetchPeopleListHandler);
+    yield takeEvery(pageNumberFromURL, fetchPeopleListHandler);
 }

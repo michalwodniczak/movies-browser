@@ -1,4 +1,4 @@
-import { all, put, call, debounce, select, takeEvery } from "redux-saga/effects";
+import { all, put, call, debounce, select, takeEvery, delay, takeLatest } from "redux-saga/effects";
 import {
     fetchDataSucces,
     fetchDataFailure,
@@ -8,10 +8,6 @@ import {
     selectPath,
     setTotalPages,
     selectCurrnetPage,
-    incrementPage,
-    decrementPage,
-    goToFirstSearchPage,
-    goToLastSearchPage,
     setTotalResults,
     searchPageNumberFromURL,
 } from "./searchSlice";
@@ -21,6 +17,7 @@ import { processSearchResults } from "../../../utils/API/processApiData";
 
 function* fetchDataHandler() {
     try {
+        yield delay(400);
         const [query, path, page] = yield all([
             select(selectInputValue),
             select(selectPath),
@@ -51,15 +48,7 @@ function* fetchDataHandler() {
 };
 
 export function* searchSaga() {
-    yield debounce(500, setInputValue, fetchDataHandler);
-    yield takeEvery(
-        [
-            incrementPage,
-            decrementPage,
-            goToFirstSearchPage,
-            goToLastSearchPage,
-            searchPageNumberFromURL,
-        ],
-        fetchDataHandler
-    );
+    // yield debounce(500, setInputValue, fetchDataHandler);
+    yield takeLatest(setInputValue, fetchDataHandler);
+    yield takeEvery(searchPageNumberFromURL, fetchDataHandler);
 };

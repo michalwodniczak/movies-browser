@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { createPaginationActions } from "../../Pagination/createPaginationActions";
+import { createPaginationActions } from '../../Pagination/createPaginationActions';
 
-// const { paginationReducers } = createPaginationActions('searchSlice');
+const { paginationReducers } = createPaginationActions('movieListSlice');
 
 const searchSlice = createSlice({
     name: "search",
@@ -12,10 +12,11 @@ const searchSlice = createSlice({
         status: "",
         genres: [{}],
         totalResults: 0,
-        totalPages: 1,
+        totalPages: 0,
         page: 1,
     },
     reducers: {
+        ...paginationReducers,
         setPath: (state, { payload: path }) => {
             state.path = path;
         },
@@ -41,27 +42,6 @@ const searchSlice = createSlice({
             state.status = "loading"
             state.inputValue = query;
         },
-        // ...paginationReducers,
-        incrementPage: (state) => {
-            state.page += 1;
-            state.status = "loading";
-        },
-        decrementPage: (state) => {
-            state.page -= 1;
-            state.status = "loading";
-        },
-        goToFirstSearchPage: (state) => {
-            state.page = 1;
-            state.status = "loading";
-        },
-        goToLastSearchPage: (state, { payload: lastPage }) => {
-            state.page = +lastPage;
-            state.status = "loading";
-        },
-        searchPageNumberFromURL: (state, { payload: query }) => {
-            state.page = +query;
-            state.status = "loading";
-        },
     },
 });
 
@@ -83,11 +63,7 @@ export const {
     setGenres,
     setTotalPages,
     setTotalResults,
-    incrementPage,
-    decrementPage,
-    goToFirstSearchPage,
-    goToLastSearchPage,
-    searchPageNumberFromURL,
+    pageNumberFromURL: searchPageNumberFromURL,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;

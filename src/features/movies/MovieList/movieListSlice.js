@@ -29,10 +29,6 @@ const movieListSlice = createSlice({
 });
 
 export const {
-    incrementPage,
-    decrementPage,
-    goToFirstPage,
-    goToLastPage,
     pageNumberFromURL,
     setMovieList,
     setGenres,
