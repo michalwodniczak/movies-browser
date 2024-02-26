@@ -9,7 +9,7 @@ Explore our current progress on the live demo: https://bedicooper.github.io/movi
 
 ## Authors
 - [Patrycja Gomza](https://github.com/patrycja-gomza)
-- [Michał Wodniczak](https://github.com/widmo200)
+- [Michał Wodniczak](https://github.com/michalwodniczak)
 - [Mateusz Bednarz](https://github.com/bedicooper)
 
 ## General Info
